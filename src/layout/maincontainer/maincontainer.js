@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import  Upperbar  from '../upperbar/upperbar';
 import { Landingpage } from '../landingpage/landingpage';
+import { Homepage } from '../homepage/homepage';
 
 class MainContainer extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class MainContainer extends Component {
             <div>
                 <Upperbar MainContainerhandler={this.handler}/>
                 <div className="rightcontainer">
-                    <Landingpage MainContainerhandler={this.handler} />
+                    {(this.state.isEdit) ? <Landingpage MainContainerhandler={this.handler} /> : <Homepage MainContainerhandler={this.handler} />}
                 </div>
             </div>
         );
