@@ -6,8 +6,14 @@ import cuy from "./images/cuy.png"
 import foto1 from "./images/foto1.jpeg"
 import foto2 from "./images/foto2.jpeg"
 import foto3 from "./images/foto3.jpeg"
+import fire from '../../config/Fire';
 
 class Landingpage extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>
@@ -98,6 +104,30 @@ class RightContent extends Component {
 }
 
 class Login extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.login = this.login.bind(this);
+    }
+
+    login(e) {
+        console.log(this.state.email + '.');
+        e.preventDefault();
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        }).catch((error)=>{
+            console.log(error);
+        });
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
     render() {
         return (
             <div>
@@ -105,20 +135,20 @@ class Login extends Component {
                 <img align="middle" alt="imagen de un gato" title="El GATO" src={cat} width="80px"></img>
                 <br />
                 <br />
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <h6>USUARIO:</h6>
                     <label>
-                        <input type="text" className="input" />
+                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     </label>
                     <br />
                     <br />
                     <h6>CONTRASEÑA:</h6>
                     <label>
-                        <input type="text" className="input" />
+                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br />
                     <br />
-                    <input type="submit" value="INGRESAR" className="button" onClick={this.props.MainContainerhandler.bind(this, false)} />
+                    <input type="submit" value="INGRESAR" className="button" onClick={this.login} />
 
                 </form>
                 <button className="button2" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
@@ -128,6 +158,29 @@ class Login extends Component {
 }
 
 class Register extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.signup = this.signup.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    signup(event){
+        event.preventDefault();
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+        }).catch((error)=>{
+            console.log(error);
+        });
+    }
+
     render() {
         return (
             <div>
@@ -136,24 +189,16 @@ class Register extends Component {
                 <br />
                 <br />
                 <form onSubmit={this.handleSubmit}>
-                    <h6>USUARIO:</h6>
-                    <label>
-                        <input type="text" className="input" />
-                    </label>
-                    <h6>NOMBRE:</h6>
-                    <label>
-                        <input type="text" className="input" />
-                    </label>
                     <h6>CORREO:</h6>
                     <label>
-                        <input type="text" className="input" />
+                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     </label>
                     <h6>CONTRASEÑA:</h6>
                     <label >
-                        <input type="text" className="input" />
+                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br />
-                    <input type="submit" value="CREAR" className="button" />
+                    <input type="submit" value="CREAR CUENTA" className="button" onClick={this.signup} />
 
                 </form>
                 <button onClick={this.props.rightcontenthandler.bind(this, true)} className="button2">VOLVER</button>

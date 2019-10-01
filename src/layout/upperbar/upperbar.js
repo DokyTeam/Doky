@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import './upperbar.css';
 import shop from "./images/shop.png"
+import fire from '../../config/Fire';
 
 class upperbar extends Component {
 
-    constuctor() {
-        this.handlePageChange = this.handlePageChange.bind(this);
-      }
+    constructor(props){
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
 
-    
+    logout(){
+        fire.auth().signOut();
+    }
 
     render() {
         return (
@@ -23,7 +27,10 @@ class upperbar extends Component {
                     </div>
                     <div className="p-2 bd-highlight"><button className=" btn btn-outline-light my-2 my-sm-0 d-none d-sm-block font-weight-bolder" type="submit">Buscar</button>
                     </div>
-                    <div className="ml-auto p-2 bd-highlight"><img src={shop} className="ustify-content-end logo-size" alt="logo" ></img>
+                    <div className="ml-auto p-2 bd-highlight">
+                        <button onClick={this.logout}>
+                            <img src={shop} className="ustify-content-end logo-size" alt="logo" ></img>
+                        </button>
                     </div>
                 </div>
             </div>
