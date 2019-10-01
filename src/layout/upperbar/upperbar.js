@@ -7,6 +7,7 @@ class upperbar extends Component {
 
     constructor(props){
         super(props);
+        this.handlePageChange = this.handlePageChange.bind(this);
         this.logout = this.logout.bind(this);
     }
 
@@ -17,8 +18,6 @@ class upperbar extends Component {
     render() {
         return (
             <div className="Navegation">
-
-
                 <div className="d-flex bd-highlight color-dark align-items-center">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={this.props.MainContainerhandler.bind(this, true)}>
                         <h1 className="text-light  text-font font-italic text-uppercase ">
@@ -35,10 +34,6 @@ class upperbar extends Component {
                         </button>
                     </div>
                 </div>
-
-
-
-
             </div>
 
         );

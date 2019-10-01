@@ -22,8 +22,8 @@ class Landingpage extends Component {
                     <RightContent MainContainerhandler={this.props.MainContainerhandler} />
                 </div>
                 <div className="lowerbar">
-                    <h1> NOSOTROS </h1>
-                    <h1> CONTACTO </h1>
+                    <h1><a href="https://jestupinanb.wixsite.com/doky" target ="_blank"> NOSOTROS </a></h1>
+                    <h1> CONTACTO</h1>
                     <h1> AUXILIAR </h1>
                 </div>
             </div>
@@ -74,8 +74,8 @@ class LeftContent extends Component {
                 <div className="pugcontainer">
                     <img align="middle" alt="imagen de un gato" title="El PUG" src={pug} width="80px"></img>
                     <div>
-                        <h3 style={{fontSize: 25 , textAlign: "center"}}>¿Que es Doky?</h3>
-                        <h4 style={{fontSize: 20 , textAlign: "center"}}>Doky es la nueva plataforma que te permitira poder tener a la mano todo lo que tu mascota necesita</h4> 
+                        <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Que es Doky?</h3>
+                        <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitira poder tener a la mano todo lo que tu mascota necesita</h4>
                     </div>
                 </div>
             </div>
