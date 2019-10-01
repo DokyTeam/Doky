@@ -1,0 +1,100 @@
+div.landingpage{
+    display: grid; 
+    grid-template-columns: 2fr 1fr;
+    grid-auto-rows: 580px,auto;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #4d2f16;
+}
+
+div.leftcontainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #beffba;
+    justify-items: center;
+    align-items: center;
+
+}
+
+div.rightcontainer{
+
+    background-color: #ffffff;
+    text-align: center;
+    
+   
+}
+
+div.pugcontainer{
+    display: grid; 
+    grid-template-columns: 1fr 2fr;
+    grid-auto-rows: auto;
+    justify-items: center;
+    align-items: center;
+    padding: 1em;
+}
+
+.button {
+    background-color:  #53cd5a;
+    border: none;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px
+
+}
+
+.button2 {
+    background-color:  #214132;
+    border: none;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px
+}
+
+.input{
+    border-radius: 50px;
+}
+
+div.lowerbar{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #53cd5a;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: #333 1px solid;
+    color: #ffffff;
+    justify-items: center;
+    grid-auto-rows: minmax(10px,auto);
+    font-size: 10px;
+}
+
+.lowerbar h1 a:any-link {
+    color: white;
+}
+
+@media only screen and (max-width:600px){
+    div.landingpage{
+        display: grid; 
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.6fr 1fr;
+        grid-auto-columns: 440px,auto;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: #4d2f16;
+    }
+    
+    div.lowerbar h1 {
+        font-size: 2em;
+    }
+    .pugcontainer{
+        grid-auto-flow: row;
+    }
+}
