@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import './upperbar.css';
-import shop from "./images/shop.jpeg"
+import shop from "./images/shop.png"
 
 class upperbar extends Component {
+
+    constuctor() {
+        this.handlePageChange = this.handlePageChange.bind(this);
+      }
+
+    
+
     render() {
         return (
             <div className="Navegation">
-
-
                 <div className="d-flex bd-highlight color-dark align-items-center">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={this.props.MainContainerhandler.bind(this, true)}>
                         <h1 className="text-light  text-font font-italic text-uppercase ">
@@ -21,10 +26,6 @@ class upperbar extends Component {
                     <div className="ml-auto p-2 bd-highlight"><img src={shop} className="ustify-content-end logo-size" alt="logo" ></img>
                     </div>
                 </div>
-
-
-
-
             </div>
 
         );
