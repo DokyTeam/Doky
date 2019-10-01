@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Doky/static/css/main.b80e7eb5.chunk.css",
-    "main.js": "/Doky/static/js/main.596dfb56.chunk.js",
-    "main.js.map": "/Doky/static/js/main.596dfb56.chunk.js.map",
+    "main.js": "/Doky/static/js/main.d45c29fb.chunk.js",
+    "main.js.map": "/Doky/static/js/main.d45c29fb.chunk.js.map",
     "runtime-main.js": "/Doky/static/js/runtime-main.90e852a6.js",
     "runtime-main.js.map": "/Doky/static/js/runtime-main.90e852a6.js.map",
-    "static/js/2.7a66b0d3.chunk.js": "/Doky/static/js/2.7a66b0d3.chunk.js",
-    "static/js/2.7a66b0d3.chunk.js.map": "/Doky/static/js/2.7a66b0d3.chunk.js.map",
+    "static/js/2.703ed8a4.chunk.js": "/Doky/static/js/2.703ed8a4.chunk.js",
+    "static/js/2.703ed8a4.chunk.js.map": "/Doky/static/js/2.703ed8a4.chunk.js.map",
     "index.html": "/Doky/index.html",
-    "precache-manifest.7121ad8895bc54988f9c05088c88d1ec.js": "/Doky/precache-manifest.7121ad8895bc54988f9c05088c88d1ec.js",
+    "precache-manifest.138e91930f2c64fbd2a2447e7f533414.js": "/Doky/precache-manifest.138e91930f2c64fbd2a2447e7f533414.js",
     "service-worker.js": "/Doky/service-worker.js",
     "static/css/main.b80e7eb5.chunk.css.map": "/Doky/static/css/main.b80e7eb5.chunk.css.map",
     "static/media/cuy.png": "/Doky/static/media/cuy.f2539e0b.png",
@@ -23,7 +23,7 @@
     "static/media/pasear.jpg": "/Doky/static/media/pasear.08492519.jpg",
     "static/media/pug.png": "/Doky/static/media/pug.51443a30.png",
     "static/media/salto.jpg": "/Doky/static/media/salto.6fa2af73.jpg",
-    "static/media/shop.jpeg": "/Doky/static/media/shop.df4488b9.jpeg",
+    "static/media/shop.png": "/Doky/static/media/shop.37d12fb9.png",
     "static/media/veterinaria.jpg": "/Doky/static/media/veterinaria.aeb80614.jpg"
   }
 }

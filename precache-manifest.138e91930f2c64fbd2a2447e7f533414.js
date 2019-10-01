@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e36d432b3a4ffd14ac2218463fe4f81c",
+    "revision": "e389781322d09be5d99037efb7916714",
     "url": "/Doky/index.html"
   },
   {
-    "revision": "e97d0437c81809877815",
+    "revision": "5dac51688380522bcf99",
     "url": "/Doky/static/css/main.b80e7eb5.chunk.css"
   },
   {
-    "revision": "dbfca447234b8e541934",
-    "url": "/Doky/static/js/2.7a66b0d3.chunk.js"
+    "revision": "eb71b9d77f86789fc07a",
+    "url": "/Doky/static/js/2.703ed8a4.chunk.js"
   },
   {
-    "revision": "e97d0437c81809877815",
-    "url": "/Doky/static/js/main.596dfb56.chunk.js"
+    "revision": "5dac51688380522bcf99",
+    "url": "/Doky/static/js/main.d45c29fb.chunk.js"
   },
   {
     "revision": "f3d749be22ec955ca232",
@@ -68,8 +68,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Doky/static/media/salto.6fa2af73.jpg"
   },
   {
-    "revision": "df4488b921d529c8e3b8be3ed2182c14",
-    "url": "/Doky/static/media/shop.df4488b9.jpeg"
+    "revision": "37d12fb923aec29f45b750acd570dd56",
+    "url": "/Doky/static/media/shop.37d12fb9.png"
   },
   {
     "revision": "aeb8061493851351b068f4a5c511a302",
