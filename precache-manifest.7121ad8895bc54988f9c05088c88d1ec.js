@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "da818ba10cc931867e64127469d18aaa",
+    "revision": "e36d432b3a4ffd14ac2218463fe4f81c",
     "url": "/Doky/index.html"
   },
   {
-    "revision": "27a6cadb93a89a074eb3",
-    "url": "/Doky/static/css/main.6c809383.chunk.css"
+    "revision": "e97d0437c81809877815",
+    "url": "/Doky/static/css/main.b80e7eb5.chunk.css"
   },
   {
     "revision": "dbfca447234b8e541934",
     "url": "/Doky/static/js/2.7a66b0d3.chunk.js"
   },
   {
-    "revision": "27a6cadb93a89a074eb3",
-    "url": "/Doky/static/js/main.67472f2f.chunk.js"
+    "revision": "e97d0437c81809877815",
+    "url": "/Doky/static/js/main.596dfb56.chunk.js"
   },
   {
     "revision": "f3d749be22ec955ca232",
