@@ -77,6 +77,10 @@ div.lowerbar{
     font-size: 10px;
 }
 
+.lowerbar h1 a:any-link {
+    color: white;
+}
+
 @media only screen and (max-width:600px){
     div.landingpage{
         display: grid; 
