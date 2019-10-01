@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './upperbar.css';
-import shop from "./images/shop.jpeg"
+import shop from "./images/shop.png"
 import fire from '../../config/Fire';
 
 class upperbar extends Component {
 
     constructor(props){
         super(props);
-        this.handlePageChange = this.handlePageChange.bind(this);
         this.logout = this.logout.bind(this);
     }
 
