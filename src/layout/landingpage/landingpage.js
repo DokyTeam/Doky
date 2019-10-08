@@ -10,19 +10,22 @@ import fire from '../../config/Fire';
 
 class Landingpage extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>
-                <div className="landingpage">
-                    <LeftContent />
-                    <RightContent MainContainerhandler={this.props.MainContainerhandler} />
+                <div className="container-fluid">
+                    <div className="row align-items-center">
+                        <div className="col-md-12 col-lg-9">
+                            <LeftContent />
+                        </div>
+                        <div className="col-md-12 col-lg-3">
+                            <RightContent MainContainerhandler={this.props.MainContainerhandler} />
+                        </div>
+                    </div>
                 </div>
+                <hr />
                 <div className="lowerbar">
-                    <h1><a href="https://jestupinanb.wixsite.com/doky" target ="_blank"> NOSOTROS </a></h1>
+                    <h1><a href="https://jestupinanb.wixsite.com/doky" target="_blank"> NOSOTROS </a></h1>
                     <h1> CONTACTO</h1>
                     <h1> AUXILIAR </h1>
                 </div>
@@ -35,7 +38,7 @@ class LeftContent extends Component {
     render() {
         return (
             <div className="leftcontainer">
-                <p style={{ fontSize: 22 }}>Conoce a Doky</p>
+                <p style={{ fontSize: 33 }}>Conoce a Doky</p>
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -71,11 +74,17 @@ class LeftContent extends Component {
                         <span className="sr-only">Next</span>
                     </a>
                 </div>
-                <div className="pugcontainer">
-                    <img align="middle" alt="imagen de un gato" title="El PUG" src={pug} width="80px"></img>
-                    <div>
-                        <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Que es Doky?</h3>
-                        <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitira poder tener a la mano todo lo que tu mascota necesita</h4>
+                <div className="container-fluid">
+                    <div className="row align-items-center" style={{backgroundColor: "#E5FFE8"}}>
+                        <div className="col-sm-12 col-lg-2">
+                            <img align="middle" alt="imagen de un gato" title="El PUG" src={pug} width="80px"></img>
+                        </div>
+                        <div className="col-sm-12 col-lg-10">
+                            <div>
+                                <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Que es Doky?</h3>
+                                <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitira poder tener a la mano todo lo que tu mascota necesita</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,8 +127,8 @@ class Login extends Component {
     login(e) {
         console.log(this.state.email + '.');
         e.preventDefault();
-        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).catch((error)=>{
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        }).catch((error) => {
             console.log(error);
         });
     }
@@ -131,20 +140,20 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <p style={{ marginTop: 60 }}>BIENVENIDO</p>
+                <p style={{ marginTop: 30, fontSize: 33 }}>BIENVENIDO</p>
                 <img align="middle" alt="imagen de un gato" title="El GATO" src={cat} width="80px"></img>
                 <br />
                 <br />
                 <form>
                     <h6>USUARIO:</h6>
                     <label>
-                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     </label>
                     <br />
                     <br />
                     <h6>CONTRASEÑA:</h6>
                     <label>
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br />
                     <br />
@@ -159,7 +168,7 @@ class Login extends Component {
 
 class Register extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             email: '',
@@ -173,10 +182,10 @@ class Register extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    signup(event){
+    signup(event) {
         event.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).catch((error)=>{
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        }).catch((error) => {
             console.log(error);
         });
     }
@@ -191,11 +200,11 @@ class Register extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <h6>CORREO:</h6>
                     <label>
-                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     </label>
                     <h6>CONTRASEÑA:</h6>
                     <label >
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br />
                     <input type="submit" value="CREAR CUENTA" className="button" onClick={this.signup} />
