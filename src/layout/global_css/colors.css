@@ -1,0 +1,23 @@
+.MainColor{
+    background-color: #53cd5a;
+}
+
+.DarkMainColor{
+    background-color: #214132;
+}
+
+.BackgroundColor{
+    background-color: #ffffff;
+}
+
+.AltBackgroundColor{
+    background-color: #E5FFE8;
+}
+
+.ComplementColor{
+    background-color: #4d2f16;
+}
+
+.DarkColor{
+    background-color: #040259; /*Este no esta definido*/
+}

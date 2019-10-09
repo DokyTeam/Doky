@@ -1,12 +1,9 @@
 div.rightcontainer{
-    background-color: #ffffff;
     text-align: center;
 }
 
 .button {
-    background-color:  #53cd5a;
     border: none;
-    color: #ffffff;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -19,9 +16,7 @@ div.rightcontainer{
 }
 
 .button2 {
-    background-color:  #214132;
     border: none;
-    color: #ffffff;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -36,42 +31,21 @@ div.rightcontainer{
     border-radius: 50px;
 }
 
-div.lowerbar{
+.lowerbar{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    background-color: #ffffff;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: #53cd5a;
+    font-size: 25px;
     justify-items: center;
     grid-auto-rows: minmax(10px,auto);
 }
 
-.lowerbar h1{
-    font-size: 30px;
-}
-
-.lowerbar h1 a {
-    color: #53cd5a;
-}
-
-.lowerbar h1 a:hover {
+.lowerbar p a:hover {
     color: #4d2f16;
+    text-decoration: none;
 }
 
 @media only screen and (max-width:600px){
-    div.landingpage{
-        display: grid; 
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.6fr 1fr;
-        grid-auto-columns: 440px,auto;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        color: #4d2f16;
-    }
-    
-    div.lowerbar h1 {
+    div.lowerbar p {
         font-size: 15px;
-    }
-    .pugcontainer{
-        grid-auto-flow: row;
     }
 }
