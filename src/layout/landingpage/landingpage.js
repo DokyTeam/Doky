@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import './landingpage.css';
-import pug from "./images/pug.png"
-import cat from "./images/gato.png"
-import cuy from "./images/cuy.png"
-import foto1 from "./images/foto1.jpeg"
-import foto2 from "./images/foto2.jpeg"
-import foto3 from "./images/foto3.jpeg"
+import '../global_css/colors.css';
+import '../global_css/fonts.css';
+import '../global_css/textcolors.css';
+import pug from "./images/pug.png";
+import cat from "./images/gato.png";
+import cuy from "./images/cuy.png";
+import foto1 from "./images/foto1.jpeg";
+import foto2 from "./images/foto2.jpeg";
+import foto3 from "./images/foto3.jpeg";
 import fire from '../../config/Fire';
 
 class Landingpage extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div>
-                <div className="landingpage">
-                    <LeftContent />
-                    <RightContent MainContainerhandler={this.props.MainContainerhandler} />
+                <div className="container-fluid">
+                    <div className="row align-items-center">
+                        <div className="col-md-12 col-lg-9">
+                            <LeftContent />
+                        </div>
+                        <div className="col-md-12 col-lg-3">
+                            <RightContent MainContainerhandler={this.props.MainContainerhandler} />
+                        </div>
+                    </div>
                 </div>
-                <div className="lowerbar">
-                    <h1><a href="https://jestupinanb.wixsite.com/doky" target ="_blank"> NOSOTROS </a></h1>
-                    <h1> CONTACTO</h1>
-                    <h1> AUXILIAR </h1>
+                <hr />
+                <div className="lowerbar TextMainColor TitleTextFont">
+                    <p><a className="TextMainColor TitleTextFont" href="https://jestupinanb.wixsite.com/doky" target="_blank"> NOSOTROS </a></p>
+                    <p> CONTACTO</p>
+                    <p> AUXILIAR </p>
                 </div>
             </div>
         );
@@ -35,7 +41,7 @@ class LeftContent extends Component {
     render() {
         return (
             <div className="leftcontainer">
-                <p style={{ fontSize: 22 }}>Conoce a Doky</p>
+                <p className="TitleTextFont" style={{ fontSize: 33 }}>Conoce a Doky</p>
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -71,11 +77,17 @@ class LeftContent extends Component {
                         <span className="sr-only">Next</span>
                     </a>
                 </div>
-                <div className="pugcontainer">
-                    <img align="middle" alt="imagen de un gato" title="El PUG" src={pug} width="80px"></img>
-                    <div>
-                        <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Que es Doky?</h3>
-                        <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitira poder tener a la mano todo lo que tu mascota necesita</h4>
+                <div className="container-fluid">
+                    <div className="row align-items-center AltBackgroundColor">
+                        <div className="col-sm-12 col-lg-2">
+                            <img align="middle" alt="imagen de un gato" title="El PUG" src={pug} width="80px"></img>
+                        </div>
+                        <div className="col-sm-12 col-lg-10">
+                            <div>
+                                <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Que es Doky?</h3>
+                                <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitira poder tener a la mano todo lo que tu mascota necesita</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,8 +130,8 @@ class Login extends Component {
     login(e) {
         console.log(this.state.email + '.');
         e.preventDefault();
-        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).catch((error)=>{
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        }).catch((error) => {
             console.log(error);
         });
     }
@@ -131,27 +143,27 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <p style={{ marginTop: 60 }}>BIENVENIDO</p>
+                <p className="TitleTextFont"style={{ marginTop: 30, fontSize: 25 }}>BIENVENIDO</p>
                 <img align="middle" alt="imagen de un gato" title="El GATO" src={cat} width="80px"></img>
                 <br />
                 <br />
                 <form>
                     <h6>USUARIO:</h6>
                     <label>
-                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     </label>
                     <br />
                     <br />
                     <h6>CONTRASEÑA:</h6>
                     <label>
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br />
                     <br />
-                    <input type="submit" value="INGRESAR" className="button" onClick={this.login} />
+                    <input type="submit" value="INGRESAR" className="button MainColor TextWhiteColor" onClick={this.login} />
 
                 </form>
-                <button className="button2" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
+                <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
             </div>
         );
     }
@@ -159,7 +171,7 @@ class Login extends Component {
 
 class Register extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             email: '',
@@ -173,10 +185,10 @@ class Register extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    signup(event){
+    signup(event) {
         event.preventDefault();
-        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-        }).catch((error)=>{
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        }).catch((error) => {
             console.log(error);
         });
     }
@@ -184,28 +196,27 @@ class Register extends Component {
     render() {
         return (
             <div>
-                <p style={{ marginTop: 40 }}>CREA TU NUEVA CUENTA</p>
+                <p className="TitleTextFont" style={{ marginTop: 40 }}>CREA TU NUEVA CUENTA</p>
                 <img align="middle" alt="imagen de un gato" title="El CUY" src={cuy} width="80px"></img>
                 <br />
                 <br />
                 <form onSubmit={this.handleSubmit}>
                     <h6>CORREO:</h6>
                     <label>
-                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
                     </label>
                     <h6>CONTRASEÑA:</h6>
                     <label >
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br />
-                    <input type="submit" value="CREAR CUENTA" className="button" onClick={this.signup} />
+                    <input type="submit" value="CREAR CUENTA" className="button MainColor TextWhiteColor" onClick={this.signup} />
 
                 </form>
-                <button onClick={this.props.rightcontenthandler.bind(this, true)} className="button2">VOLVER</button>
+                <button onClick={this.props.rightcontenthandler.bind(this, true)} className="button2 DarkMainColor TextWhiteColor">VOLVER</button>
             </div>
         );
     }
 }
-
 
 export { Landingpage }; 

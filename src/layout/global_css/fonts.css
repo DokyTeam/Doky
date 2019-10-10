@@ -1,0 +1,64 @@
+.TitleTextFont{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.SmallTextFont{
+    font: sans-serif;
+    font-size: 20px;
+    padding-right: 3%; /* Este no esta definido*/
+    padding-left: 3%;
+    text-align: justify;
+}
+
+.TextFont{
+    font: sans-serif;
+    font-size: 18px; /* Este no esta definido*/
+    padding-right: 3%;
+    padding-left: 3%;
+    text-align: justify;
+}
+
+.CurvyTextFont{
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -3px;
+    margin-left: 13%;  /* Este no esta definido*/
+    margin-right: 13%;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: justify;
+}
+
+.CurvyTextFontBig{
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 50px;   /* Este no esta definido*/
+    font-weight: 800;
+    letter-spacing: -3px;
+    text-align: justify;
+    margin-right: 3%;
+    margin-left: 3%;
+    padding-right: 3%;
+    padding-left: 3%;
+}
+
+.CurvyTextFontMedium{
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 25px;
+    font-weight: 800;  /* Este no esta definido*/
+    text-align: justify;
+    padding-right: 3%;
+    padding-left: 3%;
+}
+
+.CurvyTextFontSmall{
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 17px;  /* Este no esta definido*/
+    font-weight: 800;
+    padding-right: 3%;
+    padding-left: 3%;
+}

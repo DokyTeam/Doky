@@ -57,6 +57,10 @@
 }
  
 .text-font {
-    
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.baricon{
+  background-color: #53cd5a;
+  border: none;
 }

@@ -1,0 +1,34 @@
+.TextMainColor{
+    color: #53cd5a;
+    text-decoration: none;
+}
+
+.TextDarkMainColor{
+    color: #214132;
+    text-decoration: none;
+}
+
+.TextWhiteColor{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.TextLightColor{
+    color: #E5FFE8;
+    text-decoration: none;
+}
+
+.TextUltraDarkColor{
+    color: #040259; /* Este no esta definido*/
+}
+
+.TextLinkComplementColor{
+    color: #A93226;
+    text-decoration: none; /* Este no esta definido*/
+}
+
+.TextComplementColor{
+    color: #A93226;
+    text-decoration: none; /* Este no esta definido*/
+}
+

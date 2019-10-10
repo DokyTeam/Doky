@@ -28,7 +28,7 @@ class upperbar extends Component {
                     <div className="p-2 bd-highlight"><button className=" btn btn-outline-light my-2 my-sm-0 d-none d-sm-block font-weight-bolder" type="submit">Buscar</button>
                     </div>
                     <div className="ml-auto p-2 bd-highlight">
-                        <button onClick={this.logout}>
+                        <button onClick={this.logout} className="baricon">
                             <img src={shop} className="ustify-content-end logo-size" alt="logo" ></img>
                         </button>
                     </div>
