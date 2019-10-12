@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import {LenderUpperbar} from './lender_upper_bar/lender_upper_bar';
+import {LenderHomePage} from './lender_home_page/lenderhomepage';
+import '../global_css/textcolors.css';
 
 class LenderContainer extends Component {
 
@@ -8,10 +10,7 @@ class LenderContainer extends Component {
         return (
             <div>
                 <LenderUpperbar MainContainerhandler={this.props.MainContainerhandler}/>
-                <h1>Servicio 1</h1>
-                <h1>Servicio 2</h1>
-                <h1>Servicio 3</h1>
-                <h1>Servicio 4</h1>
+                <LenderHomePage/>
             </div>
         );
     }
