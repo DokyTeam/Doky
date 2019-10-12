@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './landing_upper_bar.css';
-import fire from '../../../config/Fire';
+import '../../global_css/colors.css';
 
 class LandingUpperBar extends Component {
 
     render() {
         return (
             <div className="Navegation">
-                <div className="d-flex bd-highlight color-dark align-items-center">
+                <div className="d-flex bd-highlight MainColor align-items-center">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <h1 className="text-light  text-font font-italic text-uppercase ">
                             doky

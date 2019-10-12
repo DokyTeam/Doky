@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../../global_css/textcolors.css';
+import {Cards} from './home_page_components/cards';
 
 class LenderHomePage extends Component {
 
@@ -9,16 +9,16 @@ class LenderHomePage extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3">
-                        <h1>Servicio 1</h1>
+                        <Cards servicename="Paseos"/>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <h1>Servicio 2</h1>
+                        <Cards servicename="Guarderia"/>
                     </div> 
                     <div className="col-12 col-md-6 col-lg-3">
-                        <h1>Servicio 3</h1>
+                        <Cards servicename="Veterinaria"/>
                     </div> 
                     <div className="col-12 col-md-6 col-lg-3">
-                        <h1>Servicio 4</h1>
+                        <Cards servicename="Saltos"/>
                     </div> 
                 </div>
             </div>

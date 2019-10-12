@@ -1,5 +1,5 @@
 .MainColor{
-    background-color: #53cd5a;
+    background-color: #34b23a;
 }
 
 .DarkMainColor{
@@ -7,6 +7,10 @@
 }
 
 .BackgroundColor{
+    background-color: #def7e9;
+}
+
+.WhiteColor{
     background-color: #ffffff;
 }
 
