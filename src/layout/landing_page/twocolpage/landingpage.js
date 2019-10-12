@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './landingpage.css';
-import '../global_css/colors.css';
-import '../global_css/fonts.css';
-import '../global_css/textcolors.css';
+import '../../global_css/colors.css';
+import '../../global_css/fonts.css';
+import '../../global_css/textcolors.css';
 import pug from "./images/pug.png";
 import cat from "./images/gato.png";
 import cuy from "./images/cuy.png";
 import foto1 from "./images/foto1.jpeg";
 import foto2 from "./images/foto2.jpeg";
 import foto3 from "./images/foto3.jpeg";
-import fire from '../../config/Fire';
+import fire from '../../../config/Fire';
 
 class Landingpage extends Component {
 
@@ -164,6 +164,8 @@ class Login extends Component {
 
                 </form>
                 <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
+                <br />
+                <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.MainContainerhandler.bind(this, false)}>*</button>
             </div>
         );
     }

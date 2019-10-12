@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './upperbar.css';
+import './consumer_upper_bar.css';
 import shop from "./images/shop.png"
-import fire from '../../config/Fire';
+import fire from '../../../config/Fire';
 
-class upperbar extends Component {
+class ConsumerUpperbar extends Component {
 
     constructor(props){
         super(props);
@@ -18,7 +18,7 @@ class upperbar extends Component {
         return (
             <div className="Navegation">
                 <div className="d-flex bd-highlight color-dark align-items-center">
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onClick={this.props.MainContainerhandler.bind(this, true)}>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <h1 className="text-light  text-font font-italic text-uppercase ">
                             doky
                         </h1>
@@ -39,4 +39,4 @@ class upperbar extends Component {
     }
 }
 
-export default upperbar; 
+export {ConsumerUpperbar}; 
