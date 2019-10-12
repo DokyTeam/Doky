@@ -10,7 +10,7 @@ class PaseosPage extends Component {
         return (
             <div className="WhiteColor">
                 <h1>Paseos</h1>
-                <button onClick={() => this.props.lendercontenthandler('lender_home_page')}>home</button>
+                <button onClick={() => this.props.consumercontenthandler('consumer_home_page')}>home</button>
             </div>
         );
     }

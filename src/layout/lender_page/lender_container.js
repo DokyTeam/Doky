@@ -13,27 +13,26 @@ class LenderContainer extends Component {
     constructor(props) {
         super(props)
         this.state = { idpage: 'lender_home_page' }
-        this.handler = this.lendercontenthandler.bind(this)
     }
 
-    lendercontenthandler(some) {
+    lendercontenthandler = (param) => {
         this.setState({
-            idpage: some
-        })
+            idpage: param
+        });
     }
 
     renderSwitch(param) {
         switch (param) {
             case 'lender_home_page':
-                return <LenderHomePage lendercontenthandler={this.handler} />;
+                return <LenderHomePage lendercontenthandler={this.lendercontenthandler} />;
             case 'Paseos':
-                return <PaseosPage />;
-            case 'Guarderia':
-                return <GuarderiaPage />;
+                return <PaseosPage lendercontenthandler={this.lendercontenthandler}/>;
+            case 'Guardería':
+                return <GuarderiaPage lendercontenthandler={this.lendercontenthandler}/>;
             case 'Veterinaria':
-                return <VeterinariaPage />;
+                return <VeterinariaPage lendercontenthandler={this.lendercontenthandler}/>;
             case 'Saltos':
-                return <SaltosPage />;
+                return <SaltosPage lendercontenthandler={this.lendercontenthandler}/>;
             default:
                 return 'foo';
         }

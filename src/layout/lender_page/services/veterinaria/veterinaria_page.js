@@ -8,8 +8,9 @@ class VeterinariaPage extends Component {
 
     render() {
         return (
-            <div className="WhiteColor card">
+            <div className="WhiteColor">
                 <h1>Veterinaria</h1>
+                <button onClick={() => this.props.lendercontenthandler('lender_home_page')}>home</button>
             </div>
         );
     }

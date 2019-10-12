@@ -8,8 +8,9 @@ class GuarderiaPage extends Component {
 
     render() {
         return (
-            <div className="WhiteColor card">
-                <h1>Guarderia</h1>
+            <div className="WhiteColor">
+                <h1>Guardería</h1>
+                <button onClick={() => this.props.lendercontenthandler('lender_home_page')}>home</button>
             </div>
         );
     }

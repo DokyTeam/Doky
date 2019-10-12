@@ -10,20 +10,16 @@ class LenderHomePage extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12 col-md-6 col-lg-3">
-                        <Cards servicename="Paseos"/>
-                        <button className="buttonlol" onClick={this.props.lendercontenthandler.bind(this, "Paseos")}>IR</button>
+                        <Cards servicename="Paseos" lendercontenthandler={this.props.lendercontenthandler}/>
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
-                        <Cards servicename="Guarderia"/>
-                        <button className="buttonlol" onClick={this.props.lendercontenthandler.bind(this, "Guarderia")}>IR</button>
+                        <Cards servicename="Guardería" lendercontenthandler={this.props.lendercontenthandler}/>
                     </div> 
                     <div className="col-12 col-md-6 col-lg-3">
-                        <Cards servicename="Veterinaria"/>
-                        <button className="buttonlol" onClick={this.props.lendercontenthandler.bind(this, "Veterinaria")}>IR</button>
+                        <Cards servicename="Veterinaria" lendercontenthandler={this.props.lendercontenthandler}/>
                     </div> 
                     <div className="col-12 col-md-6 col-lg-3">
-                        <Cards servicename="Saltos"/>
-                        <button className="buttonlol" onClick={this.props.lendercontenthandler.bind(this, "Saltos")}>IR</button>
+                        <Cards servicename="Saltos" lendercontenthandler={this.props.lendercontenthandler}/>
                     </div> 
                 </div>
             </div>

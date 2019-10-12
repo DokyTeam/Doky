@@ -12,16 +12,16 @@ class Service extends Component{
          <div className="container marketing text-align .text-font padding-card">
 
           <div className="row">
-            <Card_sombra titulo= "Paseo" descripcion="Accede a un catálogo de paseadores para tu mascota." foto = {pasear}>
+            <Card_sombra titulo= "Paseos" descripcion="Accede a un catálogo de paseadores para tu mascota." foto = {pasear} consumercontenthandler={this.props.consumercontenthandler}>
 
             </Card_sombra>
-            <Card_sombra titulo= "Veterinaria" descripcion="Encuentra la veterinaria de tu preferencia." foto = {veterinaria}>
+            <Card_sombra titulo= "Veterinaria" descripcion="Encuentra la veterinaria de tu preferencia." foto = {veterinaria} consumercontenthandler={this.props.consumercontenthandler}>
 
             </Card_sombra>
-            <Card_sombra titulo= "Guardería" descripcion="El mejor cuidado para tu mascota cuando no puedes estar con ella." foto = {guarderia}>
+            <Card_sombra titulo= "Guardería" descripcion="El mejor cuidado para tu mascota cuando no puedes estar con ella." foto = {guarderia} consumercontenthandler={this.props.consumercontenthandler}>
 
             </Card_sombra>
-            <Card_sombra titulo= "Saltos" descripcion="Las mejores mascotas para tus cruces." foto = {salto}>
+            <Card_sombra titulo= "Saltos" descripcion="Las mejores mascotas para tus cruces." foto = {salto} consumercontenthandler={this.props.consumercontenthandler}>
 
             </Card_sombra> 
             
