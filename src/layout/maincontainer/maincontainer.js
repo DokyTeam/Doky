@@ -3,6 +3,7 @@ import fire from '../../config/Fire'
 
 import { LandingContainer } from '../landing_page/landing_container';
 import { ConsumerContainer } from '../consumer_page/consumer_container';
+import { LenderContainer } from '../lender_page/lender_container';
 
 class MainContainer extends Component {
 
@@ -42,7 +43,8 @@ class MainContainer extends Component {
         return (
             <div>
                 <div className="rightcontainer">
-                    {(this.state.user) ? <ConsumerContainer MainContainerhandler={this.handler} /> : <LandingContainer MainContainerhandler={this.handler} />}
+                    {(this.state.user) ? <ConsumerContainer/> : 
+                    (this.state.isEdit) ? <LandingContainer MainContainerhandler={this.handler} /> : <LenderContainer MainContainerhandler={this.handler} />}
                 </div>
             </div>
         );
