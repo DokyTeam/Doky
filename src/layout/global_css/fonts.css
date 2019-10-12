@@ -4,19 +4,14 @@
 
 .SmallTextFont{
     font: sans-serif;
-    font-size: 20px;
-    padding-right: 3%; /* Este no esta definido*/
-    padding-left: 3%;
-    text-align: justify;
+    font-size: 2em;
 }
 
 .TextFont{
     font: sans-serif;
-    font-size: 18px; /* Este no esta definido*/
-    padding-right: 3%;
-    padding-left: 3%;
-    text-align: justify;
+    font-size: 1em;
 }
+
 
 .CurvyTextFont{
     font-family: Georgia, serif;
