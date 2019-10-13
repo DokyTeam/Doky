@@ -9,10 +9,11 @@ class Cards extends Component {
 
     render() {
         return (
-            <div>
-                <h1 className="SmallTextFont fix WhiteColor toprad fix2">{this.props.servicename}</h1>
-                <p className="TextFont fix WhiteColor">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                <button className="buttonlol" onClick={() => this.props.lendercontenthandler(this.props.servicename)}>IR</button>
+            <div className="WhiteColor card h-97">
+                <h1 className="TextFont title">{this.props.servicename}</h1>
+                <img className="img" src={this.props.foto} title="Foto10" alt="Foto10"></img>
+                <p className="SmallTextFont text">{this.props.descripcion}</p>
+                <button className="buttonbottom MainColor TextWhiteColor MediumTextFont" onClick={() => this.props.lendercontenthandler(this.props.servicename)}>IR</button>
             </div>
         );
     }

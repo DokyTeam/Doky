@@ -1,21 +1,29 @@
-.fix{
-    margin-bottom: 0%;
+.title{
     padding: 5%;
 }
 
-.fix2{
+.text{
     margin-top: 5%;
+    padding: 3%;
+    text-align: justify;
 }
 
-.toprad{
-    border-radius: 20px 20px 0px 0px;
-}
-
-.buttonlol{
-    margin: 0%;
-    width: 100%;
+.buttonbottom{
+    width: 40%;
     height: 10%;
-    border-radius: 0px 0px 20px 20px;
-    margin-bottom: 5%;
+    border-radius: 15px;
+    margin: 5% 30%;
     border: none;
+}
+
+.buttonbottom:hover {
+    background-color: #4d2f16;
+}
+
+.img {
+    width: 100%;
+}
+
+.card{
+    margin-top: 5%;
 }
