@@ -10,7 +10,7 @@ class Homepage extends Component {
         <div className="text-align text-font ">
           <Carrusel></Carrusel>
           <h1 className="text-section padding-section">Nuestros servicios</h1>
-          <Service></Service>
+          <Service consumercontenthandler = {this.props.consumercontenthandler} />
         </div>
       </div>
     );

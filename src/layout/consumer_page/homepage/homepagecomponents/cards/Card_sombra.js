@@ -13,6 +13,7 @@ class Card_sombra extends Component{
                  <h2>{this.props.titulo}</h2>
                  <p>{this.props.descripcion}</p>
                 <p><a className="btn btn-outline-dark" href="#" role="button">Más información »</a></p>
+                <button onClick={() => this.props.consumercontenthandler(this.props.titulo)}>IR</button>
               </div>
                  
                  </div>

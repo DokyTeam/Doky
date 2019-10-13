@@ -1,0 +1,21 @@
+.fix{
+    margin-bottom: 0%;
+    padding: 5%;
+}
+
+.fix2{
+    margin-top: 5%;
+}
+
+.toprad{
+    border-radius: 20px 20px 0px 0px;
+}
+
+.buttonlol{
+    margin: 0%;
+    width: 100%;
+    height: 10%;
+    border-radius: 0px 0px 20px 20px;
+    margin-bottom: 5%;
+    border: none;
+}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import fire from '../../config/Fire'
 
-import  Upperbar  from '../upperbar/upperbar';
-import { Landingpage } from '../landingpage/landingpage';
-import { Homepage } from '../homepage/homepage';
+import { LandingContainer } from '../landing_page/landing_container';
+import { ConsumerContainer } from '../consumer_page/consumer_container';
+import { LenderContainer } from '../lender_page/lender_container';
 
 class MainContainer extends Component {
 
@@ -42,9 +42,9 @@ class MainContainer extends Component {
     render() {
         return (
             <div>
-                <Upperbar MainContainerhandler={this.handler}/>
                 <div className="rightcontainer">
-                    {(this.state.user) ? <Homepage MainContainerhandler={this.handler} /> : <Landingpage MainContainerhandler={this.handler} />}
+                    {(this.state.user) ? <ConsumerContainer/> : 
+                    (this.state.isEdit) ? <LandingContainer MainContainerhandler={this.handler} /> : <LenderContainer MainContainerhandler={this.handler} />}
                 </div>
             </div>
         );
