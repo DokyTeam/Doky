@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import './consumer_upper_bar.css';
 import shop from "./images/shop.png"
-import fire from '../../../config/Fire';
 import '../../global_css/colors.css';
+import {LoginController} from '../../../controllers/login_controller'
 
 class ConsumerUpperbar extends Component {
 
     constructor(props){
         super(props);
+        // We will use the LoginController for signing out, so I'll add it to this class
+        this.loginController = new LoginController();
         this.logout = this.logout.bind(this);
     }
 
+    // This method is executed once the user clicks on the "shop icon".
     logout(){
-        fire.auth().signOut();
+        // We will use the log out method provided by our LoginController
+        this.loginController.logOut();
     }
 
     render() {
