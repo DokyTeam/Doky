@@ -52,19 +52,19 @@ class LeftContent extends Component {
                         <div className="carousel-item active" data-interval="1000">
                             <img src={foto1} className="d-block w-100" alt="logo"></img>
                             <div className="carousel-caption d-none d-md-block">
-                                <p>Los perros son los amigos mas fieles.</p>
+                                <p>Los perros son los amigos más fieles.</p>
                             </div>
                         </div>
                         <div className="carousel-item" data-interval="1000">
                             <img src={foto2} className="d-block w-100" alt="logo"></img>
                             <div className="carousel-caption d-none d-md-block">
-                                <p>La naturaleza es nuestro unico recurso.</p>
+                                <p>La naturaleza es nuestro único recurso.</p>
                             </div>
                         </div>
                         <div className="carousel-item" data-interval="1000">
                             <img src={foto3} className="d-block w-100" alt="logo"></img>
                             <div className="carousel-caption d-none d-md-block">
-                                <p>Los gatos siempre lo estan viendo todo.</p>
+                                <p>Los gatos siempre lo están viendo todo.</p>
                             </div>
                         </div>
                     </div>
@@ -84,8 +84,8 @@ class LeftContent extends Component {
                         </div>
                         <div className="col-sm-12 col-lg-10">
                             <div>
-                                <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Que es Doky?</h3>
-                                <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitira poder tener a la mano todo lo que tu mascota necesita</h4>
+                                <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Qué es Doky? </h3>
+                                <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitirá poder tener a la mano todo lo que tu mascota necesita</h4>
                             </div>
                         </div>
                     </div>
