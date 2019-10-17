@@ -56,7 +56,7 @@ class Barra extends Component {
                                 <h5 className="nav-link " >Ubicación</h5>
                                 <div className="input-group">
                                     <select className="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                        <option defaultValue>Selecione...</option>
+                                        <option defaultValue>Seleccione...</option>
                                         {this.createoption()}
 
                                     </select>
