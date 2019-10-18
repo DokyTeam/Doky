@@ -21,7 +21,7 @@ class VeterinariaPage extends Component {
                         </div>
                         <div className="col-md-12 col-lg-9 "  >
                             <h1 className="CurvyTextFontBig"style={{margin:"5%", textAlign: "center"}}>
-                                Guardería
+                                Veterinaria
                             </h1>
                              <ServiciosContenedor json={veterinaria_json}></ServiciosContenedor>
                             

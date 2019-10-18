@@ -12,6 +12,7 @@ class Homepage extends Component {
           <h1 className="text-section padding-section">Nuestros servicios</h1>
           <Service consumercontenthandler = {this.props.consumercontenthandler} />
         </div>
+        
       </div>
     );
   }
