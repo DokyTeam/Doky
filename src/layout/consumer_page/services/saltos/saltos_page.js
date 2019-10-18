@@ -12,26 +12,20 @@ class SaltosPage extends Component {
     render() {
         return (
             <div className="WhiteColor">
-                
                 <div className="container-fluid">
                     <div className="row align-items-top">
                         <div className="col-md-12 col-lg-3 " >
                             <Barra consumercontenthandler={this.props.consumercontenthandler} />
                         </div>
                         <div className="col-md-12 col-lg-9 "  >
-                            <h1 className="CurvyTextFontBig"style={{margin:"5%", textAlign: "center"}}>
+                            <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                                 Saltos
                             </h1>
-                             <ServiciosContenedor json={saltos_json}></ServiciosContenedor>
-                            
+                            <ServiciosContenedor json={saltos_json}></ServiciosContenedor>
+
                         </div>
                     </div>
                 </div>
-
-
-                
-
-
             </div>
         );
     }
