@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { NavBarWithSideBar } from './lender_upper_side_bar/upper_side_bar/lender_navigation_side_bar';
+import { NavBarWithSideBar } from './lender_upper_side_bar/lender_navigation_side_bar';
 import { LenderHomePage } from './lender_home_page/lenderhomepage';
 import { GuarderiaPage } from './services/guarderia/guarderia_page';
 import { PaseosPage } from './services/paseos/paseos_page';

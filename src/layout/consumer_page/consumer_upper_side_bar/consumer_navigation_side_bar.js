@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 
-import '../../../global_css/textcolors.css';
-import '../../../global_css/colors.css';
-import '../../../global_css/fonts.css';
-
-import { LenderUpperbar } from './navbar/lender_upper_bar';
-import { SideDrawer } from './side_drawer/lender_side_drawer';
-import { Backdrop } from './lender_backdrop/backdrop';
+import { LenderUpperbar } from './upper_side_bar/navbar/lender_upper_bar';
+import { SideDrawer } from './upper_side_bar/side_drawer/lender_side_drawer';
+import { Backdrop } from './upper_side_bar/lender_backdrop/backdrop';
 
 class NavBarWithSideBar extends Component {
 

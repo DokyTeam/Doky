@@ -1,0 +1,39 @@
+.side-drawer-lender{
+    height: 100%;
+    background: #ffffff;
+    box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 20%;
+    z-index: 200;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+
+}
+
+.side-drawer-lender.open{
+    transform: translateX(0);
+}
+
+.thebuttlend{
+    width: 60%;
+    margin-left: 20%;
+    border: none;
+}
+
+.lendersideimg{
+    width: 20%;
+    margin-left: 40%;
+}
+
+.row div button.thebuttlend:hover{
+    color: #34b23a;
+    font-size: 1.2em;
+}
+
+@media only screen and (max-width:768px){
+    .side-drawer-lender{
+        width: 80%;
+    }
+}
