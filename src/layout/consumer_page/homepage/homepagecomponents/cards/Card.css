@@ -42,19 +42,20 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 position: relative;
 z-index: -1;
 display: block;
+margin-top: -35%;
 bottom: 5%;
 width: 100%;
 text-align: center;
--webkit-transform: 0px 0px 1;
--moz-transform: 0px 0px 1;
--ms-transform: 0px 0px 1;
--o-transform: 0px 0px 1;
-transform: 0px 0px 1;
-transform: translate(0px, 0px) scale(1);
--webkit-transform: translate(0px, 0px) scale(1);
--moz-transform: translate(0px, 0px) scale(1);
--o-transform: translate(0px, 0px) scale(1);
--ms-transform: translate(0px, 0px) scale(1);
+-webkit-transform: 0px 0px  0.5;
+-moz-transform: 0px 0px  0.5;
+-ms-transform: 0px 0px  0.5;
+-o-transform: 0px 0px  0.5;
+transform: 0px 0px  0.5;
+transform: translate(0px, 0px) scale( 0.5);
+-webkit-transform: translate(0px, 0px) scale( 0.5);
+-moz-transform: translate(0px, 0px) scale( 0.5);
+-o-transform: translate(0px, 0px) scale( 0.5);
+-ms-transform: translate(0px, 0px) scale( 0.51);
 -webkit-transition: all 0s ease 0s;
 -moz-transition: all 0s ease 0s;
 -o-transition: all 0s ease 0s;
@@ -79,16 +80,16 @@ border-radius: 50%;
 }
 .div-img:hover .text {
     position: static;
--webkit-transform: 0px -70px 1;
--moz-transform: 0px -70px 1;
--ms-transform: 0px -70px 1;
--o-transform: 0px -70px 1;
-transform: 0px -70px 1;
-transform: translate(0px, -70px) scale(1);
--webkit-transform: translate(0px, -70px) scale(1);
--moz-transform: translate(0px, -70px) scale(1);
--o-transform: translate(0px, -70px) scale(1);
--ms-transform: translate(0px, -70px) scale(1);
+    -webkit-transform: 0px 0px 1;
+    -moz-transform: 0px 0px 1;
+    -ms-transform: 0px 0px 1;
+    -o-transform: 0px 0px 1;
+    transform: 0px 0px 1;
+    transform: translate(0px, 0px) scale(1);
+    -webkit-transform: translate(0px, 0px) scale(1);
+    -moz-transform: translate(0px, 0px) scale(1);
+    -o-transform: translate(0px, 0px) scale(1);
+    -ms-transform: translate(0px, 0px) scale(1);
 }
 /****************************************/
 /********colores*******/
