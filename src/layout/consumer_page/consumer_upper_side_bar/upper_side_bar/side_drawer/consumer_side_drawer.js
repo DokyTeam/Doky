@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../../../../global_css/textcolors.css';
 import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
-import './lender_side_drawer.css';
+import './consumer_side_drawer.css';
 import dog from "./images/perro_doki.ico";
 import {LoginController} from '../../../../../controllers/login_controller'
 
@@ -25,24 +25,24 @@ class SideDrawer extends Component {
     
     render() {
 
-        let drawerClasses = 'side-drawer-lender';
+        let drawerClasses = 'side-drawer-cons';
         if(this.props.show){
-            drawerClasses = 'side-drawer-lender open';
+            drawerClasses = 'side-drawer-cons open';
         }
         return (
             <nav className={drawerClasses}>
                 <br/>
-                <h1 className="textcenter BigTextFont">Funciones Prestador</h1>
+                <h1 className="textcenter BigTextFont">Funciones Consumidor</h1>
                 <img align="middle" alt="imagen de un gato" title="El GATO" src={dog} className="lendersideimg"></img>
                 <hr/>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                            <button className="thebuttlend WhiteColor">Perfil </button>
+                            <button className="thebuttcons WhiteColor">Perfil </button>
                             <hr/>
                         </div>
                         <div className="col-12 www">
-                            <button className="thebuttlend WhiteColor">Mis Servicios</button>
+                            <button className="thebuttcons WhiteColor">Mis mascotas</button>
                             <hr/>
                         </div>
                         <div className="col-12 www">

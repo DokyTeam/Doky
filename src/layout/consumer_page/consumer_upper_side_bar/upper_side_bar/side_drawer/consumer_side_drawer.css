@@ -1,4 +1,4 @@
-.side-drawer-lender{
+.side-drawer-cons{
     height: 100%;
     background: #ffffff;
     box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
@@ -12,11 +12,11 @@
 
 }
 
-.side-drawer-lender.open{
+.side-drawer-cons.open{
     transform: translateX(0);
 }
 
-.thebuttlend{
+.thebuttcons{
     width: 60%;
     margin-left: 20%;
     border: none;
@@ -27,7 +27,7 @@
     margin-left: 40%;
 }
 
-.row div button.thebuttlend:hover{
+.row div button.thebuttcons:hover{
     color: #34b23a;
     font-size: 1.2em;
 }

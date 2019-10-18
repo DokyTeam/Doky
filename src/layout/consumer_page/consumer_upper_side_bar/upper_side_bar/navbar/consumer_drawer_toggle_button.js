@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../../../../global_css/textcolors.css';
 import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
-import './lender_drawer_toggle_button.css';
+import './consumer_drawer_toggle_button.css';
 import shop from './images/shop.png';
 
 class DrawerToggleButton extends Component {

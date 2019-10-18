@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { LenderUpperbar } from './upper_side_bar/navbar/lender_upper_bar';
-import { SideDrawer } from './upper_side_bar/side_drawer/lender_side_drawer';
-import { Backdrop } from './upper_side_bar/lender_backdrop/backdrop';
+import { LenderUpperbar } from './upper_side_bar/navbar/consumer_upper_bar';
+import { SideDrawer } from './upper_side_bar/side_drawer/consumer_side_drawer';
+import { Backdrop } from './upper_side_bar/consumer_backdrop/backdrop';
 
 class NavBarWithSideBar extends Component {
 
