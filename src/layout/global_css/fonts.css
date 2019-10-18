@@ -34,7 +34,7 @@
 .CurvyTextFontBig{
     font-family: Georgia, serif;
     font-style: italic;
-    font-size: 50px;   /* Este no esta definido*/
+    font-size: 3em;
     font-weight: 800;
     letter-spacing: -3px;
     text-align: justify;
