@@ -48,7 +48,7 @@ class MainContainer extends Component {
     render() {
         return (
             <div>
-                <div className="rightcontainer">
+                <div>
                     {(this.state.user) ? <ConsumerContainer/> : 
                     (this.state.isEdit) ? <LandingContainer MainContainerhandler={this.handler} /> : <LenderContainer MainContainerhandler={this.handler} />}
                 </div>
