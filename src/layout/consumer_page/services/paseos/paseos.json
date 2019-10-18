@@ -1,0 +1,27 @@
+[
+    {
+        "nombre": "Daniela",
+        "descripcion": "Prestador de pasos",
+        "foto":"https://cdn.pixabay.com/photo/2016/10/31/14/55/rottweiler-1785760_960_720.jpg"
+    },
+    {
+        "nombre": "Valentina",
+        "descripcion": "Prestador de paseos",
+        "foto": "https://cdn.pixabay.com/photo/2018/10/30/16/23/walk-3784045_960_720.jpg"
+    },
+    {
+        "nombre": "Jaime",
+        "descripcion": "Prestador de paseos",
+        "foto": "https://cdn.pixabay.com/photo/2018/03/15/01/47/dog-3226922_960_720.jpg"
+    },
+    {
+        "nombre": "JP",
+        "descripcion": "Prestador de paseos",
+        "foto":  "https://cdn.pixabay.com/photo/2018/10/30/16/23/walk-3784045_960_720.jpg"
+    },
+    {
+        "nombre": "Santiago",
+        "descripcion": "Prestador de paseos",
+        "foto":  "https://cdn.pixabay.com/photo/2018/03/15/01/47/dog-3226922_960_720.jpg"
+    }
+]
