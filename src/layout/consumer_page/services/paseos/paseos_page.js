@@ -8,7 +8,7 @@ import paseos_json from './paseos.json';
 import { ServiciosContenedor } from '../servicios_contenedor/ServiciosConedor';
 class PaseosPage extends Component {
 
-    render() {
+    render() {   
         return (
             <div className="WhiteColor">
                 
