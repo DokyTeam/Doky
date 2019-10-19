@@ -1,14 +1,14 @@
 import firebase from 'firebase';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDpeC4ex1pfc0jAXV2tX5sVrD_l_UTIcg4",
-    authDomain: "doky-dokyteam.firebaseapp.com",
-    databaseURL: "https://doky-dokyteam.firebaseio.com",
-    projectId: "doky-dokyteam",
-    storageBucket: "",
-    messagingSenderId: "418566153692",
-    appId: "1:418566153692:web:e168c505f51074d40b5b19",
-    measurementId: "G-R7FL96Y5LQ"
+    apiKey: "AIzaSyAiYp6vRgIDo_ENhSY1D75W7sVKlpL5pw0",
+    authDomain: "doky-ab3be.firebaseapp.com",
+    databaseURL: "https://doky-ab3be.firebaseio.com",
+    projectId: "doky-ab3be",
+    storageBucket: "doky-ab3be.appspot.com",
+    messagingSenderId: "622867908082",
+    appId: "1:622867908082:web:5ca2396d342886fc22d76b",
+    measurementId: "G-FE7E2EWJTN"
 };
 // Initialize Firebase
 const fire = firebase.initializeApp(firebaseConfig);
