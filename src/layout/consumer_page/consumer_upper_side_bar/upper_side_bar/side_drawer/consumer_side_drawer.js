@@ -38,11 +38,11 @@ class SideDrawer extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                            <button className="thebuttcons WhiteColor">Perfil </button>
+                            <button className="thebuttcons WhiteColor" onClick={() => this.props.consumercontenthandler('perfil')} >Perfil </button>
                             <hr/>
                         </div>
                         <div className="col-12 www">
-                            <button className="thebuttcons WhiteColor">Mis mascotas</button>
+                            <button className="thebuttcons WhiteColor" onClick={() => this.props.consumercontenthandler('mis_mascotas')} >Mis mascotas</button>
                             <hr/>
                         </div>
                         <div className="col-12 www">

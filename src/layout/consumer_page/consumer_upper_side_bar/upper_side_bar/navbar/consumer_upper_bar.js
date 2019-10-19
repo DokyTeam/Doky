@@ -10,7 +10,7 @@ class LenderUpperbar extends Component {
             <div className="Navegation">
                 <div className="d-flex bd-highlight MainColor align-items-center">
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <h3 className="text-light  text-font font-italic text-uppercase ">
+                        <h3 className="text-light  text-font1 font-italic text-uppercase">
                             doky
                         </h3>
                     </button>
