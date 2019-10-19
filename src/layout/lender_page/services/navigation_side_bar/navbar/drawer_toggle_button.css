@@ -10,10 +10,7 @@
     margin-right: 10px;
 }
 
-.toggle_button_line{
-    outline: none;
-    width: 30px;
-    height: 1px;
-    background-color: black;
-
+.toggle_button:hover{
+    color: #4d2f16;
 }
+

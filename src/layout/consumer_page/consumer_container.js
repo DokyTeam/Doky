@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ConsumerUpperbar } from './consumer_upper_bar/consumer_upper_bar';
+import { NavBarWithSideBar } from './consumer_upper_side_bar/consumer_navigation_side_bar';
 import { Homepage } from './homepage/homepage';
 import { GuarderiaPage } from './services/guarderia/guarderia_page';
 import { PaseosPage } from './services/paseos/paseos_page';
@@ -46,7 +46,7 @@ class ConsumerContainer extends Component {
     render() {
         return (
             <div>
-                <ConsumerUpperbar consumercontenthandler={this.consumercontenthandler} />
+                <NavBarWithSideBar consumercontenthandler={this.consumercontenthandler} />
                 {this.renderSwitch(this.state.idpage)}
             </div>
         );

@@ -41,7 +41,7 @@ class LeftContent extends Component {
     render() {
         return (
             <div className="leftcontainer">
-                <p className="TitleTextFont" style={{ fontSize: 33 }}>Conoce a Doky</p>
+                <p className="TitleTextFont textcenter" style={{ fontSize: 33 }}>Conoce a Doky</p>
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -79,7 +79,7 @@ class LeftContent extends Component {
                 </div>
                 <div className="container-fluid">
                     <div className="row align-items-center AltBackgroundColor">
-                        <div className="col-sm-12 col-lg-2">
+                        <div className="col-sm-12 col-lg-2 textcenter">
                             <img align="middle" alt="imagen de un gato" title="El PUG" src={pug} width="80px"></img>
                         </div>
                         <div className="col-sm-12 col-lg-10">
