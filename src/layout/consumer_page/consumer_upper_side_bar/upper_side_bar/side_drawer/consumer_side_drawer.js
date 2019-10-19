@@ -33,7 +33,7 @@ class SideDrawer extends Component {
             <nav className={drawerClasses}>
                 <br/>
                 <h1 className="textcenter BigTextFont">Funciones Consumidor</h1>
-                <img align="middle" alt="imagen de un gato" title="El GATO" src={dog} className="lendersideimg"></img>
+                <img align="middle" alt="imagen de un gato" title="El GATO" src={dog} className="conssideimg"></img>
                 <hr/>
                 <div className="container">
                     <div className="row">
