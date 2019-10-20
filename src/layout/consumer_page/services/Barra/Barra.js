@@ -4,14 +4,16 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import ciudades from './ciudades.json';
+import logo from './images/hamburger.png';
+
 class Barra extends Component {
-    
+
     createoption = () => {
         let table = []
         // Outer loop to create parent
 
-       table.push (ciudades.map((data, index) => {
-            return <option  key={index} value={data.nombre}> {data.nombre} </option>
+        table.push(ciudades.map((data, index) => {
+            return <option key={index} value={data.nombre}> {data.nombre} </option>
 
         }
         ))
@@ -20,38 +22,32 @@ class Barra extends Component {
 
     render() {
         return (
-            <div className="leftcontainer ">
-                
+            <div className="leftcontainer">
                 <nav className="navbar navbar-expand-lg  flex-column">
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        <img src={logo} alt="h" width="50px"></img>
                     </button>
 
                     <div className="collapse navbar-collapse flex-column" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto flex-column">
                             <li className="nav-item dropdown">
-                                <h2 className="nav-link ">
-                                    Servicios        </h2>
-                                <div className="dropdown-divider" onClick={() => this.props.consumercontenthandler('consumer_home_page') }></div>
-                                <div className="dropdown-divider" onClick={() => this.props.consumercontenthandler('consumer_home_page') }></div>
-                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('consumer_home_page') }>Guardería</button>
-                                <div className="dropdown-divider" onClick={() => this.props.consumercontenthandler('consumer_home_page') } ></div>
-                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('consumer_home_page') }>Veterinaria</button>
+                                <h2 className="nav-link ">Servicios</h2>
+                                <hr/>
+                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Guardería')}>Guardería</button>
                                 <div className="dropdown-divider"></div>
-                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('consumer_home_page') }>Paseos</button>
+                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Veterinaria')}>Veterinaria</button>
                                 <div className="dropdown-divider"></div>
-                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('consumer_home_page') } >Saltos</button>
-
-
+                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Paseos')}>Paseos</button>
+                                <div className="dropdown-divider"></div>
+                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Saltos')} >Saltos</button>
                             </li>
-
+                            <hr/>
                             <li className="nav-item">
                                 <h2 className="nav-link ">Filtros</h2>
-                                <div className="dropdown-divider"></div>
-                                <div className="dropdown-divider"></div>
                             </li>
+                            <hr/>
                             <li className="nav-item">
                                 <h5 className="nav-link " >Ubicación</h5>
                                 <div className="input-group">
@@ -85,18 +81,14 @@ class Barra extends Component {
                                 <div className="input-group-append float-right">
                                     <button className="btn btn-outline-secondary" type="button">Filtrar</button>
                                 </div>
-                                
                             </li>
                         </ul>
-
                     </div>
                 </nav>
-                
-
             </div>
         );
     }
-    
+
 
 
 }

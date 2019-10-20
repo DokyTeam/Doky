@@ -30,7 +30,7 @@ class NavBarWithSideBar extends Component {
         }
         return (
             <div>
-                <LenderUpperbar drawerToggleClickhandler={this.drawerToggleClickhandler} />
+                <LenderUpperbar drawerToggleClickhandler={this.drawerToggleClickhandler} lendercontenthandler={this.props.lendercontenthandler}/>
                 <SideDrawer show={this.state.SideDrawerstate} lendercontenthandler={this.props.lendercontenthandler} />
                 {backdrop}
             </div>

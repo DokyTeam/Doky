@@ -10,10 +10,8 @@ class PaseosPage extends Component {
 
     render() {
         return (
-            <div className="WhiteColor">
-                <h1 className="textcenter">Paseos</h1>
-                <NavigationSideBar lendercontenthandler={this.props.lendercontenthandler} />
-                <hr />
+            <div>
+                <NavigationSideBar lendercontenthandler={this.props.lendercontenthandler} servicename="Paseos" />
             </div>
         );
     }

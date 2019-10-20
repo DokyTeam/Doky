@@ -42,7 +42,7 @@ class Perfil extends Component {
                         <hr />
                     </div>
                     <div className="col-12 col-md-5">
-                        <img className="userimg" src={fotosrc} title="Foto10" alt="Foto10"></img>
+                        <img className="userimg" src={fotosrc} title={nombre} alt={nombre}></img>
                     </div>
                     <div className="col-12 col-md-7">
                         <p className="MediumTextFont BigTextFont TextDarkMainColor">Información básica</p>

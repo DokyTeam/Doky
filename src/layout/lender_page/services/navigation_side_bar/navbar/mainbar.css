@@ -1,34 +1,4 @@
-.toolbar{
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    left: 0;
-    height: 56px;
+.mainbarspacer{
+    margin-top: 0px;
 }
 
-.spacer{
-    flex: 1;
-}
-
-.toolbar_navigation{
-    display: flex;
-    height: 100%;
-    align-items: center;
-    padding: 0em 1em;
-}
-
-.toolbar_navigation ul{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.toolbar_navigation ul li{
-    margin: 1em;
-}
-
-.toolbar_logo a{
-    color: red;
-}
