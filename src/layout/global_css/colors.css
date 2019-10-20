@@ -6,6 +6,13 @@
     background-color: #214132;
 }
 
+.Gradientecolor{
+   
+        background: 
+            linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+
+}
+
 .BackgroundColor{
     background-color: #def7e9;
 }

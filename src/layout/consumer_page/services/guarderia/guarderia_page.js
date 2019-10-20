@@ -17,7 +17,7 @@ class GuarderiaPage extends Component {
 
     render() {
         return (
-            <div className="WhiteColor">
+            <div >
 
                 <div className="container-fluid">
                     <div className="row align-items-top">

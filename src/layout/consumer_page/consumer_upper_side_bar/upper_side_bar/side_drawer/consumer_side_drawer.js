@@ -37,6 +37,10 @@ class SideDrawer extends Component {
                 <hr/>
                 <div className="container">
                     <div className="row">
+                    <div className="col-12 www">
+                            <button  className="thebuttlend WhiteColor"onClick={() => this.props.consumercontenthandler('consumer_home_page')}>Inicio</button>
+                            <hr/>
+                        </div>
                         <div className="col-12 www">
                             <button className="thebuttcons WhiteColor" onClick={() => this.props.consumercontenthandler('perfil')} >Perfil </button>
                             <hr/>
@@ -49,6 +53,7 @@ class SideDrawer extends Component {
                             <button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button>
                             <hr/>
                         </div>
+                        
 
                     </div>
                 </div>

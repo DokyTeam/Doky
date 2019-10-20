@@ -11,7 +11,7 @@ class VeterinariaPage extends Component {
 
     render() {
         return (
-            <div className="WhiteColor">
+            <div >
                 <div className="container-fluid">
                     <div className="row align-items-top">
                         <div className="col-md-12 col-lg-3 " >

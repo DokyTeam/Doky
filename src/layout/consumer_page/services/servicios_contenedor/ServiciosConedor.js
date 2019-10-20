@@ -13,8 +13,8 @@ class ServiciosContenedor extends Component {
         // Outer loop to create parent
 
         table.push(this.props.json.map((data, index) => {
-            return <div className="col-12 col-md-6 col-lg-3" key={data.nombre} >
-                <CartaServicio servicename={data.nombre} foto={data.foto} descripcion={data.descripcion} />
+            return <div className="col-12 col-md-6 col-lg-6" style={{marginBottom: "3%"}} key={data.nombre} >
+                <CartaServicio servicename={data.nombre} foto={data.foto} descripcion={data.descripcion} calificacion={4.2}/>
             </div>
 
         }
@@ -32,6 +32,6 @@ class ServiciosContenedor extends Component {
             </div>
         );
     }
-}
+} 
 
 export { ServiciosContenedor };

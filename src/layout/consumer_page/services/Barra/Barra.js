@@ -22,7 +22,7 @@ class Barra extends Component {
         return (
             <div className="leftcontainer ">
                 
-                <nav className="navbar navbar-expand-lg navbar-light bg-light flex-column">
+                <nav className="navbar navbar-expand-lg  flex-column">
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -85,7 +85,7 @@ class Barra extends Component {
                                 <div className="input-group-append float-right">
                                     <button className="btn btn-outline-secondary" type="button">Filtrar</button>
                                 </div>
-                                <div className="dropdown-divider"></div>
+                                
                             </li>
                         </ul>
 
