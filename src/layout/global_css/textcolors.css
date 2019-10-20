@@ -3,8 +3,13 @@
     text-decoration: none;
 }
 
+.TextAltMainColor{
+    color: #86B220;
+    text-decoration: none;
+}
+
 .TextDarkMainColor{
-    color: #214132;
+    color: #0a5d00;
     text-decoration: none;
 }
 
