@@ -11,11 +11,7 @@ class GuarderiaPage extends Component {
     render() {
         return (
             <div>
-                <div className="WhiteColor">
-                    <h1 className="textcenter">Guardería</h1>
-                    <NavigationSideBar lendercontenthandler={this.props.lendercontenthandler} />
-                    <hr/>
-                </div>
+                <NavigationSideBar lendercontenthandler={this.props.lendercontenthandler} servicename="Guardería"/>
             </div>
         );
     }

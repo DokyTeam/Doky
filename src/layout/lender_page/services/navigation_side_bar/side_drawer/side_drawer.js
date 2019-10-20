@@ -23,10 +23,6 @@ class SideDrawer extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                            <button className="thebutt WhiteColor" onClick={() => this.props.lendercontenthandler('lender_home_page')}>Home</button>
-                            <hr/>
-                        </div>
-                        <div className="col-12 www">
                             <button className="thebutt WhiteColor" onClick={() => this.props.lendercontenthandler('Paseos')}>Paseos</button>
                             <hr/>
                         </div>

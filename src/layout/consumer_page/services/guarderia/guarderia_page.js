@@ -28,8 +28,7 @@ class GuarderiaPage extends Component {
                             <h1 className="CurvyTextFontBig"style={{margin:"5%", textAlign: "center"}}>
                                 Guardería
                             </h1>
-                             <ServiciosContenedor json={guarderia_json}></ServiciosContenedor>
-                            
+                             <ServiciosContenedor json={guarderia_json}></ServiciosContenedor>   
                         </div>
                     </div>
                 </div>

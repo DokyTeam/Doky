@@ -33,14 +33,10 @@ class NavigationSideBar extends Component {
             backdrop = <Backdrop backdropClickhandler={this.backdropClickhandler} />
         }
         return (
-            <div className="container-fluid WhiteColor">
-                <div className="row">
-                    <div className="col-2">
-                        <MainBar drawerToggleClickhandler={this.drawerToggleClickhandler} />
-                        <SideDrawer show={this.state.SideDrawerstate} lendercontenthandler = {this.props.lendercontenthandler}/>
-                        {backdrop}
-                    </div>
-                </div>
+            <div>
+                <MainBar drawerToggleClickhandler={this.drawerToggleClickhandler} servicename={this.props.servicename} />
+                <SideDrawer show={this.state.SideDrawerstate} lendercontenthandler={this.props.lendercontenthandler} />
+                {backdrop}
             </div>
         );
     }

@@ -9,7 +9,7 @@ class LenderUpperbar extends Component {
         return (
             <div className="Navegation">
                 <div className="d-flex bd-highlight MainColor align-items-center">
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button onClick={()=>{this.props.lendercontenthandler('lender_home_page')}} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <h3 className="text-light  text-font font-italic text-uppercase ">
                             prestador
                         </h3>
