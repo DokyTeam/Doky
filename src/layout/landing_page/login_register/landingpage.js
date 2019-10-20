@@ -9,7 +9,7 @@ import cuy from "./images/cuy.png";
 import foto1 from "./images/foto1.jpeg";
 import foto2 from "./images/foto2.jpeg";
 import foto3 from "./images/foto3.jpeg";
-import {LoginController} from '../../../controllers/login_controller'
+import fire from '../../../config/Fire';
 
 class Landingpage extends Component {
 
@@ -28,7 +28,7 @@ class Landingpage extends Component {
                 </div>
                 <hr />
                 <div className="lowerbar TextMainColor TitleTextFont">
-                    <p><a className="TextMainColor TitleTextFont" href="https://jestupinanb.wixsite.com/doky" target="_blank"> NOSOTROS </a></p>
+                    <p><a className="TextMainColor TitleTextFont" href="https://jestupinanb.wixsite.com/doky" target="_blank" rel="noopener noreferrer"> NOSOTROS </a></p>
                     <p> CONTACTO</p>
                     <p> AUXILIAR </p>
                 </div>
@@ -41,7 +41,7 @@ class LeftContent extends Component {
     render() {
         return (
             <div className="leftcontainer">
-                <p className="TitleTextFont" style={{ fontSize: 33 }}>Conoce a Doky</p>
+                <p className="TitleTextFont textcenter" style={{ fontSize: 33 }}>Conoce a Doky</p>
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -52,19 +52,19 @@ class LeftContent extends Component {
                         <div className="carousel-item active" data-interval="1000">
                             <img src={foto1} className="d-block w-100" alt="logo"></img>
                             <div className="carousel-caption d-none d-md-block">
-                                <p>Los perros son los amigos mas fieles.</p>
+                                <p>Los perros son los amigos más fieles.</p>
                             </div>
                         </div>
                         <div className="carousel-item" data-interval="1000">
                             <img src={foto2} className="d-block w-100" alt="logo"></img>
                             <div className="carousel-caption d-none d-md-block">
-                                <p>La naturaleza es nuestro unico recurso.</p>
+                                <p>La naturaleza es nuestro único recurso.</p>
                             </div>
                         </div>
                         <div className="carousel-item" data-interval="1000">
                             <img src={foto3} className="d-block w-100" alt="logo"></img>
                             <div className="carousel-caption d-none d-md-block">
-                                <p>Los gatos siempre lo estan viendo todo.</p>
+                                <p>Los gatos siempre lo están viendo todo.</p>
                             </div>
                         </div>
                     </div>
@@ -79,13 +79,13 @@ class LeftContent extends Component {
                 </div>
                 <div className="container-fluid">
                     <div className="row align-items-center AltBackgroundColor">
-                        <div className="col-sm-12 col-lg-2">
+                        <div className="col-sm-12 col-lg-2 textcenter">
                             <img align="middle" alt="imagen de un gato" title="El PUG" src={pug} width="80px"></img>
                         </div>
                         <div className="col-sm-12 col-lg-10">
                             <div>
-                                <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Que es Doky?</h3>
-                                <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitira poder tener a la mano todo lo que tu mascota necesita</h4>
+                                <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Qué es Doky? </h3>
+                                <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitirá poder tener a la mano todo lo que tu mascota necesita</h4>
                             </div>
                         </div>
                     </div>
@@ -123,30 +123,23 @@ class Login extends Component {
             email: '',
             password: ''
         }
-        // We will use the LoginController for authentication, so I'll add it to this class
-        this.loginController = new LoginController();
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
     }
 
-    // This method will happen once the user clicks on "INGRESAR"
     login(e) {
-        // We prevent the default cases so avoid submitting the form
+        console.log(this.state.email + '.');
         e.preventDefault();
-        // Here we will use the method in the controller for signing in
-        // That method will be the responsible for start a session into the browser's cookies,
-        // so we don't need any more for checking if the auth was successful
-        this.loginController.signInWithEmailAndPassword(this.state.email, this.state.password);
+        fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    // TODO: There is a bug when you put the incorrect password but the email is correct, then when you
-    // put your password again, and it is the correct, the app keeps taking an incorrect password.
-    // NOTE: I just notice that the session is opened, but you have to press F5.
-    // To be honest I don't understand very good when the bug happens =(
     render() {
         return (
             <div>
@@ -186,8 +179,6 @@ class Register extends Component {
             email: '',
             password: ''
         }
-        // We will use the LoginController for registration, so I'll add it to this class
-        this.loginController = new LoginController();
         this.handleChange = this.handleChange.bind(this);
         this.signup = this.signup.bind(this);
     }
@@ -196,14 +187,12 @@ class Register extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    // This method will happen once the user clicks on "CREAR CUENTA"
     signup(event) {
-        // We prevent the default cases so avoid submitting the form
         event.preventDefault();
-        // Here we will use the method in the controller for signing up
-        // That method will be the responsible for start a session into the browser's cookies once the user
-        // is created, so we don't need any more for checking if the auth was successful
-        this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password);
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     render() {

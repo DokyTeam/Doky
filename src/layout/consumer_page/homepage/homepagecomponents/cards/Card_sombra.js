@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import './Card.css';
 
-class Card_sombra extends Component{
+class Cardsombra extends Component{
 
     render(){ 
         return (
@@ -12,13 +12,13 @@ class Card_sombra extends Component{
                  <div className="text">
                  <h2>{this.props.titulo}</h2>
                  <p>{this.props.descripcion}</p>
-                <p><a className="btn btn-outline-dark" href="#" role="button">Más información »</a></p>
-                <button onClick={() => this.props.consumercontenthandler(this.props.titulo)}>IR</button>
-              </div>
+                <p><button className="btn btn-outline-dark"  onClick={() => this.props.consumercontenthandler(this.props.titulo)}>
+              Más información »</button></p>
+                </div>
                  
                  </div>
           </div>
         );
     }
 }
-export default Card_sombra;
+export { Cardsombra }; 
