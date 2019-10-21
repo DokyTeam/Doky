@@ -184,7 +184,8 @@ class Register extends Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            role: 'Consumidor'
         }
         // We will use the LoginController for registration, so I'll add it to this class
         this.loginController = new LoginController();
@@ -224,9 +225,9 @@ class Register extends Component {
                     </label>
                     <br />
                     <h6>ROL:</h6>
-                    <select className="theselect">
+                    <select className="theselect" name="role" value={this.state.role} onChange={this.handleChange}>
                         <option value='Consumidor'>Consumidor</option>
-                        <option data-value="Prestador">Prestador</option>
+                        <option value="Prestador">Prestador</option>
                     </select>
                     <br />
                     <br />
