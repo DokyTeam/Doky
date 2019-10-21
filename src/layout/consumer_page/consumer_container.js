@@ -6,7 +6,7 @@ import { GuarderiaPage } from './services/guarderia/guarderia_page';
 import { PaseosPage } from './services/paseos/paseos_page';
 import { VeterinariaPage } from './services/veterinaria/veterinaria_page';
 import { SaltosPage } from './services/saltos/saltos_page';
-import {Perfil} from './Perfil/Perfil';
+import {Perfil} from './Perfil/perfil_consumidor';
 import {Mascotas} from './Mascotas/Mascotas';
 
 class ConsumerContainer extends Component {
