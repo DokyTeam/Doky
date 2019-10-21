@@ -44,6 +44,11 @@ div.rightcontainer{
     text-decoration: none;
 }
 
+.theselect{
+    width: 180px;
+    height: 35px;
+}
+
 @media only screen and (max-width:600px){
     div.lowerbar p {
         font-size: 15px;

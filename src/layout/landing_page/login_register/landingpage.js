@@ -223,6 +223,13 @@ class Register extends Component {
                         <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br />
+                    <h6>ROL:</h6>
+                    <select className="theselect">
+                        <option value='Consumidor'>Consumidor</option>
+                        <option data-value="Prestador">Prestador</option>
+                    </select>
+                    <br />
+                    <br />
                     <input type="submit" value="CREAR CUENTA" className="button MainColor TextWhiteColor" onClick={this.signup} />
 
                 </form>
