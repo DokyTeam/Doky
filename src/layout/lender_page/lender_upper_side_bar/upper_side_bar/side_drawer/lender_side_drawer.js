@@ -38,7 +38,7 @@ class SideDrawer extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                            <button className="thebuttlend WhiteColor">Perfil </button>
+                            <button className="thebuttlend WhiteColor" onClick={()=>{this.props.lendercontenthandler('Perfil')}}>Perfil </button>
                             <hr/>
                         </div>
                         <div className="col-12 www">
