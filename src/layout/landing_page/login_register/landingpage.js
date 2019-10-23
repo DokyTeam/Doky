@@ -10,7 +10,7 @@ import foto1 from "./images/foto1.jpeg";
 import foto2 from "./images/foto2.jpeg";
 import foto3 from "./images/foto3.jpeg";
 import { LoginController } from '../../../controllers/login_controller';
-
+import { LocalidadesController } from '../../../controllers/localidades_controller';
 
 class Landingpage extends Component {
 
@@ -116,18 +116,50 @@ class RightContent extends Component {
     }
 }
 
+//ESTO NO DEBE ESTAR ACA SOLO ES DE EJEMPLO ELIMINAR
+//Funcion encargada de dibujar las localidades y los barrios
+function LocalidadesBarriosFromDataBase(props) {
+    //Este codigo es puro JSX asi que no esta comentado
+    return (
+        <>
+            {
+                props.localidades.map(
+                    localidad => (
+                        <React.Fragment key={localidad.localidad}>
+                        <h1 >{localidad.localidad}</h1>
+                        <ul style={{padding:"0"}}>
+                        {
+                            localidad.barrios.map(
+                                barrio => (
+                                    <li key={barrio} className="list-group-item">
+                                        {barrio}
+                                    </li>
+                                )
+                            )
+                        }
+                        </ul>
+                        </React.Fragment>
+                    )
+                )
+            }
+        </>
+    )
+}
+
 class Login extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            localidades: [],
         }
         // We will use the LoginController for authentication, so I'll add it to this class
         this.loginController = new LoginController();
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
+        this.localidadesController = new LocalidadesController();
     }
 
     // This method will happen once the user clicks on "INGRESAR"
@@ -142,6 +174,17 @@ class Login extends Component {
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
+    }
+
+    //ESTO NO DEBE ESTAR ACA SOLO ES DE EJEMPLO
+    //ELIMINAR
+    getLocalidades = () => {
+        this.localidadesController.readLocalidadesyBarrios().then(
+            localidades => {
+                console.log(localidades);
+                this.setState({ localidades: localidades })
+            }
+        )
     }
 
     // TODO: There is a bug when you put the incorrect password but the email is correct, then when you
@@ -174,6 +217,11 @@ class Login extends Component {
                 <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
                 <br />
                 <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.MainContainerhandler.bind(this, false)}>*</button>
+                <br />
+                {/**ESTO NO DEBE ESTAR ACA SOLO ES DE EJEMPLO ELIMINAR */}
+                <button className="button2 DarkMainColor TextWhiteColor" onClick={() => this.getLocalidades()}>Obtener localidades</button>,
+                <LocalidadesBarriosFromDataBase localidades={this.state.localidades} />
+                {/** Eliminar hasta aca */}
             </div>
         );
     }
@@ -232,7 +280,6 @@ class Register extends Component {
                     <br />
                     <br />
                     <input type="submit" value="CREAR CUENTA" className="button MainColor TextWhiteColor" onClick={this.signup} />
-
                 </form>
                 <button onClick={this.props.rightcontenthandler.bind(this, true)} className="button2 DarkMainColor TextWhiteColor">VOLVER</button>
             </div>
