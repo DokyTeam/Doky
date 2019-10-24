@@ -8,14 +8,13 @@ import { ServiciosContenedor } from '../servicios_contenedor/ServiciosConedor';
 import saltos_json from './saltos.json';
 
 class SaltosPage extends Component {
-
     render() {
         return (
             <div >
                 <div className="container-fluid">
                     <div className="row align-items-top">
                         <div className="col-md-12 col-lg-3 " >
-                            <Barra consumercontenthandler={this.props.consumercontenthandler} />
+                            <Barra consumercontenthandler={this.props.consumercontenthandler}/>
                         </div>
                         <div className="col-md-12 col-lg-9 "  >
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>

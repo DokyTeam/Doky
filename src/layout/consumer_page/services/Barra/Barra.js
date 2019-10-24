@@ -3,20 +3,30 @@ import React, { Component } from 'react';
 import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
-import ciudades from './ciudades.json';
 import logo from './images/hamburger.png';
+import { LocalidadesController } from '../../../../controllers/localidades_controller';
 
 class Barra extends Component {
+    state = {
+        localidades: []
+    }
 
-    createoption = () => {
+    //Se ejecuta cuando ya se ha cargado el componente, es async por que trabaja de manera asincrona
+    async componentDidMount(){
+        let localidadesController = new LocalidadesController();
+        const localidades = await localidadesController.readLocalidadesyBarrios()
+        this.setState({localidades:localidades})
+    }
+
+    createoption = (localidades) => {
         let table = []
-        // Outer loop to create parent
-
-        table.push(ciudades.map((data, index) => {
-            return <option key={index} value={data.nombre}> {data.nombre} </option>
-
-        }
-        ))
+        table.push(
+            localidades.map(
+                localidad =>(
+                    <option value={localidad.localidad} key={localidad.localidad} >{localidad.localidad}</option>
+                )
+            )
+        )
         return table
     }
 
@@ -34,7 +44,7 @@ class Barra extends Component {
                         <ul className="navbar-nav mr-auto flex-column">
                             <li className="nav-item dropdown">
                                 <h2 className="nav-link ">Servicios</h2>
-                                <hr/>
+                                <hr />
                                 <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Guardería')}>Guardería</button>
                                 <div className="dropdown-divider"></div>
                                 <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Veterinaria')}>Veterinaria</button>
@@ -43,18 +53,17 @@ class Barra extends Component {
                                 <div className="dropdown-divider"></div>
                                 <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Saltos')} >Saltos</button>
                             </li>
-                            <hr/>
+                            <hr />
                             <li className="nav-item">
                                 <h2 className="nav-link ">Filtros</h2>
                             </li>
-                            <hr/>
+                            <hr />
                             <li className="nav-item">
                                 <h5 className="nav-link " >Ubicación</h5>
                                 <div className="input-group">
                                     <select className="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                                         <option defaultValue>Seleccione...</option>
-                                        {this.createoption()}
-
+                                        {this.createoption(this.state.localidades)}
                                     </select>
                                     <div className="input-group-append">
                                         <button className="btn btn-outline-secondary" type="button">Filtrar</button>
