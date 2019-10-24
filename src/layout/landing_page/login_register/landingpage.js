@@ -122,7 +122,8 @@ class Login extends Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            localidades: [],
         }
         // We will use the LoginController for authentication, so I'll add it to this class
         this.loginController = new LoginController();
@@ -232,7 +233,6 @@ class Register extends Component {
                     <br />
                     <br />
                     <input type="submit" value="CREAR CUENTA" className="button MainColor TextWhiteColor" onClick={this.signup} />
-
                 </form>
                 <button onClick={this.props.rightcontenthandler.bind(this, true)} className="button2 DarkMainColor TextWhiteColor">VOLVER</button>
             </div>
