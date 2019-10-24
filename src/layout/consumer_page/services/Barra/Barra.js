@@ -12,17 +12,23 @@ class Barra extends Component {
     }
 
     //Se ejecuta cuando ya se ha cargado el componente, es async por que trabaja de manera asincrona
-    async componentDidMount(){
-        let localidadesController = new LocalidadesController();
-        const localidades = await localidadesController.readLocalidadesyBarrios()
-        this.setState({localidades:localidades})
+    async componentDidMount() {
+        try {
+            console.log("Entro try")
+            let localidadesController = new LocalidadesController();
+            const localidades = await localidadesController.readLocalidadesyBarrios()
+            this.setState({ localidades: localidades })
+            console.log("no ocurrio ningun error")
+        } catch (error) {
+            console.log("ha ocurrido un error")
+        }
     }
 
     createoption = (localidades) => {
         let table = []
         table.push(
             localidades.map(
-                localidad =>(
+                localidad => (
                     <option value={localidad.localidad} key={localidad.localidad} >{localidad.localidad}</option>
                 )
             )
