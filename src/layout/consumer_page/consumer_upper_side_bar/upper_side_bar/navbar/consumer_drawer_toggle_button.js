@@ -4,8 +4,7 @@ import '../../../../global_css/textcolors.css';
 import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
 import './consumer_drawer_toggle_button.css';
-import shop from './images/shop.png';
-
+import shop from './images/perro_doki.ico';
 class DrawerToggleButton extends Component {
 
     render() {
