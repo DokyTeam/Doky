@@ -24,7 +24,6 @@ class Barra extends Component {
 
     createoption = (localidades) => {
         let table = []
-        console.log(localidades)
         table.push(
             localidades.map(
                 localidad => (

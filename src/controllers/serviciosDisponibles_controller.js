@@ -11,31 +11,16 @@ export class ServiciosDispController {
 
 
     readServicioGuarderia(){
-        //let path = "servicios/guarderia/guarderias";
         let guarderias = [];
         return this.firebaseInstance.firestore().collectionGroup("guarderiasusuario").get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) { 
-                   // console.log(doc.id, ' ',doc.data());
-                    
-                    let res = {
-                        "id" : doc.id,
-                        "barrio" : doc.data().barrio,
-                        "description" : doc.data().descripcion,
-                        "horario" : doc.data().horario,
-                        "localidad" : doc.data().localidad,
-                        "precio" : doc.data().precio,
-
-                    }
-
-                    guarderias.push(res);
+                let id = {"id" : doc.id}
+                let values = {...doc.data(),...id}
+                guarderias.push(values);
             });
             return guarderias;
         });
     }
-
-
-
-
 
     readServicioPaseo(){
         //let path = "servicios/guarderia/guarderias";
@@ -61,36 +46,17 @@ export class ServiciosDispController {
         });
     }
 
-
-
-
-
     readServicioVeterinaria(){
-        //let path = "servicios/guarderia/guarderias";
         let  veterinarias = [];
         return this.firebaseInstance.firestore().collectionGroup("veterinariasusuario").get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) { 
-                    //console.log(doc.id, ' ',doc.data());
-                    
-                    let res = {
-                        "id" : doc.id,
-                        "barrio" : doc.data().barrio,
-                        "description" : doc.data().descripcion,
-                        "horario" : doc.data().horario,
-                        "localidad" : doc.data().localidad,
-
-                    }
-
-                    veterinarias.push(res);
+                    let res = {"id" : doc.id}
+                    let asd = {...doc.data(),...res}
+                    veterinarias.push(asd);
             });
             return veterinarias;
         });
     }
-
-
-
-
-
 
     readServicioSalto(){
         //let path = "servicios/guarderia/guarderias";

@@ -179,8 +179,6 @@ class Login extends Component {
 
                 </form>
                 <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
-                <br />
-                <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.MainContainerhandler.bind(this, false)}>*</button>
             </div>
         );
     }
