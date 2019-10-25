@@ -5,9 +5,23 @@ import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { Barra } from '../Barra/Barra.js';
 import { ServiciosContenedor } from '../servicios_contenedor/ServiciosConedor';
-import veterinaria_json from './veterinaria.json';
+import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller'
 
 class VeterinariaPage extends Component {
+
+    state = {
+        veterinarias: []
+    }
+
+    async componentDidMount() {
+        try {
+            var serviciosDispController = new ServiciosDispController();
+            const veterinarias = await serviciosDispController.readServicioVeterinaria();
+            this.setState({veterinarias:veterinarias})
+        } catch (error) {
+
+        }
+    }
 
     render() {
         return (
@@ -21,7 +35,7 @@ class VeterinariaPage extends Component {
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                                 Veterinaria
                             </h1>
-                            <ServiciosContenedor json={veterinaria_json}></ServiciosContenedor>
+                            <ServiciosContenedor json={this.state.veterinarias}></ServiciosContenedor>
 
                         </div>
                     </div>
