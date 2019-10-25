@@ -50,9 +50,9 @@ export class ServiciosDispController {
         let  veterinarias = [];
         return this.firebaseInstance.firestore().collectionGroup("veterinariasusuario").get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) { 
-                    let res = {"id" : doc.id}
-                    let asd = {...doc.data(),...res}
-                    veterinarias.push(asd);
+                    let id = {"id" : doc.id}
+                    let values = {...doc.data(),...id}
+                    veterinarias.push(values);
             });
             return veterinarias;
         });
@@ -63,19 +63,11 @@ export class ServiciosDispController {
         let  saltos = [];
         return this.firebaseInstance.firestore().collectionGroup("saltosusuario").get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) { 
-                    //console.log(doc.id, ' ',doc.data());
-                    
-                    let res = {
+                    let id = {
                         "id" : doc.id,
-                        "idMascota" : doc.data().idMascota,
-                        "barrio" : doc.data().barrio,
-                        "description" : doc.data().descripcion,
-                        "localidad" : doc.data().localidad,
-                        "precio" : doc.data().precio
-
                     }
-
-                    saltos.push(res);
+                    let values ={...doc.data(),...id}
+                    saltos.push(values);
             });
             return saltos;
         });
