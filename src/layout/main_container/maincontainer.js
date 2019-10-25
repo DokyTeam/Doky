@@ -4,12 +4,14 @@ import fire from '../../config/Fire'
 import { LandingContainer } from '../landing_page/landing_container';
 import { ConsumerContainer } from '../consumer_page/consumer_container';
 import { LenderContainer } from '../lender_page/lender_container';
+import { UserController } from '../../controllers/user_controller'
+
 
 class MainContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             isEdit: true,
             user: {}
         }
@@ -28,7 +30,8 @@ class MainContainer extends Component {
 
     // This method will listen to a change into the browser's cookies.
     // We will use the Fire object created into the "Fire.js" file because that's all that we need.
-    authListener() {
+    async authListener() {
+        
         fire.auth().onAuthStateChanged((user) => {
             // console.log(user);
             if (user) {
@@ -46,14 +49,19 @@ class MainContainer extends Component {
     // The idea is make that comprobation into the authListener. When we know what kind of user is,
     // save the result into a state variable for then use it below here.
     render() {
-        return (
-            <div>
+        if (this.state.user) {
+            return (
                 <div>
-                    {(this.state.user) ? <ConsumerContainer/> : 
-                    (this.state.isEdit) ? <LandingContainer MainContainerhandler={this.handler} /> : <LenderContainer MainContainerhandler={this.handler} />}
+                    <div>
+                        {
+                            this.state.isEdit ? <ConsumerContainer /> : <LenderContainer MainContainerhandler={this.handler} />
+                        }
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return <LandingContainer MainContainerhandler={this.handler} />
+        }
     }
 }
 

@@ -10,7 +10,7 @@ import foto1 from "./images/foto1.jpeg";
 import foto2 from "./images/foto2.jpeg";
 import foto3 from "./images/foto3.jpeg";
 import { LoginController } from '../../../controllers/login_controller';
-
+import {UserController} from '../../../controllers/user_controller'
 
 class Landingpage extends Component {
 
@@ -122,10 +122,12 @@ class Login extends Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            localidades: [],
         }
         // We will use the LoginController for authentication, so I'll add it to this class
         this.loginController = new LoginController();
+        this.userController = new UserController();
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
     }
@@ -176,8 +178,6 @@ class Login extends Component {
 
                 </form>
                 <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
-                <br />
-                <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.MainContainerhandler.bind(this, false)}>*</button>
             </div>
         );
     }
@@ -188,10 +188,12 @@ class Register extends Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            role: 'Consumidor'
         }
         // We will use the LoginController for registration, so I'll add it to this class
         this.loginController = new LoginController();
+        this.userController = new UserController();
         this.handleChange = this.handleChange.bind(this);
         this.signup = this.signup.bind(this);
     }
@@ -207,7 +209,7 @@ class Register extends Component {
         
         // Here is where you create a new User.
         // Where says  "seller" you must to pass the role of the new user created, as a STRING.
-        this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password, 'seller');
+        this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password, this.state.role);
     }
 
     render() {
@@ -227,8 +229,14 @@ class Register extends Component {
                         <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                     </label>
                     <br />
+                    <h6>ROL:</h6>
+                    <select className="theselect" name="role" value={this.state.role} onChange={this.handleChange}>
+                        <option value='Consumidor'>Consumidor</option>
+                        <option value="Prestador">Prestador</option>
+                    </select>
+                    <br />
+                    <br />
                     <input type="submit" value="CREAR CUENTA" className="button MainColor TextWhiteColor" onClick={this.signup} />
-
                 </form>
                 <button onClick={this.props.rightcontenthandler.bind(this, true)} className="button2 DarkMainColor TextWhiteColor">VOLVER</button>
             </div>
