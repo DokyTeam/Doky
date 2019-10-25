@@ -5,7 +5,6 @@ import '../../../global_css/fonts.css';
 import { Barra } from '../Barra/Barra.js';
 import { ServiciosContenedor } from '../servicios_contenedor/ServiciosConedor';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller'
-import guarderia_json from './guarderia.json';
 
 
 class GuarderiaPage extends Component {
