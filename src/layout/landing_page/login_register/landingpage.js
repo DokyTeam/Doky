@@ -134,10 +134,14 @@ class Login extends Component {
     login(e) {
         // We prevent the default cases so avoid submitting the form
         e.preventDefault();
-        // Here we will use the method in the controller for signing in
-        // That method will be the responsible for start a session into the browser's cookies,
-        // so we don't need any more for checking if the auth was successful
-        this.loginController.signInWithEmailAndPassword(this.state.email, this.state.password);
+        
+        // Here we will use the method of signing in for receiving the user information.
+        // It's a promise, so you have to handle it as such.
+        // If the user doesn't have information in the database, the method will return
+        // undefined.
+        this.loginController.signInWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+            console.log(user);
+        });
     }
 
     handleChange(event) {
@@ -200,10 +204,10 @@ class Register extends Component {
     signup(event) {
         // We prevent the default cases so avoid submitting the form
         event.preventDefault();
-        // Here we will use the method in the controller for signing up
-        // That method will be the responsible for start a session into the browser's cookies once the user
-        // is created, so we don't need any more for checking if the auth was successful
-        this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password);
+        
+        // Here is where you create a new User.
+        // Where says  "seller" you must to pass the role of the new user created, as a STRING.
+        this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password, 'seller');
     }
 
     render() {

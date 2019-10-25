@@ -23,5 +23,16 @@ export class CheckType {
         }
             
     }
+
+    // This will check if a variable is a boolean.
+    // It receives a variable and returns true if it is a boolean, and false if it is not.
+    isABoolean (inputVariable) {
+
+        if (typeof inputVariable === "boolean") {
+           return true; 
+        } else {
+            return false;
+        }
+    }
 }
 

@@ -1,5 +1,6 @@
 import {CheckType} from '../utilities/check_type';
 import {FirebaseAuthRepository} from '../access_data/firebase_auth_repository';
+import { UserController } from '../controllers/user_controller';
 
 export class LoginController {
 
@@ -15,10 +16,11 @@ export class LoginController {
     constructor(){
         this.checkType = new CheckType();
         this.firebaseAuthRepository = new FirebaseAuthRepository();
+        this.userController = new UserController();
     }
 
     // The method for 1. Sign in is as follows:
-    signInWithEmailAndPassword (email, password) {
+    async signInWithEmailAndPassword (email, password) {
 
         // The first thing we need to do is verify if the variables are strings
         // so we will use isAString function.
@@ -35,19 +37,19 @@ export class LoginController {
         // Now we need to use the AccessData layer to send the information and recieve 
         // a response from the server. For that, I will use the Firebase repository.
 
-        this.firebaseAuthRepository.authWithEmailAndPassword(email, password).then((user) => {
-            // We don't need anything, the session will be saved into the browser's cookies.
-        }).catch((error)=>{
-            // In the case that there is an error, we will log it 
-            console.log(error);
-        });
+        const userCredential = await this.firebaseAuthRepository.authWithEmailAndPassword(email, password);
 
+        this.userController.uid = userCredential.user.uid;
+
+        var user = await this.userController.getUserInformation();
+
+        return user;
 
     }
 
 
     // The method for 2. Create account is as follows:
-    createAccountWithEmailAndPassword (email, password) {
+    createAccountWithEmailAndPassword (email, password, role) {
 
         // It is very similar to the previous one method, we need to verify if the input is valid
         // and then call the repository for creating the account.
@@ -60,7 +62,15 @@ export class LoginController {
 
         // Now I need to call the repository for creating the account.
         this.firebaseAuthRepository.createAccountWithEmailAndPassword(email, password).then((user) => {
-            // Here we don't need anything additional, the session will be saved too automatically.
+
+            // We will create the user into the database
+
+            this.userController.uid = user.user.uid;
+
+            this.userController.createNewUserIntoDatabase(
+                {role: role}
+            );
+
         }).catch((error) => {
             // In the case that there is an error, we will log it 
             console.log(error);
