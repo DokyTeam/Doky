@@ -10,7 +10,6 @@ class ServiciosContenedor extends Component {
 
     createcarta = () => {
         let table = []
-        console.log(this.props.json)
         table.push(
             this.props.json.map(
                 data => {
