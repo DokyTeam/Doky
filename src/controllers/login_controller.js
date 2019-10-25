@@ -35,12 +35,9 @@ export class LoginController {
         // Now we need to use the AccessData layer to send the information and recieve 
         // a response from the server. For that, I will use the Firebase repository.
 
-        this.firebaseAuthRepository.authWithEmailAndPassword(email, password).then((user) => {
+        return this.firebaseAuthRepository.authWithEmailAndPassword(email, password).then((user) => {
             // We don't need anything, the session will be saved into the browser's cookies.
-        }).catch((error)=>{
-            // In the case that there is an error, we will log it 
-            console.log(error);
-        });
+        })
 
 
     }
@@ -59,11 +56,8 @@ export class LoginController {
         }
 
         // Now I need to call the repository for creating the account.
-        this.firebaseAuthRepository.createAccountWithEmailAndPassword(email, password).then((user) => {
+        return this.firebaseAuthRepository.createAccountWithEmailAndPassword(email, password).then((user) => {
             // Here we don't need anything additional, the session will be saved too automatically.
-        }).catch((error) => {
-            // In the case that there is an error, we will log it 
-            console.log(error);
         })
     }
 
