@@ -10,7 +10,7 @@ import foto1 from "./images/foto1.jpeg";
 import foto2 from "./images/foto2.jpeg";
 import foto3 from "./images/foto3.jpeg";
 import { LoginController } from '../../../controllers/login_controller';
-
+import {UserController} from '../../../controllers/user_controller'
 
 class Landingpage extends Component {
 
@@ -127,18 +127,24 @@ class Login extends Component {
         }
         // We will use the LoginController for authentication, so I'll add it to this class
         this.loginController = new LoginController();
+        this.userController = new UserController();
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
     }
 
     // This method will happen once the user clicks on "INGRESAR"
-    login(e) {
-        // We prevent the default cases so avoid submitting the form
-        e.preventDefault();
-        // Here we will use the method in the controller for signing in
-        // That method will be the responsible for start a session into the browser's cookies,
-        // so we don't need any more for checking if the auth was successful
-        this.loginController.signInWithEmailAndPassword(this.state.email, this.state.password);
+    async login(e) {
+        try {
+            // We prevent the default cases so avoid submitting the form
+            e.preventDefault();
+            // Here we will use the method in the controller for signing in
+            // That method will be the responsible for start a session into the browser's cookies,
+            // so we don't need any more for checking if the auth was successful
+            await this.loginController.signInWithEmailAndPassword(this.state.email, this.state.password);
+        } catch (error) {
+            // In the case that there is an error, we will log it 
+            console.log(error);
+        }
     }
 
     handleChange(event) {
@@ -190,6 +196,7 @@ class Register extends Component {
         }
         // We will use the LoginController for registration, so I'll add it to this class
         this.loginController = new LoginController();
+        this.userController = new UserController();
         this.handleChange = this.handleChange.bind(this);
         this.signup = this.signup.bind(this);
     }
@@ -199,13 +206,20 @@ class Register extends Component {
     }
 
     // This method will happen once the user clicks on "CREAR CUENTA"
-    signup(event) {
-        // We prevent the default cases so avoid submitting the form
-        event.preventDefault();
-        // Here we will use the method in the controller for signing up
-        // That method will be the responsible for start a session into the browser's cookies once the user
-        // is created, so we don't need any more for checking if the auth was successful
-        this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password);
+    async signup(event) {
+        try {
+            // We prevent the default cases so avoid submitting the form
+            event.preventDefault();
+            // Here we will use the method in the controller for signing up
+            // That method will be the responsible for start a session into the browser's cookies once the user
+            // is created, so we don't need any more for checking if the auth was successful
+            await this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password);
+            await this.userController.createUser(this.state.email,this.state.role);
+
+        } catch (error) {
+            // In the case that there is an error, we will log it 
+            console.log(error);
+        }
     }
 
     render() {
