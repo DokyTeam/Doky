@@ -19,7 +19,7 @@ class VeterinariaPage extends Component {
             const veterinarias = await serviciosDispController.readServicioVeterinaria();
             this.setState({veterinarias:veterinarias})
         } catch (error) {
-
+            console.log(error)
         }
     }
 

@@ -5,9 +5,24 @@ import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { Barra } from '../Barra/Barra.js';
 import { ServiciosContenedor } from '../servicios_contenedor/ServiciosConedor';
-import saltos_json from './saltos.json';
+import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller'
 
 class SaltosPage extends Component {
+
+    state = {
+        animales: []
+    }
+
+    async componentDidMount() {
+        try {
+            var serviciosDispController = new ServiciosDispController();
+            const animales = await serviciosDispController.readServicioSalto();
+            this.setState({animales:animales});
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     render() {
         return (
             <div >
@@ -20,7 +35,7 @@ class SaltosPage extends Component {
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                                 Saltos
                             </h1>
-                            <ServiciosContenedor json={saltos_json}></ServiciosContenedor>
+                            <ServiciosContenedor json={this.state.animales}></ServiciosContenedor>
 
                         </div>
                     </div>
