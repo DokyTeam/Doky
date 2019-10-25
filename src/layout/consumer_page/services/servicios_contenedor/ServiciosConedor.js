@@ -10,8 +10,7 @@ class ServiciosContenedor extends Component {
 
     createcarta = () => {
         let table = []
-        console.log("Entro")
-
+        console.log(this.props.json)
         table.push(
             this.props.json.map(
                 data => {
@@ -22,7 +21,6 @@ class ServiciosContenedor extends Component {
                     )
                 }
             ))
-        console.log("salio")
         return table
     }
 
