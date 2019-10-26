@@ -12,13 +12,7 @@
 
 	
 }
-.contenedor{
-	height: 100%;
-	width: 100%;
-	background: url('./foto2.jpg');
-	image-resolution: inherit;
-	
-}
+
 
 .imga{
 	position: relative;
@@ -149,8 +143,11 @@
 }
 
 @media only screen and (max-width: 350px){
-	#progressbar li {
-		width: 50%;
+	#progressbar li{
+		color : white;
+	}
+	#msform input, #msform textarea {
+		font-size: 0.5em;
 	}
 }
 
