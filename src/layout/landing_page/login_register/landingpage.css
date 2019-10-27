@@ -1,0 +1,56 @@
+div.rightcontainer{
+    text-align: center;
+}
+
+.button {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px
+
+}
+
+.button2 {
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px
+}
+
+.input{
+    border-radius: 50px;
+}
+
+.lowerbar{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 25px;
+    justify-items: center;
+    grid-auto-rows: minmax(10px,auto);
+}
+
+.lowerbar p a:hover {
+    color: #4d2f16;
+    text-decoration: none;
+}
+
+.theselect{
+    width: 180px;
+    height: 35px;
+}
+
+@media only screen and (max-width:600px){
+    div.lowerbar p {
+        font-size: 15px;
+    }
+}

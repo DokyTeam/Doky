@@ -1,0 +1,29 @@
+.title{
+    padding: 5%;
+}
+
+.text{
+    margin-top: 5%;
+    padding: 3%;
+    text-align: justify;
+}
+
+.buttonbottom{
+    width: 40%;
+    height: 10%;
+    border-radius: 3px;
+    margin: 5% 30%;
+    border: none;
+}
+
+.buttonbottom:hover {
+    background-color: #4d2f16;
+}
+
+.img {
+    width: 100%;
+}
+
+.card{
+    margin-top: 5%;
+}

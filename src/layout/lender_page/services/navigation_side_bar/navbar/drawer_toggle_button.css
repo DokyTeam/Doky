@@ -1,0 +1,12 @@
+.toggle_button{
+    height: 24px;
+    width: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.toggle_button:hover{
+    color: #4d2f16;
+}
+
