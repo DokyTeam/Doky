@@ -32,8 +32,6 @@ export class UserController {
     }
     
     addMascota(email,mascotaInfo){
-        console.log(mascotaInfo)
-        console.log(email)
         return this.firebaseInstance.firestore().collection('usuarios').doc(email).collection("mascotas").doc(mascotaInfo.nombre).set(mascotaInfo);
     }
 
