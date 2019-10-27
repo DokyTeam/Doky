@@ -12,7 +12,7 @@ export class UserController {
         })
     }
 
-    getTipoUsuario(email) {
+    async getTipoUsuario(email) {
         return this.firebaseInstance.firestore().collection("usuarios").doc(email).get().then(
             querySnapshot =>{
                 return querySnapshot.data();
@@ -21,11 +21,18 @@ export class UserController {
     }
 
     getInfomracionUsuario(email){
+        console.log("info user")
+        console.log(email)
         return this.firebaseInstance.firestore().collection("usuarios").doc(email).get().then(
             querySnapshot =>{
+                console.log(querySnapshot.data())
                 return querySnapshot.data();
             }
         )
     }
     
+    addMascota(email,mascotaInfo){
+        return this.firebaseInstance.firestore().collection('usuarios').doc(email).collection("mascotas").doc(mascotaInfo.nombre).set(mascotaInfo);
+    }
+
 }
