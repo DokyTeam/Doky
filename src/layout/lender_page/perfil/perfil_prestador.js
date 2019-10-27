@@ -4,18 +4,32 @@ import '../../global_css/textcolors.css';
 import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
 import './perfil.css';
-import perfil_json from './json/perfil.json';
 import interesesjson from './json/servicios.json';
 import { GeneralCards } from './card/generalcard';
+import { UserController } from '../../../controllers/user_controller';
 
 class PerfilPrestador extends Component {
 
-    render() {
+    state = {
+        userInfo: []
+    }
 
+    async componentDidMount() {
+        try {
+            var userController = new UserController();
+            const userInfo = await userController.getInfomracionUsuario();
+            this.setState({userInfo:userInfo})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    render() {
+        
         let nombre, appellido, celular, fijo, fecha_nacimiento, ciudad, barrio, correo1, correo2, fotosrc;
         let interesesname = interesesjson.nombre, interesarr = interesesjson.intereses;
 
-        perfil_json.map((data) => {
+        this.state.userInfo.map((data) => {
             nombre = data.nombre;
             appellido = data.apellido;
             celular = data.celular;

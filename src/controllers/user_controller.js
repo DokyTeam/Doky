@@ -15,7 +15,15 @@ export class UserController {
     getTipoUsuario(email) {
         return this.firebaseInstance.firestore().collection("usuarios").doc(email).get().then(
             querySnapshot =>{
-                return querySnapshot.data()
+                return querySnapshot.data();
+            }
+        )
+    }
+
+    getInfomracionUsuario(email){
+        return this.firebaseInstance.firestore().collection("usuarios").doc(email).get().then(
+            querySnapshot =>{
+                return querySnapshot.data();
             }
         )
     }
