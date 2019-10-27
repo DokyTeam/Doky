@@ -7,6 +7,7 @@ import './perfil.css';
 import interesesjson from './json/intereses.json';
 import { GeneralCards } from './card/generalcard';
 import { UserController } from '../../../controllers/user_controller';
+import { useStore } from '../../../utilities/Store'
 
 class Perfil extends Component {
 
@@ -16,9 +17,12 @@ class Perfil extends Component {
 
     async componentDidMount() {
         try {
+            let userInfoSend = []
+            const[store] = useStore();
             var userController = new UserController();
-            const userInfo = await userController.getInfomracionUsuario();
-            this.setState({userInfo:userInfo})
+            const userInfo = await userController.getInfomracionUsuario(store());
+            userInfoSend.push(userInfo)
+            this.setState({userInfo:userInfoSend})
         } catch (error) {
             console.log(error)
         }

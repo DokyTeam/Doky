@@ -5,6 +5,8 @@ import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
 import './Mascotas.css';
 import foto2 from './foto2.jpg'
+import { UserController } from '../../../controllers/user_controller';
+import { useStore } from '../../../utilities/Store'
 
 class Mascotas extends Component {
 
@@ -69,8 +71,6 @@ class Mascotas extends Component {
 
 
     render() {
-
-
         return (
             <div className="fondo ">
 
@@ -201,16 +201,45 @@ class Menu2 extends Component {
         );
     }
 }
+
 class Menu3 extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
-
             descipcion: this.props.mascota.descipcion,
         }
         this.handleChange = this.handleChange.bind(this);
-
     }
+
+    state = {
+        mascotaInfo: []
+    }
+
+    /*
+    async componentDidMount() {
+        try {
+            
+            var userController = new UserController();
+            const mascotaInfo = await userController.getInfomracionUsuario(store());
+            this.setState({ mascotaInfo: mascotaInfo })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    */
+
+    agregarMascota = async (descripcion, mascota) => {
+        try {
+            const[store] = useStore();
+            const mascotaInfo = { ...mascota, ...{ descipcion: descripcion } }
+            var userController = new UserController();
+            await userController.addMascota(store(),mascotaInfo);
+        }catch(error){
+            console.log(error)
+        }
+    }
+
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
@@ -234,17 +263,19 @@ class Menu3 extends Component {
                     }>
                         Anterior</button>
                     <button type="submit" name="submit" className="submit action-button" value="Submit" onClick={() => {
-                        this.props.Menucontenthandler("","","","","","","")
-                        this.props.Mascotascontenthandler('menu4')
-                    }}>
+                        this.props.Menucontenthandler("", "", "", "", "", "", "");
+                        this.props.Mascotascontenthandler('menu4');
+                        this.agregarMascota(this.state.descipcion, this.props.mascota);
+                    }
+                    }>
                         Crear</button>
                 </fieldset>
             </div>
         );
     }
 }
+
 class Menu4 extends Component {
-    
     render() {
         return (
             <div>
@@ -259,13 +290,12 @@ class Menu4 extends Component {
                     <h3 className="fs-subtitle">Su registro se ha realizado satisfactoriamente</h3>
                     <h3 className="fs-subtitle">Desea realizar un nuevo registro</h3>
                     <button type="button" name="previous" className="previous action-button" value="Previous" onClick={() => {
-                          this.props.Menucontenthandler(this.props.mascota.nombre, this.props.mascota.fechaNacimiento, this.props.mascota.especie, this.props.mascota.raza, this.props.mascota.condicionesEspeciales, this.props.mascota.enfermedades, this.props.mascota.descipcion)
-                       this.props.Mascotascontenthandler('menu1')
-
+                        this.props.Menucontenthandler(this.props.mascota.nombre, this.props.mascota.fechaNacimiento, this.props.mascota.especie, this.props.mascota.raza, this.props.mascota.condicionesEspeciales, this.props.mascota.enfermedades, this.props.mascota.descipcion)
+                        this.props.Mascotascontenthandler('menu1')
                     }
                     }>
                         Nueva</button>
-                    
+
                 </fieldset>
             </div>
         );

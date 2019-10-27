@@ -1,39 +1,24 @@
-export const useStore = (
-    () => {
-        let storeInstance;
-        let subs = [];
-        const createStoreInstance = () =>{
-            let store = '';
-            
-            const getStore = () =>{
-                return store;
-            }
-            const setStore = (newStore) =>{
-                store = newStore;
-                subs.forEach(
-                    fx => fx()
-                );
-                return store;
-            }
+export const useStore = (() => {
+    let storeInstance;
+    const createStoreInstance = () => {
+        let store = 'asdasd';
 
-            const subscribe = (fx) => {
-                subs.push(fx)
-            }
-
-            const unsuscribe = (fx) => {
-                let index =  subs.indexOf(fx);
-                subs.splice(index, 1)
-            }
-
-            return [getStore,setStore];
+        const getStore = () => {
+            return store;
         }
-
-
-        return () =>{
-            if(!storeInstance){
-                storeInstance = createStoreInstance()
-            }
-            return storeInstance
+        const setStore = (newStore) => {
+            store = newStore;
+            return store;
         }
+        return [getStore, setStore];
+    }
 
-    })()
+
+    return () => {
+        if (!storeInstance) {
+            storeInstance = createStoreInstance()
+        }
+        return storeInstance
+    }
+
+})()

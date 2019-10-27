@@ -10,7 +10,7 @@ import foto1 from "./images/foto1.jpeg";
 import foto2 from "./images/foto2.jpeg";
 import foto3 from "./images/foto3.jpeg";
 import { LoginController } from '../../../controllers/login_controller';
-import {UserController} from '../../../controllers/user_controller'
+import { UserController } from '../../../controllers/user_controller'
 
 class Landingpage extends Component {
 
@@ -133,7 +133,7 @@ class Login extends Component {
     }
 
     // This method will happen once the user clicks on "INGRESAR"
-    async login(e) {
+    login = async (e) => {
         try {
             // We prevent the default cases so avoid submitting the form
             e.preventDefault();
@@ -176,7 +176,6 @@ class Login extends Component {
                     <br />
                     <br />
                     <input type="submit" value="INGRESAR" className="button MainColor TextWhiteColor" onClick={this.login} />
-
                 </form>
                 <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
             </div>
@@ -212,7 +211,7 @@ class Register extends Component {
             // That method will be the responsible for start a session into the browser's cookies once the user
             // is created, so we don't need any more for checking if the auth was successful
             await this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password);
-            await this.userController.createUser(this.state.email,this.state.role);
+            await this.userController.createUser(this.state.email, this.state.role);
 
         } catch (error) {
             // In the case that there is an error, we will log it 
