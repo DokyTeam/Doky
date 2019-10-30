@@ -3,10 +3,10 @@
     background: #ffffff;
     box-shadow: 2px 0px 5px rgba(0,0,0,0.5);
     position: fixed;
-    top: 0px;
+    top: 66px;
     right: 0px;
     width: 20%;
-    z-index: 200;
+    z-index: 400;
     transform: translateX(100%);
     transition: transform 0.3s ease-out;
 

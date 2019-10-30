@@ -47,6 +47,7 @@ class ConsumerContainer extends Component {
         return (
             <div>
                 <NavBarWithSideBar consumercontenthandler={this.consumercontenthandler} />
+                <div style={{marginTop: '66px'}}></div>
                 {this.renderSwitch(this.state.idpage)}
             </div>
         );
