@@ -220,7 +220,7 @@ class Register extends Component {
             await this.userController.createUser(this.state.email, this.state.role);
 
         } catch (error) {
-            // In the case that there is an error, we will log it 
+            // In the case that there is an error, we will log it in the console
             console.log(error);
         }
     }
@@ -236,7 +236,7 @@ class Register extends Component {
                     <h6>CORREO:</h6>
                     <div className="input-group mb-3 loginandregisterinput">
                         <div className="input-group-prepend">
-                            <span className="input-group-text" id="basic-addon1">
+                            <span className="input-group-text" id="basic-addon1"> 
                                 <span className="oi oi-person" title="person" aria-hidden="true"></span>
                             </span>
                         </div>

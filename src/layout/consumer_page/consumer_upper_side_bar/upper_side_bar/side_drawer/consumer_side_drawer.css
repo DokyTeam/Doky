@@ -12,6 +12,7 @@
 
 }
 
+
 .side-drawer-cons.open{
     transform: translateX(0);
 }
