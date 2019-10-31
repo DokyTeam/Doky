@@ -164,17 +164,23 @@ class Login extends Component {
                 <br />
                 <form>
                     <h6>USUARIO:</h6>
-                    <label>
-                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
-                    </label>
-                    <br />
-                    <br />
+                    <div className="input-group mb-3 loginandregisterinput">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">
+                                <span className="oi oi-person" title="person" aria-hidden="true"></span>
+                            </span>
+                        </div>
+                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
                     <h6>CONTRASEÑA:</h6>
-                    <label>
-                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-                    </label>
-                    <br />
-                    <br />
+                    <div className="input-group mb-3 loginandregisterinput">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">
+                                <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
+                            </span>
+                        </div>
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
                     <input type="submit" value="INGRESAR" className="button MainColor TextWhiteColor" onClick={this.login} />
                 </form>
                 <button className="button2 DarkMainColor TextWhiteColor" onClick={this.props.rightcontenthandler.bind(this, false)}>REGISTRARSE</button>
@@ -214,7 +220,7 @@ class Register extends Component {
             await this.userController.createUser(this.state.email, this.state.role);
 
         } catch (error) {
-            // In the case that there is an error, we will log it 
+            // In the case that there is an error, we will log it in the console
             console.log(error);
         }
     }
@@ -228,14 +234,23 @@ class Register extends Component {
                 <br />
                 <form onSubmit={this.handleSubmit}>
                     <h6>CORREO:</h6>
-                    <label>
-                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} />
-                    </label>
+                    <div className="input-group mb-3 loginandregisterinput">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1"> 
+                                <span className="oi oi-person" title="person" aria-hidden="true"></span>
+                            </span>
+                        </div>
+                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
                     <h6>CONTRASEÑA:</h6>
-                    <label >
-                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-                    </label>
-                    <br />
+                    <div className="input-group mb-3 loginandregisterinput">
+                        <div className="input-group-prepend">
+                            <span className="input-group-text" id="basic-addon1">
+                                <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
+                            </span>
+                        </div>
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                    </div>
                     <h6>ROL:</h6>
                     <select className="theselect" name="role" value={this.state.role} onChange={this.handleChange}>
                         <option value='Consumidor'>Consumidor</option>

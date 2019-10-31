@@ -9,6 +9,7 @@ class LandingContainer extends Component {
         return (
             <div>
                 <LandingUpperBar/>
+                <div style={{marginTop: '66px'}}></div>
                 <Landingpage MainContainerhandler={this.props.MainContainerhandler}/>
             </div>
         );

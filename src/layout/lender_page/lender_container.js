@@ -45,6 +45,7 @@ class LenderContainer extends Component {
         return (
             <div>
                 <NavBarWithSideBar lendercontenthandler={this.lendercontenthandler} />
+                <div style={{marginTop: '66px'}}></div>
                 {this.renderSwitch(this.state.idpage)}
             </div>
         );
