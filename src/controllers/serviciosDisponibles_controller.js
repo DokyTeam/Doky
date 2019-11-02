@@ -1,4 +1,6 @@
-import fire from '../config/Fire';
+
+
+import {FirebaseReadRepository} from '../access_data/firebase_read_repository';
 
 
 
@@ -6,13 +8,13 @@ import fire from '../config/Fire';
 export class ServiciosDispController {
 
     constructor() {
-        this.firebaseInstance = fire;
+        this.firebaseReadRepository = new FirebaseReadRepository();
     }
 
 
     readServicioGuarderia() {
         let guarderias = [];
-        return this.firebaseInstance.firestore().collectionGroup("guarderiasusuario").get().then(function (querySnapshot) {
+        return this.firebaseReadRepository.readGroupCollection("guarderiasusuario").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 let id = { "id": doc.id }
                 let values = { ...doc.data(), ...id }
@@ -24,7 +26,7 @@ export class ServiciosDispController {
 
     readServicioPaseo() {
         let paseos = [];
-        return this.firebaseInstance.firestore().collectionGroup("paseosusuario").get().then(function (querySnapshot) {
+        return this.firebaseReadRepository.readGroupCollection("paseosusuario").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 let id = { "id": doc.id }
                 let values = { ...doc.data(), ...id }
@@ -36,7 +38,7 @@ export class ServiciosDispController {
 
     readServicioVeterinaria() {
         let veterinarias = [];
-        return this.firebaseInstance.firestore().collectionGroup("veterinariasusuario").get().then(function (querySnapshot) {
+        return this.firebaseReadRepository.readGroupCollection("veterinariasusuario").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 let id = { "id": doc.id }
                 let values = { ...doc.data(), ...id }
@@ -48,7 +50,7 @@ export class ServiciosDispController {
 
     readServicioSalto() {
         let saltos = [];
-        return this.firebaseInstance.firestore().collectionGroup("saltosusuario").get().then(function (querySnapshot) {
+        return this.firebaseReadRepository.readGroupCollection("saltosusuario").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 let id = {
                     "id": doc.id,
@@ -63,3 +65,9 @@ export class ServiciosDispController {
 
 
 }
+
+
+
+
+
+
