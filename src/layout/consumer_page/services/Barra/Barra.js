@@ -5,6 +5,7 @@ import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import logo from './images/hamburger.png';
 import { LocalidadesController } from '../../../../controllers/localidades_controller';
+import { Link } from 'react-router-dom';
 
 class Barra extends Component {
     state = {
@@ -49,13 +50,13 @@ class Barra extends Component {
                             <li className="nav-item dropdown">
                                 <h2 className="nav-link ">Servicios</h2>
                                 <hr />
-                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Guardería')}>Guardería</button>
+                                <Link to="/Paseos"><button className="dropdown-item">Paseos</button></Link>
                                 <div className="dropdown-divider"></div>
-                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Veterinaria')}>Veterinaria</button>
+                                <Link to="/Veterinaria"><button className="dropdown-item">Veterinaria</button></Link>
                                 <div className="dropdown-divider"></div>
-                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Paseos')}>Paseos</button>
+                                <Link to="/Guardería"><button className="dropdown-item">Guardería</button></Link>
                                 <div className="dropdown-divider"></div>
-                                <button className="dropdown-item" onClick={() => this.props.consumercontenthandler('Saltos')} >Saltos</button>
+                                <Link to="/Saltos"><button className="dropdown-item">Saltos</button></Link>
                             </li>
                             <hr />
                             <li className="nav-item">

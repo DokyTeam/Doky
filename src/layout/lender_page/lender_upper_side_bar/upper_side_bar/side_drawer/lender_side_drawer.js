@@ -28,7 +28,7 @@ class SideDrawer extends Component {
     render() {
         
         const[store] = useStore();
-        const id = store()
+        const id = store();
         let drawerClasses = 'side-drawer-lender';
         if(this.props.show){
             drawerClasses = 'side-drawer-lender open';

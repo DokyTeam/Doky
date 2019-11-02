@@ -6,49 +6,30 @@ import { GuarderiaPage } from './services/guarderia/guarderia_page';
 import { PaseosPage } from './services/paseos/paseos_page';
 import { VeterinariaPage } from './services/veterinaria/veterinaria_page';
 import { SaltosPage } from './services/saltos/saltos_page';
-import {Perfil} from './Perfil/perfil_consumidor';
-import {Mascotas} from './Mascotas/Mascotas';
+import { Perfil } from './Perfil/perfil_consumidor';
+import { Mascotas } from './Mascotas/Mascotas';
+
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 class ConsumerContainer extends Component {
-
-    constructor(props) {
-        super(props)
-        this.state = { idpage: 'consumer_home_page' }
-    }
-
-    consumercontenthandler = (param) => {
-        this.setState({
-            idpage: param
-        });
-    }
-
-    renderSwitch(param) {
-        switch (param) {
-            case 'consumer_home_page':
-                return <Homepage consumercontenthandler={this.consumercontenthandler} />;
-            case 'Paseos':
-                return <PaseosPage consumercontenthandler={this.consumercontenthandler} />;
-            case 'Guardería':
-                return <GuarderiaPage consumercontenthandler={this.consumercontenthandler} />;
-            case 'Veterinaria':
-                return <VeterinariaPage consumercontenthandler={this.consumercontenthandler} />;
-            case 'Saltos':
-                return <SaltosPage consumercontenthandler={this.consumercontenthandler} />;
-            case 'perfil':
-                return <Perfil consumercontenthandler={this.consumercontenthandler} />;
-            case 'mis_mascotas':
-                return <Mascotas consumercontenthandler={this.consumercontenthandler} />;
-            default:
-                return 'foo';
-        }
-    }
 
     render() {
         return (
             <div>
-                <NavBarWithSideBar consumercontenthandler={this.consumercontenthandler} />
-                <div style={{marginTop: '66px'}}></div>
-                {this.renderSwitch(this.state.idpage)}
+                <Router>
+                    <NavBarWithSideBar consumercontenthandler={this.consumercontenthandler} />
+                    <div style={{ marginTop: '66px' }}></div>
+                    <Switch>
+                        <Route path="/" exact component={Homepage} />
+                        <Route path="/Paseos" exact component={PaseosPage} />
+                        <Route path="/Guardería" exact component={GuarderiaPage} />
+                        <Route path="/Veterinaria" exact component={VeterinariaPage} />
+                        <Route path="/Saltos" exact component={SaltosPage} />
+                        <Route path="/Perfil/:id" exact component={Perfil} />
+                        <Route path="/Mascotas" exact component={Mascotas} />
+                    </Switch>
+                </Router>
             </div>
         );
     }
