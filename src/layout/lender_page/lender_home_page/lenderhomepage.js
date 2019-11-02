@@ -8,6 +8,7 @@ import salto from './home_page_components/images/saltos.jpg';
 import veterinaria from './home_page_components/images/veterinaria.jpg';
 import guarderia from './home_page_components/images/guarderia.jpg';
 
+
 class LenderHomePage extends Component {
 
     render() {

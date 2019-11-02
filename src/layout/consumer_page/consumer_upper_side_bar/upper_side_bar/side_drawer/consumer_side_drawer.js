@@ -5,7 +5,9 @@ import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
 import './consumer_side_drawer.css';
 import dog from "./images/perro_doki.ico";
-import { LoginController } from '../../../../../controllers/login_controller'
+import { LoginController } from '../../../../../controllers/login_controller';
+import { Link } from 'react-router-dom';
+import { useStore } from '../../../../../utilities/Store'
 
 
 class SideDrawer extends Component {
@@ -25,6 +27,8 @@ class SideDrawer extends Component {
 
     render() {
 
+        const[store] = useStore();
+        const id = store();
         let drawerClasses = 'side-drawer-cons';
         if (this.props.show) {
             drawerClasses = 'side-drawer-cons open';
@@ -38,19 +42,17 @@ class SideDrawer extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                            <button className="thebuttcons WhiteColor" onClick={() => this.props.consumercontenthandler('perfil')} >Perfil </button>
+                            <Link to={`/Perfil/${id}`}><button className="thebuttcons WhiteColor">Perfil </button></Link>
                             <hr />
                         </div>
                         <div className="col-12 www">
-                            <button className="thebuttcons WhiteColor" onClick={() => this.props.consumercontenthandler('mis_mascotas')} >Mis mascotas</button>
+                            <Link to="/Mascotas"><button className="thebuttcons WhiteColor">Mis mascotas</button></Link>
                             <hr />
                         </div>
                         <div className="col-12 www">
-                            <button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button>
+                            <Link to="/"><button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button></Link>
                             <hr />
                         </div>
-
-
                     </div>
                 </div>
             </nav>
