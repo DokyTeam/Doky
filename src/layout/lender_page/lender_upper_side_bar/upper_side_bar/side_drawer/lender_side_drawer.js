@@ -6,6 +6,8 @@ import '../../../../global_css/fonts.css';
 import './lender_side_drawer.css';
 import dog from "./images/perro_doki.ico";
 import {LoginController} from '../../../../../controllers/login_controller'
+import { Link } from 'react-router-dom';
+import { useStore } from '../../../../../utilities/Store'
 
 
 class SideDrawer extends Component {
@@ -24,7 +26,9 @@ class SideDrawer extends Component {
     }
     
     render() {
-
+        
+        const[store] = useStore();
+        const id = store()
         let drawerClasses = 'side-drawer-lender';
         if(this.props.show){
             drawerClasses = 'side-drawer-lender open';
@@ -38,7 +42,7 @@ class SideDrawer extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                            <button className="thebuttlend WhiteColor" onClick={()=>{this.props.lendercontenthandler('Perfil')}}>Perfil </button>
+                        <Link to={`/Perfil/${id}`}><button className="thebuttlend WhiteColor" >Perfil </button></Link>
                             <hr/>
                         </div>
                         <div className="col-12 www">
@@ -46,7 +50,7 @@ class SideDrawer extends Component {
                             <hr/>
                         </div>
                         <div className="col-12 www">
-                            <button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button>
+                             <Link to="/"><button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button></Link>
                             <hr/>
                         </div>
 
