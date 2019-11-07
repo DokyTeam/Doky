@@ -10,7 +10,8 @@ import foto1 from "./images/foto1.jpeg";
 import foto2 from "./images/foto2.jpeg";
 import foto3 from "./images/foto3.jpeg";
 import { LoginController } from '../../../controllers/login_controller';
-import { UserController } from '../../../controllers/user_controller'
+import { UserController } from '../../../controllers/user_controller';
+import { ServiciosDispController } from '../../../controllers/serviciosDisponibles_controller';
 
 class Landingpage extends Component {
 
@@ -128,6 +129,7 @@ class Login extends Component {
         // We will use the LoginController for authentication, so I'll add it to this class
         this.loginController = new LoginController();
         this.userController = new UserController();
+        this.serviciosDispController = new ServiciosDispController();
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
     }
@@ -135,11 +137,66 @@ class Login extends Component {
     // This method will happen once the user clicks on "INGRESAR"
     login = async (e) => {
         try {
+/* 
+            let guarderia = {
+                nombre : "Perritos",
+                barrio : "Timiza",
+                descripcion : "La mejor guarderia de Timiza 24/7",
+                horario : "De domingo a domingo, 24h",
+                img : "askdajd",
+                localidad : "Kennedy",
+                precio : 35000
+            };
+
+            let paseo = {
+                nombre : "Paseos",
+                barrio : "Timiza",
+                descripcion : "La mejor guarderia de Timiza 24/7",
+                duracionMax : "2h",
+                horario : "De domingo a domingo, 24h",
+                img : "askdajd",
+                localidad : "Kennedy",
+                precio : 35000
+            };
+
+
+            let veterinaria = {
+                nombre : "Veterinaria",
+                barrio : "Timiza",
+                descripcion : "La mejor guarderia de Timiza 24/7",
+                horario : "De domingo a domingo, 24h",
+                img : "askdajd",
+                localidad : "Kennedy"
+            };
+
+            let salto = {
+                nombre : "Salto",
+                barrio : "Timiza",
+                descripcion : "La mejor guarderia de Timiza 24/7",
+                idMascota : "3db9",
+                img : "askdajd",
+                localidad : "Kennedy",
+                precio : 35000
+            };
+
+*/
             // We prevent the default cases so avoid submitting the form
             e.preventDefault();
             // Here we will use the method in the controller for signing in
             // That method will be the responsible for start a session into the browser's cookies,
             // so we don't need any more for checking if the auth was successful
+
+
+
+
+
+            /*await this.serviciosDispController.writeServicioPaseo(this.state.email,paseo);
+            await this.serviciosDispController.writeServicioVeterinaria(this.state.email,veterinaria);
+            await this.serviciosDispController.writeServicioSalto(this.state.email,salto);
+
+            */
+
+            await this.serviciosDispController.updateStars(this.state.email,"guarderia","Perritos",3);
             await this.loginController.signInWithEmailAndPassword(this.state.email, this.state.password);
         } catch (error) {
             // In the case that there is an error, we will log it 
