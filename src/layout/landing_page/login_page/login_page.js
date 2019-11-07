@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import '../../global_css/textcolors.css';
 import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
+import './login_page.css';
 import { LoginController } from '../../../controllers/login_controller';
 import { UserController } from '../../../controllers/user_controller';
 
@@ -34,6 +35,7 @@ class LoginPage extends Component {
         } catch (error) {
             // In the case that there is an error, we will log it 
             console.log(error);
+            alert(error.message);
         }
     }
 
@@ -47,33 +49,38 @@ class LoginPage extends Component {
     // To be honest I don't understand very good when the bug happens =(
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col" style={{textAlign: 'center'}}>
-                        <p className="TitleTextFont" style={{ marginTop: 30, fontSize: 25 }}>BIENVENIDO</p>
-                        <br />
-                        <br />
-                        <form>
-                            <h6>USUARIO:</h6>
-                            <div className="input-group mb-3 loginandregisterinput">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon1">
-                                        <span className="oi oi-person" title="person" aria-hidden="true"></span>
-                                    </span>
-                                </div>
-                                <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+            <div>
+                <img src="https://http2.mlstatic.com/poster-decorativo-paisagem-cavalos-campo-tamanho-a3-p714-D_NQ_NP_734427-MLB26640349818_012018-F.jpg" id="bg" alt="" />
+                <div className="container" style={{ zIndex: 20 }}>
+                    <div className="row">
+                        <div className="col-6 offset-3" style={{ textAlign: 'center' }}>
+                            <div className="card">
+                                <p className="TitleTextFont" style={{ marginTop: 30, fontSize: 25 }}>BIENVENIDO</p>
+                                <br />
+                                <br />
+                                <form>
+                                    <h6>USUARIO:</h6>
+                                    <div className="input-group mb-3 loginandregisterinput">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text" id="basic-addon1">
+                                                <span className="oi oi-person" title="person" aria-hidden="true"></span>
+                                            </span>
+                                        </div>
+                                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                                    </div>
+                                    <h6>CONTRASEÑA:</h6>
+                                    <div className="input-group mb-3 loginandregisterinput">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text" id="basic-addon1">
+                                                <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
+                                            </span>
+                                        </div>
+                                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                                    </div>
+                                    <input type="submit" value="INGRESAR" className="button MainColor TextWhiteColor" onClick={this.login} />
+                                </form>
                             </div>
-                            <h6>CONTRASEÑA:</h6>
-                            <div className="input-group mb-3 loginandregisterinput">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon1">
-                                        <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
-                                    </span>
-                                </div>
-                                <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                            </div>
-                            <input type="submit" value="INGRESAR" className="button MainColor TextWhiteColor" onClick={this.login} />
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

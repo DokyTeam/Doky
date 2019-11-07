@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../../global_css/textcolors.css';
 import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
-
+import './register_page.css';
 import { LoginController } from '../../../controllers/login_controller';
 import { UserController } from '../../../controllers/user_controller';
 
@@ -45,40 +45,45 @@ class RegisterPage extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col" style={{ textAlign: 'center' }}>
-                        <p className="TitleTextFont" style={{ marginTop: 40 }}>CREA TU NUEVA CUENTA</p>
-                        <br />
-                        <br />
-                        <form onSubmit={this.handleSubmit}>
-                            <h6>CORREO:</h6>
-                            <div className="input-group mb-3 loginandregisterinput">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon1">
-                                        <span className="oi oi-person" title="person" aria-hidden="true"></span>
-                                    </span>
-                                </div>
-                                <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                            </div>
-                            <h6>CONTRASEÑA:</h6>
-                            <div className="input-group mb-3 loginandregisterinput">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="basic-addon1">
-                                        <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
-                                    </span>
-                                </div>
-                                <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                            </div>
-                            <h6>ROL:</h6>
-                            <select className="theselect" name="role" value={this.state.role} onChange={this.handleChange}>
-                                <option value='Consumidor'>Consumidor</option>
-                                <option value="Prestador">Prestador</option>
-                            </select>
+            <div>
+                <img src="http://s1.bwallpapers.com/wallpapers/2014/01/27/spring-animals_121917388.jpg" id="bge" alt="" />
+                <div className="container " style={{ zIndex: 20 }}>
+                    <div className="row">
+                        <div className="col-8 offset-2" style={{ textAlign: 'center' }}>
+                            <div className="card">
+                            <p className="TitleTextFont" style={{ marginTop: 40 }}>CREA TU NUEVA CUENTA</p>
                             <br />
                             <br />
-                            <input type="submit" value="CREAR CUENTA" className="button MainColor TextWhiteColor" onClick={this.signup} />
-                        </form>
+                            <form onSubmit={this.handleSubmit}>
+                                <h6>CORREO:</h6>
+                                <div className="input-group mb-3 loginandregisterinput">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">
+                                            <span className="oi oi-person" title="person" aria-hidden="true"></span>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                                </div>
+                                <h6>CONTRASEÑA:</h6>
+                                <div className="input-group mb-3 loginandregisterinput">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">
+                                            <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                                </div>
+                                <h6>ROL:</h6>
+                                <select className="theselect" name="role" value={this.state.role} onChange={this.handleChange}>
+                                    <option value='Consumidor'>Consumidor</option>
+                                    <option value="Prestador">Prestador</option>
+                                </select>
+                                <br />
+                                <br />
+                                <input type="submit" value="CREAR CUENTA" className="button MainColor TextWhiteColor" onClick={this.signup} />
+                            </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
