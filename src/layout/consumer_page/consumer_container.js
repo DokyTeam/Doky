@@ -21,13 +21,13 @@ class ConsumerContainer extends Component {
                     <NavBarWithSideBar consumercontenthandler={this.consumercontenthandler} />
                     <div style={{ marginTop: '66px' }}></div>
                     <Switch>
-                        <Route path="/" exact component={Homepage} />
                         <Route path="/Paseos" exact component={PaseosPage} />
                         <Route path="/Guardería" exact component={GuarderiaPage} />
                         <Route path="/Veterinaria" exact component={VeterinariaPage} />
                         <Route path="/Saltos" exact component={SaltosPage} />
                         <Route path="/Perfil/:id" exact component={Perfil} />
                         <Route path="/Mascotas" exact component={Mascotas} />
+                        <Route path="/"component={Homepage} />
                     </Switch>
                 </Router>
             </div>
