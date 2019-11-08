@@ -4,7 +4,7 @@ import '../../../../global_css/textcolors.css';
 import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
 import './lender_side_drawer.css';
-import dog from "./images/perro_doki.ico";
+import icon from "./images/navbaricon.jpg";
 import {LoginController} from '../../../../../controllers/login_controller'
 import { Link } from 'react-router-dom';
 import { useStore } from '../../../../../utilities/Store'
@@ -37,7 +37,7 @@ class SideDrawer extends Component {
             <nav className={drawerClasses}>
                 <br/>
                 <h1 className="textcenter BigTextFont">Funciones Prestador</h1>
-                <img align="middle" alt="imagen de un gato" title="El GATO" src={dog} className="lendersideimg"></img>
+                <img align="middle" alt="" src={icon} className="lendersideimg"></img>
                 <hr/>
                 <div className="container">
                     <div className="row">

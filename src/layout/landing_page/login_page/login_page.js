@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import '../../global_css/textcolors.css';
 import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
+import background from "./images/background.jpg";
+import user_icon from "./images/user_icon.png";
 import './login_page.css';
 import { LoginController } from '../../../controllers/login_controller';
 import { UserController } from '../../../controllers/user_controller';
@@ -50,13 +52,13 @@ class LoginPage extends Component {
     render() {
         return (
             <div>
-                <img src="https://http2.mlstatic.com/poster-decorativo-paisagem-cavalos-campo-tamanho-a3-p714-D_NQ_NP_734427-MLB26640349818_012018-F.jpg" id="bg" alt="" />
+                <img src={background} id="bg" alt="" />
                 <div className="container" style={{ zIndex: 20 }}>
                     <div className="row">
-                        <div className="col-6 offset-3" style={{ textAlign: 'center' }}>
-                            <div className="card">
+                        <div className="col-10 offset-1 col-md-6 offset-md-3" style={{ textAlign: 'center' }}>
+                            <div className="card" style={{background: 'rgba(255, 255, 255, 0.9)'}}>
                                 <p className="TitleTextFont" style={{ marginTop: 30, fontSize: 25 }}>BIENVENIDO</p>
-                                <br />
+                                <img className="usericonimg" src={user_icon} alt="" />
                                 <br />
                                 <form>
                                     <h6>USUARIO:</h6>
@@ -79,6 +81,7 @@ class LoginPage extends Component {
                                     </div>
                                     <input type="submit" value="INGRESAR" className="button MainColor TextWhiteColor" onClick={this.login} />
                                 </form>
+                                <br/>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,14 @@ import '../../global_css/textcolors.css';
 import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
 import './register_page.css';
+
+import background from "./images/background.jpg";
+
+import { Menu1 } from './components/menu1';
+import { Menu2 } from './components/menu2';
+import { Menu3 } from './components/menu3';
+import { Menu4 } from './components/menu4';
+
 import { LoginController } from '../../../controllers/login_controller';
 import { UserController } from '../../../controllers/user_controller';
 
@@ -11,9 +19,13 @@ class RegisterPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            nombres: '',
+            apellidos: '',
+            fecha_nacimiento: '',
             email: '',
             password: '',
-            role: 'Consumidor'
+            role: 'Consumidor',
+            idpage: 'menu1',
         }
         // We will use the LoginController for registration, so I'll add it to this class
         this.loginController = new LoginController();
@@ -22,8 +34,31 @@ class RegisterPage extends Component {
         this.signup = this.signup.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
+    RegisterPageHandler = (param) => {
+        this.setState({
+            idpage: param
+        });
+    }
+
+    renderSwitch(param) {
+        switch (param) {
+            case 'menu1':
+                return <Menu1 RegisterPageHandler={this.RegisterPageHandler} menu1handler={this.menu1handler} nombres={this.state.nombres}  apellidos={this.state.apellidos} fecha_nacimiento={this.state.fecha_nacimiento}/>;
+            case 'menu2':
+                return <Menu2 RegisterPageHandler={this.RegisterPageHandler} />;
+            case 'menu3':
+                return <Menu3 RegisterPageHandler={this.RegisterPageHandler} />;
+            case 'menu4':
+                return <Menu4 RegisterPageHandler={this.RegisterPageHandler} />;
+            default:
+                return null;
+        }
+    }
+
+    menu1handler = (nombres, apellidos, fecha_nacimiento) => {
+        this.setState({
+            nombres, apellidos, fecha_nacimiento
+        });
     }
 
     // This method will happen once the user clicks on "CREAR CUENTA"
@@ -43,45 +78,22 @@ class RegisterPage extends Component {
         }
     }
 
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
     render() {
         return (
             <div>
-                <img src="http://s1.bwallpapers.com/wallpapers/2014/01/27/spring-animals_121917388.jpg" id="bge" alt="" />
-                <div className="container " style={{ zIndex: 20 }}>
+                <img src={background} id="bge" alt="" style={{ zIndex: -1 }} />
+                <div className="container " >
                     <div className="row">
-                        <div className="col-8 offset-2" style={{ textAlign: 'center' }}>
-                            <div className="card">
-                            <p className="TitleTextFont" style={{ marginTop: 40 }}>CREA TU NUEVA CUENTA</p>
-                            <br />
-                            <br />
-                            <form onSubmit={this.handleSubmit}>
-                                <h6>CORREO:</h6>
-                                <div className="input-group mb-3 loginandregisterinput">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">
-                                            <span className="oi oi-person" title="person" aria-hidden="true"></span>
-                                        </span>
-                                    </div>
-                                    <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                                </div>
-                                <h6>CONTRASEÑA:</h6>
-                                <div className="input-group mb-3 loginandregisterinput">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">
-                                            <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
-                                        </span>
-                                    </div>
-                                    <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                                </div>
-                                <h6>ROL:</h6>
-                                <select className="theselect" name="role" value={this.state.role} onChange={this.handleChange}>
-                                    <option value='Consumidor'>Consumidor</option>
-                                    <option value="Prestador">Prestador</option>
-                                </select>
+                        <div className="col-10 offset-1 col-md-8 offset-md-2" style={{ textAlign: 'center' }}>
+                            <div className='card' style={{background: 'rgba(255, 255, 255, 0.8)'}}>
+                                <h1>Crear Cuenta</h1>
+                                {console.log(this.state)}
                                 <br />
-                                <br />
-                                <input type="submit" value="CREAR CUENTA" className="button MainColor TextWhiteColor" onClick={this.signup} />
-                            </form>
+                                {this.renderSwitch(this.state.idpage)}
                             </div>
                         </div>
                     </div>

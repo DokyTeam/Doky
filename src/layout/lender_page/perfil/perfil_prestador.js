@@ -30,7 +30,7 @@ class PerfilPrestador extends Component {
 
     render() {
         
-        let nombre, appellido, celular, fijo, fecha_nacimiento, ciudad, barrio, correo1, correo2, fotosrc;
+        let nombre, appellido, celular, fijo, fecha_nacimiento, ciudad, barrio, correo1, fotosrc;
         let interesesname = interesesjson.nombre, interesarr = interesesjson.intereses;
 
         this.state.userInfo.map((data) => {
@@ -42,7 +42,6 @@ class PerfilPrestador extends Component {
             ciudad = data.ciudad;
             barrio = data.barrio;
             correo1 = data.correo1;
-            correo2 = data.correo2;
             fotosrc = data.foto;
             return null;
         });
@@ -117,8 +116,6 @@ class PerfilPrestador extends Component {
                             <div className="col-12 col-md-6">
                                 <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Correo Principal:</p>
                                 <p className="SmallTextFont">{correo1}</p>
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Correo Secundario:</p>
-                                <p className="SmallTextFont">{correo2}</p>
                             </div>
                         </div>
                     </div>
