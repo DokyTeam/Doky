@@ -12,9 +12,6 @@ import { Menu2 } from './components/menu2';
 import { Menu3 } from './components/menu3';
 import { Menu4 } from './components/menu4';
 
-import { LoginController } from '../../../controllers/login_controller';
-import { UserController } from '../../../controllers/user_controller';
-
 class RegisterPage extends Component {
     constructor(props) {
         super(props);
@@ -22,16 +19,33 @@ class RegisterPage extends Component {
             nombres: '',
             apellidos: '',
             fecha_nacimiento: '',
+            ciudad: '',
+            barrio: '',
+            celular: '',
+            telefono:'',
             email: '',
             password: '',
             role: 'Consumidor',
             idpage: 'menu1',
         }
-        // We will use the LoginController for registration, so I'll add it to this class
-        this.loginController = new LoginController();
-        this.userController = new UserController();
-        this.handleChange = this.handleChange.bind(this);
-        this.signup = this.signup.bind(this);
+    }
+
+    menu1handler = (nombres, apellidos, fecha_nacimiento) => {
+        this.setState({
+            nombres, apellidos, fecha_nacimiento
+        });
+    }
+
+    menu2handler = (ciudad, barrio, celular, telefono) => {
+        this.setState({
+            ciudad, barrio, celular, telefono
+        });
+    }
+
+    menu3handler = (email, password, role) => {
+        this.setState({
+            email, password, role
+        });
     }
 
     RegisterPageHandler = (param) => {
@@ -45,53 +59,36 @@ class RegisterPage extends Component {
             case 'menu1':
                 return <Menu1 RegisterPageHandler={this.RegisterPageHandler} menu1handler={this.menu1handler} nombres={this.state.nombres}  apellidos={this.state.apellidos} fecha_nacimiento={this.state.fecha_nacimiento}/>;
             case 'menu2':
-                return <Menu2 RegisterPageHandler={this.RegisterPageHandler} />;
+                return <Menu2 RegisterPageHandler={this.RegisterPageHandler} menu2handler={this.menu2handler} ciudad={this.state.ciudad} barrio={this.state.barrio} celular={this.state.celular} telefono={this.state.telefono}/>;
             case 'menu3':
-                return <Menu3 RegisterPageHandler={this.RegisterPageHandler} />;
+                return <Menu3 RegisterPageHandler={this.RegisterPageHandler} menu3handler={this.menu3handler} email={this.state.email} password={this.state.password} role={this.state.role}/>;
             case 'menu4':
-                return <Menu4 RegisterPageHandler={this.RegisterPageHandler} />;
+                return <Menu4 RegisterPageHandler={this.RegisterPageHandler}  
+                              nombres={this.state.nombres}  
+                              apellidos={this.state.apellidos} 
+                              fecha_nacimiento={this.state.fecha_nacimiento}
+                              email={this.state.email} 
+                              password={this.state.password} 
+                              role={this.state.role}
+                              ciudad={this.state.ciudad} 
+                              barrio={this.state.barrio} 
+                              celular={this.state.celular} 
+                              telefono={this.state.telefono}
+                        />;
             default:
                 return null;
         }
-    }
-
-    menu1handler = (nombres, apellidos, fecha_nacimiento) => {
-        this.setState({
-            nombres, apellidos, fecha_nacimiento
-        });
-    }
-
-    // This method will happen once the user clicks on "CREAR CUENTA"
-    async signup(event) {
-        try {
-            // We prevent the default cases so avoid submitting the form
-            event.preventDefault();
-            // Here we will use the method in the controller for signing up
-            // That method will be the responsible for start a session into the browser's cookies once the user
-            // is created, so we don't need any more for checking if the auth was successful
-            await this.loginController.createAccountWithEmailAndPassword(this.state.email, this.state.password);
-            await this.userController.createUser(this.state.email, this.state.role);
-
-        } catch (error) {
-            // In the case that there is an error, we will log it in the console
-            console.log(error);
-        }
-    }
-
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
     }
 
     render() {
         return (
             <div>
                 <img src={background} id="bge" alt="" style={{ zIndex: -1 }} />
-                <div className="container " >
-                    <div className="row">
-                        <div className="col-10 offset-1 col-md-8 offset-md-2" style={{ textAlign: 'center' }}>
+                <div className="container" >
+                    <div className="row justify-content-center">
+                        <div className="col-11 col-md-8" style={{ textAlign: 'center' }}>
                             <div className='card' style={{background: 'rgba(255, 255, 255, 0.8)'}}>
                                 <h1>Crear Cuenta</h1>
-                                {console.log(this.state)}
                                 <br />
                                 {this.renderSwitch(this.state.idpage)}
                             </div>
