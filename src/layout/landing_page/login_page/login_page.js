@@ -56,32 +56,35 @@ class LoginPage extends Component {
                 <div className="container" style={{ zIndex: 20 }}>
                     <div className="row">
                         <div className="col-10 offset-1 col-md-6 offset-md-3" style={{ textAlign: 'center' }}>
-                            <div className="card" style={{background: 'rgba(255, 255, 255, 0.9)'}}>
-                                <p className="TitleTextFont" style={{ marginTop: 30, fontSize: 25 }}>BIENVENIDO</p>
+                            <div className="card pt-1" style={{ background: 'rgba(255, 255, 255, 0.7)' }}>
+                                <h1>Iniciar Sesión</h1>
                                 <img className="usericonimg" src={user_icon} alt="" />
-                                <br />
-                                <form>
-                                    <h6>USUARIO:</h6>
-                                    <div className="input-group mb-3 loginandregisterinput">
-                                        <div className="input-group-prepend">
-                                            <span className="input-group-text" id="basic-addon1">
-                                                <span className="oi oi-person" title="person" aria-hidden="true"></span>
-                                            </span>
+                                <div className="card WhiteColor" style={{ margin: '20px' }}>
+                                    <br />
+                                    <form>
+                                        <h6>USUARIO:</h6>
+                                        <div className="input-group mb-3 loginandregisterinput">
+                                            <div className="input-group-prepend">
+                                                <span className="input-group-text" id="basic-addon1">
+                                                    <span className="oi oi-person" title="person" aria-hidden="true"></span>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
                                         </div>
-                                        <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                                    </div>
-                                    <h6>CONTRASEÑA:</h6>
-                                    <div className="input-group mb-3 loginandregisterinput">
-                                        <div className="input-group-prepend">
-                                            <span className="input-group-text" id="basic-addon1">
-                                                <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
-                                            </span>
+                                        <h6>CONTRASEÑA:</h6>
+                                        <div className="input-group mb-3 loginandregisterinput">
+                                            <div className="input-group-prepend">
+                                                <span className="input-group-text" id="basic-addon1">
+                                                    <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
+                                                </span>
+                                            </div>
+                                            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
                                         </div>
-                                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
-                                    </div>
-                                    <input type="submit" value="INGRESAR" className="button MainColor TextWhiteColor" onClick={this.login} />
-                                </form>
-                                <br/>
+                                        <button type="button" className="btn btn-outline-success mb-3" onClick={this.login}>
+                                            INGRESAR
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

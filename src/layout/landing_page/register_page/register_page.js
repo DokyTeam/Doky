@@ -87,7 +87,7 @@ class RegisterPage extends Component {
                 <div className="container" >
                     <div className="row justify-content-center">
                         <div className="col-11 col-md-8" style={{ textAlign: 'center' }}>
-                            <div className='card' style={{background: 'rgba(255, 255, 255, 0.8)'}}>
+                            <div className='card pt-1' style={{background: 'rgba(255, 255, 255, 0.7)'}}>
                                 <h1>Crear Cuenta</h1>
                                 <br />
                                 {this.renderSwitch(this.state.idpage)}
