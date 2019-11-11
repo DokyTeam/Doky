@@ -216,7 +216,7 @@ class Menu3 extends Component {
     agregarMascota = async (descripcion, mascota) => {
         try {
             var userController = new UserController();
-            let idUser = (new UserController).getUserId();
+            let idUser = (new UserController()).getUserId();
             const mascotaInfo = { ...mascota, ...{ descipcion: descripcion }}
             await userController.addMascota(idUser, mascotaInfo);
         } catch (error) {

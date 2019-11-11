@@ -1,6 +1,7 @@
 import fire from '../config/Fire';
 import { FirebaseReadRepository } from '../access_data/firebase_read_repository';
 import { FirebaseCreateRepository } from '../access_data/firebase_create_repository';
+import {FirebaseUpdateRepository} from '../access_data/firebase_update_repository';
 
 export class UserController {
 
@@ -8,6 +9,7 @@ export class UserController {
         this.firebaseInstance = fire;
         this.firebaseReadRepository = new FirebaseReadRepository();
         this.firebaseCreateRepository = new FirebaseCreateRepository();
+        this.firebaseUpdateRepository = new FirebaseUpdateRepository();
     }
 
     //es  necesario que se pase un objeto en lugar del tipo especifico
@@ -40,15 +42,5 @@ export class UserController {
         return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios/' + email + "/mascotas/", mascotaInfo.nombre, mascotaInfo);
 
     }
-
-
+    
 }
-
-
-
-
-
-
-
-
-

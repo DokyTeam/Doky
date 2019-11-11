@@ -7,7 +7,7 @@ import './perfil.css';
 import interesesjson from './json/servicios.json';
 import { GeneralCards } from './card/generalcard';
 import { UserController } from '../../../controllers/user_controller';
-import fire from '../../../config/Fire'
+
 class PerfilPrestador extends Component {
 
     state = {
