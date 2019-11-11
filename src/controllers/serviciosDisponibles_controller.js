@@ -19,6 +19,13 @@ export class ServiciosDispController {
         return suma / cantidad
     }
 
+
+
+
+
+
+    //CONSULTAS SIN FILTROS ##################################################################################################################
+
     readServicioGuarderia() {
         let promedio = this.promedio
         let guarderias = [];
@@ -85,6 +92,90 @@ export class ServiciosDispController {
     }
 
 
+
+
+
+
+    //CONSULTAS CON FILTROS #####################################################################################################################
+
+
+
+    //Devuelve un arreglo de guarderias ordenadas de mayor a menor puntuacion
+    readServicioGuarderiaFiltroPuntuacion() {
+        return this.readServicioGuarderia().then(function(guarderias){
+            function comparar ( a, b ){ return b.puntuacion - a.puntuacion; }
+            return guarderias.sort( comparar );  
+        });
+    }
+
+    //Devuelve un arreglo de guarderias ordenadas de menor a mayor dentro de un rango de precio
+    readServicioGuarderiaFiltroPrecio(precioMin, precioMax){
+        let promedio = this.promedio
+        let guarderias = [];
+        return this.firebaseReadRepository.readGroupCollection("guarderiasusuario").where('precio','>=',precioMin).where('precio','<=',precioMax).orderBy('precio').get().then(
+            function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    let id = { "id": doc.id }
+                    let values = { ...doc.data(), ...id }
+                    let cantidad = {puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion)}
+                    values = { ...values, ...cantidad }
+                    guarderias.push(values);
+                });
+                return guarderias;
+        
+        });
+    }
+    
+    
+    //Devuelve un arreglo de guarderias cuyo atributo 'localidad' == localidad
+    readServicioGuarderiaFiltroLocalidad(localidad){
+        let promedio = this.promedio
+        let guarderias = [];
+        return this.firebaseReadRepository.readGroupCollection("guarderiasusuario").where('localidad','==',localidad).get().then(
+            function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    let id = { "id": doc.id }
+                    let values = { ...doc.data(), ...id }
+                    let cantidad = {puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion)}
+                    values = { ...values, ...cantidad }
+                    guarderias.push(values);
+                });
+                return guarderias;
+        
+        });
+    }
+
+
+    //Devuelve un arreglo de guarderias cuyo atributo 'barrio' == barrio
+    readServicioGuarderiaFiltroBarrio(barrio){
+        let promedio = this.promedio
+        let guarderias = [];
+        return this.firebaseReadRepository.readGroupCollection("guarderiasusuario").where('barrio','==',barrio).get().then(
+            function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    let id = { "id": doc.id }
+                    let values = { ...doc.data(), ...id }
+                    let cantidad = {puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion)}
+                    values = { ...values, ...cantidad }
+                    guarderias.push(values);
+                });
+                return guarderias;
+        
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     // crea el servicio en la base de datos
     // recibe el email del prestador y el objeto guarderia que incluye:
     // el nombre de la guarderia y los demas atributos.
@@ -130,6 +221,16 @@ export class ServiciosDispController {
                 return this.firebaseUpdateRepository.updateAttributesDocument(direccion, nombre, m);
             })
     }
+
+
+
+
+
+
+
+
+
+    
 
 
 }

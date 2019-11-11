@@ -8,6 +8,7 @@ import user_icon from "./images/user_icon.png";
 import './login_page.css';
 import { LoginController } from '../../../controllers/login_controller';
 import { UserController } from '../../../controllers/user_controller';
+import { ServiciosDispController } from '../../../controllers/serviciosDisponibles_controller';
 
 class LoginPage extends Component {
 
@@ -21,6 +22,7 @@ class LoginPage extends Component {
         // We will use the LoginController for authentication, so I'll add it to this class
         this.loginController = new LoginController();
         this.userController = new UserController();
+        this.serviciosDispController = new ServiciosDispController();
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
     }
@@ -33,6 +35,26 @@ class LoginPage extends Component {
             // Here we will use the method in the controller for signing in
             // That method will be the responsible for start a session into the browser's cookies,
             // so we don't need any more for checking if the auth was successful
+
+
+            let m;
+
+            // m = await this.serviciosDispController.readServicioGuarderiaFiltroPuntuacion();
+            
+
+
+            // m = await this.serviciosDispController.readServicioGuarderiaFiltroPrecio(20000,35000);
+            
+            
+            
+             //m = await this.serviciosDispController.readServicioGuarderiaFiltroLocalidad('Chapinero');
+            
+            
+            
+            
+             m = await this.serviciosDispController.readServicioGuarderiaFiltroBarrio('Restrepo');
+             console.log(m);
+
             await this.loginController.signInWithEmailAndPassword(this.state.email, this.state.password);
         } catch (error) {
             // In the case that there is an error, we will log it 
@@ -95,3 +117,4 @@ class LoginPage extends Component {
 }
 
 export { LoginPage };
+
