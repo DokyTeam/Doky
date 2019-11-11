@@ -12,9 +12,6 @@ export class LocalidadesController {
         this.firebaseCreateRepository = new FirebaseCreateRepository();
     }
 
-
-
-
     readLocalidadesyBarrios() {
 
         let localidades = [];
@@ -22,8 +19,6 @@ export class LocalidadesController {
             function (querySnapshot) {
                 querySnapshot.forEach(
                     function (doc) {
-                        // console.log(doc.id, ' ',doc.data());
-                        //console.log("entra");
                         let res = {
                             "localidad": doc.id,
                             "barrios": doc.data().barrios

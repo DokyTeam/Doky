@@ -18,10 +18,19 @@ class Menu4 extends Component {
             // Here we will use the method in the controller for signing up
             // That method will be the responsible for start a session into the browser's cookies once the user
             // is created, so we don't need any more for checking if the auth was successful
-            await this.loginController.createAccountWithEmailAndPassword(this.props.email, this.props.password);
-            await this.userController.createUser(this.props.email, this.props.role, this.props.nombres, 
-                                                 this.props.apellidos, this.props.fecha_nacimiento, this.props.ciudad, 
-                                                 this.props.barrio, this.props.celular,this.props.telefono);
+            const user = await this.loginController.createAccountWithEmailAndPassword(this.props.email, this.props.password);
+            await this.userController.createUser(user.uid,
+                {
+                correo:this.props.email,
+                tipo: this.props.role, 
+                nombres: this.props.nombres, 
+                apellidos:this.props.apellidos, 
+                fecha:this.props.fecha_nacimiento, 
+                ciudad:this.props.ciudad,
+                barrio:this.props.barrio, 
+                celular:this.props.celular,
+                telefono:this.props.telefono
+            });
         } catch (error) {
             // In the case that there is an error, we will log it in the console
             console.log(error);

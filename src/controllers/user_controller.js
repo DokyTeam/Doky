@@ -1,11 +1,6 @@
-
-
-
 import fire from '../config/Fire';
-import {FirebaseReadRepository} from '../access_data/firebase_read_repository';
-import {FirebaseCreateRepository} from '../access_data/firebase_create_repository';
-
-
+import { FirebaseReadRepository } from '../access_data/firebase_read_repository';
+import { FirebaseCreateRepository } from '../access_data/firebase_create_repository';
 
 export class UserController {
 
@@ -16,39 +11,35 @@ export class UserController {
     }
 
     //es  necesario que se pase un objeto en lugar del tipo especifico
-    createUser(email, tipo) {
-        let m = {
-            tipo : tipo
-        };
-
-        return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios',email,m);
+    createUser(id, data) {
+        return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios', id, data);
     }
 
     async getTipoUsuario(email) {
         return this.firebaseReadRepository.readCollection("usuarios").doc(email).get().then(
-            querySnapshot =>{
+            querySnapshot => {
                 return querySnapshot.data();
             }
         )
     }
 
-    getInfomracionUsuario(email){
-        console.log("info user")
-        console.log(email)
+    getInfomracionUsuario(email) {
         return this.firebaseReadRepository.readCollection("usuarios").doc(email).get().then(
-            querySnapshot =>{
-                console.log(querySnapshot.data())
+            querySnapshot => {
                 return querySnapshot.data();
             }
         )
     }
-    
-    
-addMascota(email,mascotaInfo){
 
-    return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios/'+ email +"/mascotas/",mascotaInfo.nombre,mascotaInfo);
-    
-}
+    getUserId() {
+        return fire.auth().currentUser.uid;
+    }
+
+    addMascota(email, mascotaInfo) {
+
+        return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios/' + email + "/mascotas/", mascotaInfo.nombre, mascotaInfo);
+
+    }
 
 
 }
