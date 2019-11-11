@@ -42,7 +42,5 @@ export class UserController {
         return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios/' + email + "/mascotas/", mascotaInfo.nombre, mascotaInfo);
 
     }
-
     
-
 }
