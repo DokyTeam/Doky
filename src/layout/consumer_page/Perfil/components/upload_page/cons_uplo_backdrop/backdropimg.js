@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import './backdrop.css'
+import './backdropimg.css'
 
 
 class Backdrop extends Component {
 
     render() {
         return (
-            <div className="backdrop-consumer" onClick={this.props.backdropClickhandler}>
-
-            </div>
+            <div className="backdropimg" onClick={()=>{this.props.uploadimgpagehandler(false)}}></div>
         );
     }
 }
