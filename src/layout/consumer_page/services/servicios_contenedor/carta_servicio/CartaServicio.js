@@ -55,7 +55,7 @@ class CartaServicio extends Component {
                         <div className="row align-items-top">
                             <div className="col-md-3 col-lg-4 " >
                                 
-                                <img className="img_card" src={this.props.foto} title="Foto10" alt="Foto10"></img>
+                                <img className="img_card" src={this.props.foto} title={this.props.servicename} alt={this.props.servicename}></img>
                             </div>
                             <div className="col-md-9 col-lg-8 "  >
                                 <h1 className="TextFont MediumTextFont ">{this.props.servicename}</h1>

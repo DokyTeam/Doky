@@ -144,7 +144,7 @@
 
 @media only screen and (max-width: 350px){
 	#progressbar li{
-		color : white;
+		color : rgba(255, 255, 255, 0.01);
 	}
 	#msform input, #msform textarea {
 		font-size: 0.5em;

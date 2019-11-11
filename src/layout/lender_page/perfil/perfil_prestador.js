@@ -7,8 +7,7 @@ import './perfil.css';
 import interesesjson from './json/servicios.json';
 import { GeneralCards } from './card/generalcard';
 import { UserController } from '../../../controllers/user_controller';
-import { useStore } from '../../../utilities/Store'
-
+import fire from '../../../config/Fire'
 class PerfilPrestador extends Component {
 
     state = {
@@ -17,32 +16,31 @@ class PerfilPrestador extends Component {
 
     async componentDidMount() {
         try {
-            let userInfoSend = []
-            const[store] = useStore();
             var userController = new UserController();
-            const userInfo = await userController.getInfomracionUsuario(store());
+            let idUser = userController.getUserId();
+            let userInfoSend = []
+            const userInfo = await userController.getInfomracionUsuario(idUser);
             userInfoSend.push(userInfo)
-            this.setState({userInfo:userInfoSend})
+            this.setState({ userInfo: userInfoSend })
         } catch (error) {
             console.log(error)
         }
     }
 
     render() {
-        
-        let nombre, appellido, celular, fijo, fecha_nacimiento, ciudad, barrio, correo1, correo2, fotosrc;
+
+        let nombre, appellido, celular, fijo, fecha_nacimiento, ciudad, barrio, correo1, fotosrc;
         let interesesname = interesesjson.nombre, interesarr = interesesjson.intereses;
 
         this.state.userInfo.map((data) => {
-            nombre = data.nombre;
-            appellido = data.apellido;
+            nombre = data.nombres;
+            appellido = data.apellidos;
             celular = data.celular;
-            fijo = data.fijo;
-            fecha_nacimiento = data.fecha_nacimiento;
+            fijo = data.telefono;
+            fecha_nacimiento = data.fecha;
             ciudad = data.ciudad;
             barrio = data.barrio;
-            correo1 = data.correo1;
-            correo2 = data.correo2;
+            correo1 = data.correo;
             fotosrc = data.foto;
             return null;
         });
@@ -117,8 +115,6 @@ class PerfilPrestador extends Component {
                             <div className="col-12 col-md-6">
                                 <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Correo Principal:</p>
                                 <p className="SmallTextFont">{correo1}</p>
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Correo Secundario:</p>
-                                <p className="SmallTextFont">{correo2}</p>
                             </div>
                         </div>
                     </div>

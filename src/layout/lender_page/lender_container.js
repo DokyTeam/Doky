@@ -21,12 +21,12 @@ class LenderContainer extends Component {
                     <NavBarWithSideBar/>
                     <div style={{ marginTop: '66px' }}></div>
                     <Switch>
-                        <Route path="/" exact component={LenderHomePage} />
                         <Route path="/Paseos" exact component={PaseosPage} />
                         <Route path="/Guardería" exact component={GuarderiaPage} />
                         <Route path="/Veterinaria" exact component={VeterinariaPage} />
                         <Route path="/Saltos" exact component={SaltosPage} />
                         <Route path="/Perfil/:id" exact component={PerfilPrestador} />
+                        <Route path="/" component={LenderHomePage} />
                     </Switch>
                 </Router>
         );

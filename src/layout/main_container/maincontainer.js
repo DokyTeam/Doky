@@ -33,11 +33,12 @@ class MainContainer extends Component {
     async authListener() {
         fire.auth().onAuthStateChanged(
             async (user) => {
-                if (user) {
+                if (user) {            
+                    window.history.pushState('home', 'home', '/');
                     const[store,setStore] = useStore();
-                    setStore(user.email)
+                    setStore(user.uid)
                     let userController = new UserController();
-                    const data = await userController.getTipoUsuario(user.email);
+                    const data = await userController.getTipoUsuario(user.uid);
                     switch (data.tipo) {
                         case 'Consumidor':
                             this.setState({ user: user, isEdit: true });
