@@ -43,11 +43,11 @@ class LoginPage extends Component {
             
 
 
-            // m = await this.serviciosDispController.readServicioGuarderiaFiltroPrecio(20000,35000);
+            // m = await this.serviciosDispController.readServicioPaseoFiltroPrecio(20000,35000);
             
             
             
-             //m = await this.serviciosDispController.readServicioGuarderiaFiltroLocalidad('Chapinero');
+             //m = await this.serviciosDispController.readServicioPaseoFiltroLocalidad('Chapinero');
             
             
             
