@@ -13,7 +13,7 @@ class Cards extends Component {
         return (
             <div className="WhiteColor card h-97">
                 <h1 className="TextFont title">{this.props.servicename}</h1>
-                <img className="img" src={this.props.foto} title="Foto10" alt="Foto10"></img>
+                <img className="img" src={this.props.foto} title={this.props.servicename} alt={this.props.servicename}></img>
                 <p className="SmallTextFont text">{this.props.descripcion}</p>
                 <Link to={link}><button className="buttonbottom MainColor TextWhiteColor MediumTextFont">IR</button></Link>
             </div>
