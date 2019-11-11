@@ -43,18 +43,6 @@ export class UserController {
 
     }
 
-    //recibe el email del usuario y el nuevo valor
-    updateStars(email, nuevaPuntuacion){
-        return this.firebaseReadRepository.readCollection("usuarios").doc(email).get().then(
-            querySnapshot => {
-                let sp =querySnapshot.data().sumapuntuacion + nuevaPuntuacion;
-                let cp =  querySnapshot.data().cantidadpuntuacion + 1;
-                let m = {
-                    sumapuntuacion : sp,
-                    cantidadpuntuacion : cp
-                }
-                return this.firebaseUpdateRepository.updateAttributesDocument("usuarios",email,m);
-            })
-    }
+    
 
 }
