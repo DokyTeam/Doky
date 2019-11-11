@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './img_card.css';
 import img from '../../../images/user-icon.webp';
 
-class ImageCard extends Component {
+class UploadCard extends Component {
     state = {
         imageurl: this.props.userinfo[0].foto || img,
         imagefile: null
@@ -54,4 +54,4 @@ class ImageCard extends Component {
     }
 }
 
-export { ImageCard };
+export { UploadCard };

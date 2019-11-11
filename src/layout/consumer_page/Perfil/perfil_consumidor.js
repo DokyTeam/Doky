@@ -145,7 +145,6 @@ class Perfil extends Component {
                         </div>
                     </div>
                 </div>
-                
             </div>
         );
     }

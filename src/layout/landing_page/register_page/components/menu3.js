@@ -35,7 +35,7 @@ class Menu3 extends Component {
                                         <span className="oi oi-person" title="person" aria-hidden="true"></span>
                                     </span>
                                 </div>
-                                <input type="text" name="regemail" value={this.state.regemail} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                                <input type="text" name="regemail" value={this.state.regemail} onChange={this.handleChange} className="form-control" placeholder="Correo" aria-label="Correo" aria-describedby="basic-addon1" />
                             </div>
                             <h6>CONTRASEÑA:</h6>
                             <div className="input-group mb-3 loginandregisterinput">
@@ -44,7 +44,7 @@ class Menu3 extends Component {
                                         <span className="oi oi-chevron-right" title="person" aria-hidden="true"></span>
                                     </span>
                                 </div>
-                                <input type="password" name="regpassword" value={this.state.regpassword} onChange={this.handleChange} className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                                <input type="password" name="regpassword" value={this.state.regpassword} onChange={this.handleChange} className="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1" />
                             </div>
                             <h6>ROL:</h6>
                             <div className="input-group mb-4 loginandregisterinput">
