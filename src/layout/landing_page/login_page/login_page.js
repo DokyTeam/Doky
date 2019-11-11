@@ -95,3 +95,4 @@ class LoginPage extends Component {
 }
 
 export { LoginPage };
+
