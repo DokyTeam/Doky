@@ -6,7 +6,7 @@ class Backdrop extends Component {
 
     render() {
         return (
-            <div className="backdropimg" onClick={()=>{this.props.uploadimgpagehandler(false)}}></div>
+            <div className="backdropimg" onClick={()=>{this.props.onClickCancelar()}}></div>
         );
     }
 }

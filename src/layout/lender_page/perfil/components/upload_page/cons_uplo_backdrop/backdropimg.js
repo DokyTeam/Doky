@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './backdropimg.css'
 
 
 class Backdrop extends Component {

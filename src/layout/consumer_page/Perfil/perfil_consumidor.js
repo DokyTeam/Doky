@@ -9,37 +9,64 @@ import { GeneralCards } from './components/card/generalcard';
 import { UserController } from '../../../controllers/user_controller';
 import user_image from './images/user-icon.webp'
 import { UploadPage } from './components/upload_page/upload_page';
+import fire from '../../../config/Fire';
 
 class Perfil extends Component {
 
     state = {
         userInfo: [],
-        uploadimgstate: false
+        uploadimgstate: false,
+        //picture: null,
+        percentageImageLoading: 0,
     }
 
-    async componentDidMount() {
+    async loadUserInfo() {
         try {
             let userInfoSend = []
             var userController = new UserController();
             let idUser = userController.getUserId();
             const userInfo = await userController.getInfomracionUsuario(idUser);
-            userInfoSend.push(userInfo)
-            this.setState({ userInfo: userInfoSend })
+            userInfoSend.push(userInfo);
+            this.setState({ userInfo: userInfoSend });
+            this.uploadPageHandler(false);
         } catch (error) {
             console.log(error)
         }
     }
 
-    uploadimgpagehandler = (param) => {
+    componentDidMount() {
+        this.loadUserInfo()
+    }
+
+    uploadPageHandler = (value) => {
         this.setState({
-            uploadimgstate: param
+            uploadimgstate: value,
+            percentageImageLoading: 0
         });
     }
 
-    perfilconsumidorhandler = (param1, param2) => {
-        this.setState({
-            userInfo: param1, uploadimgstate: param2
-        });
+    perfilImghandler = (img) => {
+        let userId = (new UserController()).getUserId();
+        const storageRef = fire.storage().ref(`/FotosPerfil/${userId}`);
+        const task = storageRef.put(img);
+
+        task.on('state_changed',
+            snapshot => {
+                let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                this.setState({ percentageImageLoading: percentage })
+            },
+            error => { console.log(error) },
+            async () => {
+                try {
+                    let url = await task.snapshot.ref.getDownloadURL();
+                    await fire.firestore().collection("usuarios").doc(userId).set({ foto: url }, { merge: true })
+                    this.setState({ percentageImageLoading: 100 })//, picture: url })
+                    this.loadUserInfo();
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        )
     }
 
     render() {
@@ -66,25 +93,43 @@ class Perfil extends Component {
         }));
 
         let uploadimgstate;
+
         if (this.state.uploadimgstate) {
-            uploadimgstate = <UploadPage uploadimgpagehandler = {this.uploadimgpagehandler} userinfo={this.state.userInfo} perfilconsumidorhandler = {this.perfilconsumidorhandler}/>
+            uploadimgstate =
+                <UploadPage
+                    percentageImageLoading={this.state.percentageImageLoading}
+                    onClickCancelar={() => this.uploadPageHandler(false)}
+                    foto={fotosrc}
+                    onClickActualizar={(img) => this.perfilImghandler(img)}
+                />
         }
 
         return (
-            <div>
+            <>
+                <div className="container-fluid" style={{padding:"0"}}>
                 {uploadimgstate}
-                <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-12">
                             <h1 className="MediumTextFont perftext">Perfil</h1>
                             <hr />
                         </div>
+
                         <div className="col-12 col-md-5 text-center">
                             <div className="show-image">
-                                <img className="consusmerimg" src={fotosrc} title={nombre} alt={nombre}></img>
-                                <button className="update btn btn-outline-dark" onClick={() => {this.uploadimgpagehandler(true)}}>Cambiar</button>
+                                <img className="consusmerimg"
+                                    src={fotosrc}
+                                    title={nombre}
+                                    alt={nombre}
+                                >
+                                </img>
+                                <div className="hover-img"
+                                    onClick={() => { this.uploadPageHandler(true) }}
+                                >
+                                    <h1 className="place-text h2"><strong>Cambiar</strong></h1>
+                                </div>
                             </div>
                         </div>
+
                         <div className="col-12 col-md-7">
                             <p className="MediumTextFont BigTextFont TextDarkMainColor">Información básica</p>
                             <div className="row">
@@ -145,7 +190,7 @@ class Perfil extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </>
         );
     }
 }

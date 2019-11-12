@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './img_card.css';
 import img from '../../../images/user-icon.webp';
 
 class UploadCard extends Component {

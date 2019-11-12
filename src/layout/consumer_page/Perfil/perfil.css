@@ -10,31 +10,54 @@
 
 .perftext{
     margin-top: 15px;
+    text-align: center;
 }
 
 div.show-image {
     margin:5px;
+    
 }
-div.show-image:hover img{
-    opacity:0.5;
+
+.hover-img{
+    position: absolute;
+    top: 74%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 150px;
+    border-radius: 0px 0px 530px 530px;
 }
-div.show-image:hover button {
+
+div.show-image:hover div.hover-img{
+    background-color: rgb(0, 0, 0,0.4);
+    cursor: pointer;
+}
+
+div.show-image h1.place-text{
+    position: absolute;
+    color: rgb(240, 240, 240);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.place-text{
+    color: black;
+}
+
+div.show-image:hover h1.place-text{
     display: block;
-}
-div.show-image button {
-    position:absolute;
-    display:none;
-}
-div.show-image button.update {
-    position:absolute;
-    top:50%;
-    left: 45%;
 }
 
 @media only screen and (max-width:1440px){
     .consusmerimg{
         width: 250px;
         height: 250px;
+    }
+    .hover-img{
+        width: 250px;
+        height: 125px;
     }
 }
 
@@ -43,12 +66,20 @@ div.show-image button.update {
         width: 200px;
         height: 200px;
     }
+    .hover-img{
+        width: 200px;
+        height: 100px;
+    }
 }
 
 @media only screen and (max-width:768px){
     .consusmerimg{
         width: 200px;
         height: 200px;
+    }
+    .hover-img{
+        width: 200px;
+        height: 100px;
     }
     div.show-image button.update {
         left: 38%;

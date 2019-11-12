@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import './img_card.css';
-import img from '../../../images/user-icon.webp';
 
 class UploadCard extends Component {
     state = {
-        imageurl: this.props.userinfo[0].foto || img,
-        imagefile: null
+        imageurl: this.props.foto,
+        previsualization: this.props.foto,
     }
 
     fileselectedhandler = event => {
-        if (event.target.files[0]) {
+        const file =  event.target.files[0]
+        if (file) {
             this.setState({
-                imageurl: URL.createObjectURL(event.target.files[0]),
-                imagefile: event.target.files[0]
+                imageurl: file,
+                previsualization: URL.createObjectURL(file)
             });
         }
     }
 
-    fileuploadhandler = () => {
-        //aqui llamen al controlador para actualizar la imagen de la persona
-        return null;
-    }
-
     render() {
+        let percentageImageLoading = this.props.percentageImageLoading;
         return (
             <div className="maincard">
                 <div className="card text-center">
@@ -30,23 +26,42 @@ class UploadCard extends Component {
                         <h3 className="card-title">Seleccione una Imagen de su Ordenador</h3>
                         <br />
                         <div className="custom-file">
-                            <input type="file" className="custom-file-input" id="customFileLang" lang="es" onChange={this.fileselectedhandler} />
+                            <input type="file"
+                                className="custom-file-input"
+                                id="customFileLang"
+                                lang="es"
+                                onChange={this.fileselectedhandler}
+                            />
                             <label className="custom-file-label" htmlFor="customFileLang">Seleccionar Archivo</label>
                         </div>
                         <br />
                         <br />
-                        <img className="uploadimg" src={this.state.imageurl} alt="" />
+                        <img className="uploadimg" src={this.state.previsualization} alt="" />
                         <br />
                         <br />
-                        <button type="button" className="btn btn-outline-warning" onClick={() => {
-                            let x = this.props.userinfo;
-                            x[0].foto = this.state.imageurl;
-                            this.fileuploadhandler();
-                            this.props.perfilconsumidorhandler(x,false);
-                        }}>Actualizar</button>
+                        <div className="progress" style={{ width: "100%" }}>
+                            <div
+                                className="progress-bar"
+                                role="progressbar"
+                                style={{ width: percentageImageLoading + "%" }}
+                                aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"
+                            ></div>
+                        </div>
                         <br />
                         <br />
-                        <button type="button" className="btn btn-outline-danger" onClick={() => {this.props.uploadimgpagehandler(false)}}>Cancelar</button>
+                        <button type="button" className="btn btn-outline-warning" onClick={
+                            () => {
+                                this.props.onClickActualizar(this.state.imageurl)
+                            }
+                        }>Actualizar</button>
+                        <br />
+                        <br />
+                        <button
+                            type="button"
+                            className="btn btn-outline-danger"
+                            onClick={() => this.props.onClickCancelar()}
+                        >Cancelar</button>
                     </div>
                 </div>
             </div>
