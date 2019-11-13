@@ -5,45 +5,60 @@ import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
 import './perfil.css';
 import interesesjson from './json/servicios.json';
-import { GeneralCards } from './components/card/generalcard';
+import { GeneralCards } from './components_perfil/card/generalcard';
 import { UserController } from '../../../controllers/user_controller';
 import user_image from './images/user-icon.webp'
-import { UploadPage } from './components/upload_page/upload_page';
+import { UploadPage } from '../../../components/upload_page/upload_page';
+import InformacionBasica from '../../../components/Perfil/informacion_basica'
+import Contacto from '../../../components/Perfil/contacto'
 
 class PerfilPrestador extends Component {
 
     state = {
         userInfo: [],
-        uploadimgstate: false
+        uploadimgstate: false,
+        percentageImageLoading: 0,
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.loadUserInfo()
+    }
+
+    async loadUserInfo() {
         try {
+            let userInfoSend = []
             var userController = new UserController();
             let idUser = userController.getUserId();
-            let userInfoSend = []
             const userInfo = await userController.getInfomracionUsuario(idUser);
-            userInfoSend.push(userInfo)
-            this.setState({ userInfo: userInfoSend })
+            userInfoSend.push(userInfo);
+            this.setState({ userInfo: userInfoSend });
+            this.uploadPageHandler(false);
         } catch (error) {
             console.log(error)
         }
     }
 
-    uploadimgpagehandler = (param) => {
+    uploadPageHandler = (value) => {
         this.setState({
-            uploadimgstate: param
+            uploadimgstate: value,
+            percentageImageLoading: 0
         });
     }
 
-    perfilconsumidorhandler = (param1, param2) => {
-        this.setState({
-            userInfo: param1, uploadimgstate: param2
-        });
+    perfilImghandler = (img) => {
+        const userController = new UserController();
+        userController.addImagen(
+            img,
+            percentage => { this.setState({ percentageImageLoading: percentage }) },
+            error => { console.log(error) },
+            () => {
+                this.setState({ percentageImageLoading: 100 })
+                this.loadUserInfo();
+            }
+        )
     }
 
     render() {
-
         let nombre, appellido, celular, fijo, fecha_nacimiento, ciudad, barrio, correo1, fotosrc;
         let interesesname = interesesjson.nombre, interesarr = interesesjson.intereses;
 
@@ -66,8 +81,15 @@ class PerfilPrestador extends Component {
         }));
 
         let uploadimgstate;
+        
         if (this.state.uploadimgstate) {
-            uploadimgstate = <UploadPage uploadimgpagehandler={this.uploadimgpagehandler} userinfo={this.state.userInfo} perfilconsumidorhandler={this.perfilconsumidorhandler} />
+            uploadimgstate =
+                <UploadPage
+                    percentageImageLoading={this.state.percentageImageLoading}
+                    onClickCancelar={() => this.uploadPageHandler(false)}
+                    foto={fotosrc}
+                    onClickActualizar={(img) => this.perfilImghandler(img)}
+                />
         }
 
         return (
@@ -79,31 +101,15 @@ class PerfilPrestador extends Component {
                             <h1 className="MediumTextFont perftext">Perfil</h1>
                             <hr />
                         </div>
-                        <div className="col-12 col-md-5 text-center">
-                            <div className="show-image">
-                                <img className="consusmerimg" src={fotosrc} title={nombre} alt={nombre}></img>
-                                <button className="update btn btn-outline-dark" onClick={() => { this.uploadimgpagehandler(true) }}>Cambiar</button>
-                            </div>
-                        </div>
-                        <div className="col-12 col-md-7">
-                            <p className="MediumTextFont BigTextFont TextDarkMainColor">Información básica</p>
-                            <div className="row">
-                                <div className="col-12 col-md-6">
-                                    <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Nombre:</p>
-                                    <p className="MediumTextFont">{nombre}</p>
-                                    <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Apellido:</p>
-                                    <p className="MediumTextFont">{appellido}</p>
-                                    <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Fecha de nacimiento:</p>
-                                    <p className="MediumTextFont">{fecha_nacimiento}</p>
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Ciudad:</p>
-                                    <p className="MediumTextFont">{ciudad}</p>
-                                    <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Barrio:</p>
-                                    <p className="MediumTextFont">{barrio}</p>
-                                </div>
-                            </div>
-                        </div>
+                        <InformacionBasica
+                            nombre={nombre}
+                            appellido={appellido}
+                            fecha_nacimiento={fecha_nacimiento}
+                            ciudad={ciudad}
+                            barrio={barrio}
+                            fotosrc={fotosrc}
+                            onClick={() =>{this.uploadPageHandler(true)}}
+                        />
                     </div>
                     <div className="row">
                         <div className="col-12"><hr /></div>
@@ -128,21 +134,7 @@ class PerfilPrestador extends Component {
                         <div className="col-12 col-md-5 textcenter d-none d-md-block">
                             {cardlist}
                         </div>
-                        <div className="col-12 col-md-7">
-                            <p className="BigTextFont TextDarkMainColor d-block d-sm-none">Contacto Laboral</p>
-                            <div className="row">
-                                <div className="col-12 col-md-6">
-                                    <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Celular:</p>
-                                    <p className="SmallTextFont">{celular}</p>
-                                    <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Teléfono:</p>
-                                    <p className="SmallTextFont">{fijo}</p>
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Correo Principal:</p>
-                                    <p className="SmallTextFont">{correo1}</p>
-                                </div>
-                            </div>
-                        </div>
+                        <Contacto celular={celular} fijo={fijo} correo1={correo1}/>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@ class UploadCard extends Component {
             <div className="maincard">
                 <div className="card text-center">
                     <div className="card-body">
-                        <h3 className="card-title">Seleccione una Imagen de su Ordenador</h3>
+                        <h3 className="card-title">Seleccione una imagen de su ordenador</h3>
                         <br />
                         <div className="custom-file">
                             <input type="file"
@@ -32,7 +32,7 @@ class UploadCard extends Component {
                                 lang="es"
                                 onChange={this.fileselectedhandler}
                             />
-                            <label className="custom-file-label" htmlFor="customFileLang">Seleccionar Archivo</label>
+                            <label className="custom-file-label" htmlFor="customFileLang">Seleccionar archivo</label>
                         </div>
                         <br />
                         <br />
