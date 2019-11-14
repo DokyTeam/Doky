@@ -19,18 +19,13 @@ export class ServiciosDispController {
         return suma / cantidad
     }
 
-
-
-
-
-
     //CONSULTAS SIN FILTROS ##################################################################################################################
 
 
-    readServicio(tipoServicio) {
+    async readServicio(tipoServicio) {
         let promedio = this.promedio
         let servicio = [];
-        return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").get().then(
+        return this.firebaseReadRepository.readGroupCollection(tipoServicio + "sUsuario").get().then(
             function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                     let id = { "id": doc.id }

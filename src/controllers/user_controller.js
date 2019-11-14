@@ -12,7 +12,6 @@ export class UserController {
         this.firebaseUpdateRepository = new FirebaseUpdateRepository();
     }
 
-    //es  necesario que se pase un objeto en lugar del tipo especifico
     createUser(id, data) {
         return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios', id, data);
     }
@@ -25,8 +24,8 @@ export class UserController {
         )
     }
 
-    getInfomracionUsuario(email) {
-        return this.firebaseReadRepository.readCollection("usuarios").doc(email).get().then(
+    getInfomracionUsuario(userId) {
+        return this.firebaseReadRepository.readCollection("usuarios").doc(userId).get().then(
             querySnapshot => {
                 return querySnapshot.data();
             }
@@ -37,9 +36,9 @@ export class UserController {
         return fire.auth().currentUser.uid;
     }
 
-    addMascota(email, mascotaInfo) {
+    addMascota(userId, mascotaInfo) {
 
-        return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios/' + email + "/mascotas/", mascotaInfo.nombre, mascotaInfo);
+        return this.firebaseCreateRepository.writeCollectionIdDefined('usuarios/' + userId + "/mascotas/", mascotaInfo.nombre, mascotaInfo);
 
     }
 
@@ -52,21 +51,34 @@ export class UserController {
                 let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 loadImg(percentage)
             },
-            errorTask => { error(errorTask) },
+            error,
             async () => {
                 try {
                     let url = await task.snapshot.ref.getDownloadURL();
                     await fire.firestore().collection("usuarios").doc(this.getUserId()).set({ foto: url }, { merge: true });
                     fullyLoaded()
-                } catch (error) {
-                    console.log(error)
+                } catch (errorCatch) {
+                    error(errorCatch)
                 }
             }
         )
     }
 
-    storeImagen(img) {
-
+    async getInformacionMascotas(){
+        const userId = this.getUserId();
+        return fire.firestore().collection("usuarios").doc(userId).collection("mascotas").get().then(
+            querySnapshot => {
+                let mascotas = []
+                querySnapshot.forEach(
+                    doc =>{
+                        mascotas.push(doc.data())
+                    }
+                )
+                return mascotas
+            }
+        )
     }
+
+    
 
 }
