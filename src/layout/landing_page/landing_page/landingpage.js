@@ -3,10 +3,10 @@ import './landingpage.css';
 import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
 import '../../global_css/textcolors.css';
-import pug from "./images/pug.png";
-import foto1 from "./images/foto1.jpeg";
-import foto2 from "./images/foto2.jpeg";
-import foto3 from "./images/foto3.jpeg";
+import pug from "./images/pug.webp";
+import foto1 from "./images/foto1.webp";
+import foto2 from "./images/foto2.webp";
+import foto3 from "./images/foto3.webp";
 
 class Landingpage extends Component {
 
