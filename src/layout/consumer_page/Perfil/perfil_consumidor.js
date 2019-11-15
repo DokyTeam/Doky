@@ -98,8 +98,7 @@ class Perfil extends Component {
                 <div className="container-fluid" style={{ padding: "0" }}>
                     <div className="row align-items-center">
                         <div className="col-12">
-                            <h1 className="MediumTextFont perftext">Perfil</h1>
-                            <hr />
+                            <br />
                         </div>
 
                         <InformacionBasica

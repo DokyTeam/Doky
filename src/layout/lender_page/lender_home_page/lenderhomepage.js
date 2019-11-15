@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-import { Cards } from './home_page_components/cards';
+import Cards from './home_page_components/cards';
 import './home_page_components/cards.css';
 
-import homeimg from "./images/home_page.jpeg";
-import homeimgsmall from "./images/home_page_small.jpeg";
-import homeimglarge from "./images/home_page_large.jpeg";
+import homeimg from "./images/home_page.webp";
+import homeimgsmall from "./images/home_page_small.webp";
+import homeimglarge from "./images/home_page_large.webp";
 
 import './lenderhomepage.css';
 
-import pasear from './home_page_components/images/paseos.jpg';
-import salto from './home_page_components/images/saltos.jpg';
-import veterinaria from './home_page_components/images/veterinaria.jpg';
-import guarderia from './home_page_components/images/guarderia.jpg';
+import pasear from './home_page_components/images/paseos.webp';
+import salto from './home_page_components/images/saltos.webp';
+import veterinaria from './home_page_components/images/veterinaria.webp';
+import guarderia from './home_page_components/images/guarderia.webp';
 
 
 class LenderHomePage extends Component {
@@ -37,16 +37,32 @@ class LenderHomePage extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-12 col-md-6 col-lg-3">
-                            <Cards servicename="Paseos" foto={pasear} lendercontenthandler={this.props.lendercontenthandler} descripcion="Comienza a ganar dinero paseando perros, con el servicio de PASEOS de Doky ahora todos podrán contactarte desde nuestro portal para que puedas pasear sus mascotas siempre." />
+                            <Cards 
+                                servicename="Paseos" 
+                                foto={pasear} 
+                                mensaje = 'Comienza a ganar dinero paseando perros!!!'
+                                descripcion="Con el servicio de PASEOS de Doky ahora todos podrán contactarte desde nuestro portal para que puedas pasear sus mascotas siempre." />
                         </div>
                         <div className="col-12 col-md-6 col-lg-3">
-                            <Cards servicename="Veterinaria" foto={veterinaria} lendercontenthandler={this.props.lendercontenthandler} descripcion="Haz que tu veterinaria nunca vuelva a estar vacía. Con el servicio de VETERIANRIA de Doky puedes lograr que millones de usuarios encuentren tu veterinaria en todo momento." />
+                            <Cards 
+                                servicename="Veterinaria" 
+                                foto={veterinaria} 
+                                mensaje = 'Haz que tu veterinaria nunca vuelva a estar vacía!!!'
+                                descripcion="Con el servicio de VETERIANRIA de Doky puedes lograr que millones de usuarios encuentren tu veterinaria en todo momento." />
                         </div>
                         <div className="col-12 col-md-6 col-lg-3">
-                            <Cards servicename="Guardería" foto={guarderia} lendercontenthandler={this.props.lendercontenthandler} descripcion="¿Cansado que tu guardería siempre este vacía? Con el servicio de GUARDERÍA de Doky puedes lograr que millones de usuarios encuentren tu guardería en todo momento." />
+                            <Cards 
+                                servicename="Guardería" 
+                                foto={guarderia} 
+                                mensaje = '¿Cansado que tu guardería siempre este vacía?'
+                                descripcion="Con el servicio de GUARDERÍA de Doky puedes lograr que millones de usuarios encuentren tu guardería en todo momento." />
                         </div>
                         <div className="col-12 col-md-6 col-lg-3">
-                            <Cards servicename="Saltos" foto={salto} lendercontenthandler={this.props.lendercontenthandler} descripcion="Nunca fue más fácil vender la genética de tu animal más valioso, Con el servicio de SALTOS de Doky ahora puede publicar la venta de la genética de tu animal a todo el público." />
+                            <Cards 
+                                servicename="Saltos" 
+                                foto={salto} 
+                                mensaje = 'Nunca fue más fácil vender la genética de tu animal'
+                                descripcion="Con el servicio de SALTOS de Doky ahora puede publicar la venta de la genética de tu animal mas valioso a todo el público." />
                         </div>
                     </div>
                 </div>

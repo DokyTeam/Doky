@@ -25,7 +25,7 @@ class LenderContainer extends Component {
                         <Route path="/Guardería" exact component={GuarderiaPage} />
                         <Route path="/Veterinaria" exact component={VeterinariaPage} />
                         <Route path="/Saltos" exact component={SaltosPage} />
-                        <Route path="/Perfil/:id" exact component={PerfilPrestador} />
+                        <Route path="/Perfil" exact component={PerfilPrestador} />
                         <Route path="/" component={LenderHomePage} />
                     </Switch>
                 </Router>

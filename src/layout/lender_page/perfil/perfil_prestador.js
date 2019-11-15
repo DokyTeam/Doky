@@ -98,8 +98,7 @@ class PerfilPrestador extends Component {
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-12">
-                            <h1 className="MediumTextFont perftext">Perfil</h1>
-                            <hr />
+                            <br />
                         </div>
                         <InformacionBasica
                             nombre={nombre}

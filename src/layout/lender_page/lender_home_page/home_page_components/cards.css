@@ -1,29 +1,23 @@
-.title{
-    padding: 5%;
+.clean_card_text{
+    text-decoration: none;
 }
 
-.text{
-    margin-top: 5%;
-    padding: 3%;
-    text-align: justify;
+.home-card-controler :hover{
+    border-bottom: 13px groove rgba(56,164,41,0.62);
+    border-radius: 1px;
 }
 
-.buttonbottom{
-    width: 40%;
-    height: 10%;
-    border-radius: 3px;
-    margin: 5% 30%;
-    border: none;
+.home-card-controler img:hover{
+    border-bottom: none;
+    border-radius: 0px;
 }
 
-.buttonbottom:hover {
-    background-color: #4d2f16;
+.home-card-controler p:hover{
+    border-bottom: none;
+    border-radius: 0px;
 }
 
-.img {
-    width: 100%;
-}
-
-.card{
-    margin-top: 5%;
+.home-card-controler h2:hover{
+    border-bottom: none;
+    border-radius: 0px;
 }
