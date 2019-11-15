@@ -41,14 +41,14 @@ class LenderHomePage extends Component {
                                 servicename="Paseos" 
                                 foto={pasear} 
                                 mensaje = 'Comienza a ganar dinero paseando perros!!!'
-                                descripcion="Con el servicio de PASEOS de Doky ahora todos podrán contactarte desde nuestro portal para que puedas pasear sus mascotas siempre." />
+                                descripcion="Con el servicio de PASEOS de Doky ahora todos podrán contactarte desde nuestro portal para encontrar paseadores." />
                         </div>
                         <div className="col-12 col-md-6 col-lg-3">
                             <Cards 
                                 servicename="Veterinaria" 
                                 foto={veterinaria} 
                                 mensaje = 'Haz que tu veterinaria nunca vuelva a estar vacía!!!'
-                                descripcion="Con el servicio de VETERIANRIA de Doky puedes lograr que millones de usuarios encuentren tu veterinaria en todo momento." />
+                                descripcion="Con el servicio de VETERIANRIA de Doky puedes lograr que millones de usuarios encuentren tu veterinaria en siempre." />
                         </div>
                         <div className="col-12 col-md-6 col-lg-3">
                             <Cards 

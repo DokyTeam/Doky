@@ -41,7 +41,7 @@ class UploadCard extends Component {
                         <br />
                         <div className="progress" style={{ width: "100%" }}>
                             <div
-                                className="progress-bar"
+                                className="progress-bar progress-bar-striped bg-success" 
                                 role="progressbar"
                                 style={{ width: percentageImageLoading + "%" }}
                                 aria-valuenow="25" aria-valuemin="0"
