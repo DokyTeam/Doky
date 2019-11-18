@@ -1,15 +1,17 @@
-import fire from '../config/Fire';
 import { FirebaseReadRepository } from '../access_data/firebase_read_repository';
 import { FirebaseCreateRepository } from '../access_data/firebase_create_repository';
 import { FirebaseUpdateRepository } from '../access_data/firebase_update_repository';
+import { FirebaseAuthRepository } from '../access_data/firebase_auth_repository';
+import { FirebaseStorageRespository } from '../access_data/firebase_storage_repository';
 
 export class UserController {
 
     constructor() {
-        this.firebaseInstance = fire;
         this.firebaseReadRepository = new FirebaseReadRepository();
         this.firebaseCreateRepository = new FirebaseCreateRepository();
         this.firebaseUpdateRepository = new FirebaseUpdateRepository();
+        this.firebaseAuthRepository = new FirebaseAuthRepository();
+        this.firebaseStorageRespository = new FirebaseStorageRespository();
     }
 
     createUser(id, data) {
@@ -33,7 +35,7 @@ export class UserController {
     }
 
     getUserId() {
-        return fire.auth().currentUser.uid;
+        return this.firebaseAuthRepository.getUserId();
     }
 
     addMascota(userId, mascotaInfo) {
@@ -42,9 +44,13 @@ export class UserController {
 
     }
 
+    //Recibe 4 parametros
+    //-imagen que se va a enviar tipo file
+    //-una funcion que se ejecuta al cargar la imagen
+    //-una fucnion que se ejecuta al ocurrir un error
+    //-una funcion que se ejecuta al cargar la imagen
     addImagen(img, loadImg, error, fullyLoaded) {
-        const storageRef = fire.storage().ref(`/FotosPerfil/${this.getUserId()}`);
-        const task = storageRef.put(img);
+        const task = this.firebaseStorageRespository.storageData(`/FotosPerfil/${this.getUserId()}`, img);
 
         task.on('state_changed',
             snapshot => {
@@ -55,7 +61,7 @@ export class UserController {
             async () => {
                 try {
                     let url = await task.snapshot.ref.getDownloadURL();
-                    await fire.firestore().collection("usuarios").doc(this.getUserId()).set({ foto: url }, { merge: true });
+                    await this.firebaseCreateRepository.writeDocument("usuarios/" + this.getUserId(), { foto: url }, true)
                     fullyLoaded()
                 } catch (errorCatch) {
                     error(errorCatch)
@@ -64,13 +70,13 @@ export class UserController {
         )
     }
 
-    async getInformacionMascotas(){
+    async getInformacionMascotas() {
         const userId = this.getUserId();
-        return fire.firestore().collection("usuarios").doc(userId).collection("mascotas").get().then(
+            return this.firebaseReadRepository.readCollection("usuarios/" + userId + "/mascotas").get().then(
             querySnapshot => {
                 let mascotas = []
                 querySnapshot.forEach(
-                    doc =>{
+                    doc => {
                         mascotas.push(doc.data())
                     }
                 )
@@ -78,7 +84,5 @@ export class UserController {
             }
         )
     }
-
-    
 
 }

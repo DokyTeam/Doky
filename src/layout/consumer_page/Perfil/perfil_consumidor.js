@@ -94,7 +94,6 @@ class Perfil extends Component {
 
         return (
             <div>
-                <button onClick={async()=>{console.log( await (new UserController()).getInformacionMascotas())}}>Botton</button>
                 {uploadimgstate}
                 <div className="container-fluid" style={{ padding: "0" }}>
                     <div className="row align-items-center">
