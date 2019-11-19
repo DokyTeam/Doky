@@ -1,6 +1,3 @@
-
-
-
 import fire from '../config/Fire';
 
 export class FirebaseReadRepository {
@@ -9,6 +6,9 @@ export class FirebaseReadRepository {
         this.firebaseInstance = fire;
     }
 
+    readDocument(nameDocument){
+        return this.firebaseInstance.firestore().doc(nameDocument);
+    }
 
     readCollection(nameCollection){
         return this.firebaseInstance.firestore().collection(nameCollection);
@@ -18,8 +18,6 @@ export class FirebaseReadRepository {
     readGroupCollection(nameCollection){
         return this.firebaseInstance.firestore().collectionGroup(nameCollection);
     }
-    
-
 
 }
 
