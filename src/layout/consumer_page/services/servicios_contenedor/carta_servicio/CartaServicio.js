@@ -4,6 +4,8 @@ import '../../../../global_css/textcolors.css';
 import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
 import './cartaServicio.css';
+import { Link } from 'react-router-dom';
+import { useStore } from '../../../../../utilities/Store'
 
 class CartaServicio extends Component {
 
@@ -44,10 +46,21 @@ class CartaServicio extends Component {
     }
 
     render() {
+        const id = this.props.servicename;
+        const id_user = this.props.usuario
+        const link = "/" + this.props.type +`/${id}`;
 
         return (
             <div className="WhiteColor card h-100 " style={{ borderRadius: 10 }}>
-                <button className="button_card text-justify"  >
+               
+                <Link to={{
+                    pathname : link,
+                    state : {id : id ,
+                            id_user:  id_user
+                            }
+                }}
+                 >
+                <button className="button_card text-justify" >
                     <div className="container-fluid" >
                         <div className="row align-items-top" >
                             <div className="col-md-3 col-lg-4 " >
@@ -62,6 +75,7 @@ class CartaServicio extends Component {
                         </div>
                     </div>
                 </button>
+                </Link>
             </div>
         );
     }
