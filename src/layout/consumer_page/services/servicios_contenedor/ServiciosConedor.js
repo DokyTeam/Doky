@@ -13,7 +13,7 @@ function createcarta (props) {
                 return (
                     <div className="col-12 col-md-6 col-lg-6" style={{ marginBottom: "3%" }} key={data.id} >
                         <CartaServicio 
-                        type="Guardería"
+                        type= {props.type}
                         servicename={data.id}
                         usuario = {data.usuario}
                         foto={data.img} 

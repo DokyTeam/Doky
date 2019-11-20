@@ -27,10 +27,10 @@ class ConsumerContainer extends Component {
                         <Route path="/Paseos" exact component={PaseosPage} />
                         <Route path="/Guardería" exact component={GuarderiaPage} />
                         <Route path="/Guardería/:id" exact component={GuarderiaVisualizar} />
-                        <Route path="/Veterinaria/:id" exact component={GuarderiaVisualizar} />
+                        <Route path="/Veterinaria/:id" exact component={VeterinariaVisualizar} />
                         <Route path="/Saltos/:id" exact component={SaltosVisualizar} />
                         <Route path="/Paseos/:id" exact component={PaseosVisualizar} />
-                        <Route path="/Veterinaria" exact component={VeterinariaVisualizar} />
+                        <Route path="/Veterinaria" exact component={VeterinariaPage} />
                         <Route path="/Saltos" exact component={SaltosPage} />
                         <Route path="/Perfil/:id" exact component={Perfil} />
                         <Route path="/Mascotas" exact component={Mascotas} />
