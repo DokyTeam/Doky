@@ -105,6 +105,12 @@ function InformacionBasica(props) {
                     src={props.fotosrc}
                     title={props.nombre}
                     alt={props.nombre}
+                    style={{
+                        padding: "5%",
+                        borderRadius: 20,
+                        width: "100%",
+                        height: "100%"
+                    }}
                 >
                 </img>
 
