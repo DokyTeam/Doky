@@ -229,7 +229,7 @@ export class ServiciosDispController {
         servicio.sumapuntuacion = 0;
         servicio.cantidadpuntuacion = 0;
         let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idUser + "/" + tipoServicio + "susuario/";
-        return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, servicio.nombre, servicio,{merge:true});
+        return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, servicio.nombre);
     }
 
 
