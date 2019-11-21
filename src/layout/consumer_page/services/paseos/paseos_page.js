@@ -35,7 +35,7 @@ class PaseosPage extends Component {
                         <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                             Paseos
                         </h1>
-                        {console.log(this.state.paseos)}
+                        
                         <ServiciosContenedor json={this.state.paseos} type="Paseos" ></ServiciosContenedor>
 
                     </div>
