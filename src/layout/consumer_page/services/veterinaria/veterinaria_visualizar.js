@@ -83,7 +83,7 @@ class VeterinariaVisualizar extends Component {
             img = data.img;
             localidad = data.localidad;
             if(data.puntuacion) 
-            {puntuacion= data.puntuacion }
+            {puntuacion= parseFloat(data.puntuacion.toFixed(1) ) }
             else{puntuacion = 0}
 
             return null;

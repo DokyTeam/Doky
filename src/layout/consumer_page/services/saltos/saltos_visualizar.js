@@ -82,7 +82,7 @@ class SaltosVisualizar extends Component {
             localidad = data.localidad;
             precio = data.precio;
             if(data.puntuacion) 
-            {puntuacion= data.puntuacion }
+            {puntuacion= parseFloat(data.puntuacion.toFixed(1) ) }
             else{puntuacion = 0}
             
 
