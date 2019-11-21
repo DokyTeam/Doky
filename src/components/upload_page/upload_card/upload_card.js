@@ -3,7 +3,7 @@ import './img_card.css';
 
 class UploadCard extends Component {
     state = {
-        imageurl: this.props.foto,
+        imageurl: null,
         previsualization: this.props.foto,
     }
 
@@ -19,6 +19,22 @@ class UploadCard extends Component {
 
     render() {
         let percentageImageLoading = this.props.percentageImageLoading;
+
+        let uploadbar;
+
+        if (percentageImageLoading) {
+            uploadbar =
+                <div className="progress" style={{ width: "100%" }}>
+                    <div
+                        className="progress-bar progress-bar-striped bg-success"
+                        role="progressbar"
+                        style={{ width: percentageImageLoading + "%" }}
+                        aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"
+                    ></div>
+                </div>
+        }
+
         return (
             <div className="maincard">
                 <div className="card text-center">
@@ -39,15 +55,7 @@ class UploadCard extends Component {
                         <img className="uploadimg" src={this.state.previsualization} alt="" />
                         <br />
                         <br />
-                        <div className="progress" style={{ width: "100%" }}>
-                            <div
-                                className="progress-bar progress-bar-striped bg-success" 
-                                role="progressbar"
-                                style={{ width: percentageImageLoading + "%" }}
-                                aria-valuenow="25" aria-valuemin="0"
-                                aria-valuemax="100"
-                            ></div>
-                        </div>
+                        {uploadbar}
                         <br />
                         <br />
                         <button type="button" className="btn btn-outline-warning" onClick={
