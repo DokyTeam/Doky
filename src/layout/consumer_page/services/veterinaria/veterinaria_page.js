@@ -35,7 +35,7 @@ class VeterinariaPage extends Component {
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                                 Veterinaria
                             </h1>
-                            {console.log(this.state.veterinarias)}
+                            
                             <ServiciosContenedor json={this.state.veterinarias} type="Veterinaria"></ServiciosContenedor>
 
                         </div>

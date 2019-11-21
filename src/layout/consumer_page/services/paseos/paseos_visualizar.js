@@ -4,19 +4,175 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
-import { useStore } from '../../../../utilities/Store';
+
 
 
 class PaseosVisualizar extends Component {
+    state = {
+        PaseoInfo: []
+    }
 
-return(){
+    componentDidMount() {
+        this.loadUserInfo()
+    }
+
+    async loadUserInfo() {
+        try {
+            let InfoSend = [];
+            let id_Paseo = this.props.location.state.id;
+            console.log(id_Paseo);
+            const id = this.props.location.state.id_user;
+            var getController = new ServiciosDispController();
+            const Info = await getController.readPasesosFullInfo(id, id_Paseo);
+            InfoSend.push(Info);
+            this.setState({ PaseoInfo: InfoSend });
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    render() {
+
+        let barrio, descripcion, horario, id, img, localidad, precio, puntuacion, duracion;
+
+        this.state.PaseoInfo.map((data) => {
+            barrio = data.barrio;
+            descripcion = data.descripcion;
+            horario = data.horario;
+            id = data.id;
+            img = data.img;
+            localidad = data.localidad;
+            precio = data.precio;
+            puntuacion = data.puntuacion;
+            duracion = data.duracionMax;
+
+            return null;
+        });
+
         return (
             <div>
 
+                <div className="container-fluid">
+                    <div className="row align-items-center">
+                        <div className="col-12">
+
+                        </div>
+
+                        <InformacionBasica
+
+
+                            fotosrc={img}
+                            nombre={id}
+                            calificación={puntuacion}
+                            precio={precio}
+                            horario={horario}
+                            localidad={localidad}
+                            barrio={barrio}
+                            descripcion={descripcion}
+                            duracion={duracion}
+
+                        />
+                        }
+
+                    </div>
+
+                    <div className="row">
+                        <div className="col-12" style={{ textAlign: "right" }}>
+                            <button type="button" className="btn btn-success"
+                                style={{ marginRight: 10 }}>
+                                Tomar servicio</button>
+                            <hr />
+                        </div>
+                    </div>
+
+                </div>
             </div>
         );
     }
 }
-
 export { PaseosVisualizar };
 
+
+function InformacionBasica(props) {
+    return (
+        <>
+
+            <div className="col-12 col-md-5 text-center">
+
+                <img className="img_card"
+                    src={props.fotosrc}
+                    title={props.nombre}
+                    alt={props.nombre}
+                    style={{
+                        padding: "5%",
+                        borderRadius: 20,
+                        width: "100%",
+                        height: "100%"
+                    }}
+                >
+                </img>
+
+            </div>
+            <div className="col-12 col-md-7">
+                <h1 className="CurvyTextFontBig" style={{ textAlign: "center", letterSpacing: 2 }}>{props.nombre}</h1>
+                <hr />
+                <p className="MediumTextFont BigTextFont TextDarkMainColor">Información básica</p>
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Nombre:</p>
+                        <p className="MediumTextFont">{props.nombre}</p>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-6 col-md-6">
+                        <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Calificación:</p>
+                        <p className="MediumTextFont">{props.calificación}</p>
+                    </div>
+                    <div className="col-12 col-md-6">
+
+                        <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Precio:</p>
+                        <p className="MediumTextFont">{props.precio}</p>
+
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-6 col-md-6">
+                        <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Duración maxima:</p>
+                        <p className="MediumTextFont">{props.duracion}</p>
+                    </div>
+
+                </div>
+                <div className="row">
+
+                    <div className="col-12 col-md-6">
+
+                        <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Horario:</p>
+                        <p className="MediumTextFont">{props.horario}</p>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 col-md-6">
+
+                        <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Localidad:</p>
+                        <p className="MediumTextFont">{props.localidad}</p>
+
+                    </div>
+                    <div className="col-12 col-md-6">
+
+                        <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Barrio:</p>
+                        <p className="MediumTextFont">{props.barrio}</p>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 col-md-6">
+
+                        <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Descripción:</p>
+                        <p className="MediumTextFont">{props.descripcion}</p>
+
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
