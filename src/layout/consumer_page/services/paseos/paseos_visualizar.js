@@ -32,6 +32,44 @@ class PaseosVisualizar extends Component {
         }
     }
 
+    estrellas = (calificacion) => {
+        
+     if (0 < calificacion && calificacion < 0.5) {
+         return "valoracion val-0"
+     }
+     if (0.5 <= calificacion && calificacion < 1) {
+        return "valoracion val-5"
+     }
+     if (1 <= calificacion && calificacion < 1.5) {
+        return  "valoracion val-10"
+     }
+     if (1.5 <= calificacion && calificacion < 2) {
+        return  "valoracion val-15"
+     }
+     if (2 <= calificacion && calificacion < 2.5) {
+        return  "valoracion val-20"
+     }
+     if (2.5 <= calificacion & calificacion < 3) {
+        return  "valoracion val-25"
+     }
+     if (3 <= calificacion & calificacion < 3.5) {
+        return  "valoracion val-30"
+     }
+     if (3.5 <= calificacion & calificacion < 4) {
+        return  "valoracion val-35"
+     }
+     if (4 <= calificacion & calificacion < 4.5) {
+        return  "valoracion val-40"
+     }
+     if (4.5 <= calificacion & calificacion < 5) {
+        return  "valoracion val-45"
+     }
+     if (5 === calificacion) {
+        return  "valoracion val-50"
+     }
+     return "valoracion val-0"
+    }
+
     render() {
 
         let barrio, descripcion, horario, id, img, localidad, precio, puntuacion, duracion;
@@ -44,7 +82,9 @@ class PaseosVisualizar extends Component {
             img = data.img;
             localidad = data.localidad;
             precio = data.precio;
-            puntuacion = data.puntuacion;
+            if(data.puntuacion) 
+            {puntuacion= parseFloat(data.puntuacion.toFixed(1) ) }
+            else{puntuacion = 0}
             duracion = data.duracionMax;
 
             return null;
@@ -71,6 +111,7 @@ class PaseosVisualizar extends Component {
                             barrio={barrio}
                             descripcion={descripcion}
                             duracion={duracion}
+                            estrellas={this.estrellas(puntuacion)}
 
                         />
                         }
@@ -127,7 +168,15 @@ function InformacionBasica(props) {
                 <div className="row">
                     <div className="col-6 col-md-6">
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Calificación:</p>
-                        <p className="MediumTextFont">{props.calificación}</p>
+                        <div className="row">
+                            
+                            <div className="col-1 col-md-1 col-sm-1">
+                                <p className="MediumTextFont">{props.calificación}</p>
+                            </div>
+                            <div className="col-6 col-md-6 col-sm-6">
+                                <fieldset className="val-fieldset" ><legend></legend><span className={props.estrellas}></span></fieldset>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-12 col-md-6">
 

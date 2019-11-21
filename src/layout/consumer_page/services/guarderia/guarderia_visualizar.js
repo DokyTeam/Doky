@@ -4,7 +4,7 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
-import { useStore } from '../../../../utilities/Store';
+import '../../../global_css/starts.css';
 
 
 class GuarderiaVisualizar extends Component {
@@ -33,6 +33,44 @@ class GuarderiaVisualizar extends Component {
         }
     }
 
+    estrellas = (calificacion) => {
+        
+        if (0 < calificacion && calificacion < 0.5) {
+            return "valoracion val-0"
+        }
+        if (0.5 <= calificacion && calificacion < 1) {
+           return "valoracion val-5"
+        }
+        if (1 <= calificacion && calificacion < 1.5) {
+           return  "valoracion val-10"
+        }
+        if (1.5 <= calificacion && calificacion < 2) {
+           return  "valoracion val-15"
+        }
+        if (2 <= calificacion && calificacion < 2.5) {
+           return  "valoracion val-20"
+        }
+        if (2.5 <= calificacion & calificacion < 3) {
+           return  "valoracion val-25"
+        }
+        if (3 <= calificacion & calificacion < 3.5) {
+           return  "valoracion val-30"
+        }
+        if (3.5 <= calificacion & calificacion < 4) {
+           return  "valoracion val-35"
+        }
+        if (4 <= calificacion & calificacion < 4.5) {
+           return  "valoracion val-40"
+        }
+        if (4.5 <= calificacion & calificacion < 5) {
+           return  "valoracion val-45"
+        }
+        if (5 === calificacion) {
+           return  "valoracion val-50"
+        }
+        return "valoracion val-0"
+       }
+
     render() {
 
         let barrio, cantidadpuntuacion, descripcion, horario, id, img, localidad, precio, puntuacion;
@@ -46,7 +84,9 @@ class GuarderiaVisualizar extends Component {
             img = data.img;
             localidad = data.localidad;
             precio = data.precio;
-            puntuacion = data.puntuacion;
+            if(data.puntuacion) 
+            {puntuacion= parseFloat(data.puntuacion.toFixed(1) ) }
+            else{puntuacion = 0}
 
             return null;
         });
@@ -60,7 +100,7 @@ class GuarderiaVisualizar extends Component {
 
                         </div>
                         <InformacionBasica
-                        
+
 
                             fotosrc={img}
                             nombre={id}
@@ -71,6 +111,7 @@ class GuarderiaVisualizar extends Component {
                             localidad={localidad}
                             barrio={barrio}
                             descripcion={descripcion}
+                            estrellas={this.estrellas(puntuacion)}
 
                         />
                         }
@@ -95,6 +136,8 @@ class GuarderiaVisualizar extends Component {
 export { GuarderiaVisualizar };
 
 function InformacionBasica(props) {
+
+
     return (
         <>
 
@@ -127,7 +170,15 @@ function InformacionBasica(props) {
                 <div className="row">
                     <div className="col-6 col-md-6">
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Calificación:</p>
-                        <p className="MediumTextFont">{props.calificación}</p>
+                        <div className="row">
+                            
+                            <div className="col-1 col-md-1 col-sm-1">
+                                <p className="MediumTextFont">{props.calificación}</p>
+                            </div>
+                            <div className="col-6 col-md-6 col-sm-6">
+                                <fieldset className="val-fieldset" ><legend></legend><span className={props.estrellas}></span></fieldset>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-6 col-md-6">
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Cantidad de calificaciones:</p>
