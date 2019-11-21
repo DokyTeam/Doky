@@ -32,12 +32,13 @@
     color: black;
 }
 
-.TextLinkComplementColor{
-    color: #A93226;
-    text-decoration: none; /* Este no esta definido*/
+.TextComplementColor{
+    color: #44211d;
+    text-decoration: none;
 }
 
-.TextComplementColor{
+
+.TextLinkComplementColor{
     color: #A93226;
     text-decoration: none; /* Este no esta definido*/
 }

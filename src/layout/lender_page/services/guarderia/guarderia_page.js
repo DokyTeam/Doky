@@ -97,7 +97,7 @@ class GuarderiaPage extends Component {
         )
         this.setState({
             percentageImageLoading: "none",
-            mensaje: "Veterinaria creada Exitosamente!!!",
+            mensaje: "Guardería creada Exitosamente!!!",
             nombre: "",
             barrio: "",
             descripcion: "",
@@ -181,21 +181,21 @@ class GuarderiaPage extends Component {
                 {uploadimgstate}
                 <img src={background} id="bg" alt="" />
                 <NavigationSideBar
-                    menucolor="#ffffff"
+                    menucolor="#7a3a33"
                 />
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-12 col-md-6 textcenter">
-                            <h1 className="TextWhiteColor text-center mb-4">
-                                <strong>Veterinaria</strong>
+                            <h1 className="TextComplementColor text-center mb-4">
+                                <strong>Guardería</strong>
                             </h1>
                             <img className="consusmerimg mb-4" src={this.state.imageurl} alt="" />
                             <div className="mb-2" onClick={() => this.removeMessage()}>
                                 {mensaje}
                                 {uploadbar}
                             </div>
-                            <h2 className="TextWhiteColor text-center">
-                                Completa el siguiente formulario para que tu veterinaria por fin consiga el éxito que merece.
+                            <h2 className="TextUltraDarkColor text-center">
+                                Completa el síguete formulario para que tu guardería siempre este llena de animales.
                             </h2>
                         </div>
                         <div className="col-12 col-md-6">
