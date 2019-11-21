@@ -127,7 +127,15 @@ function InformacionBasica(props) {
                 <div className="row">
                     <div className="col-6 col-md-6">
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Calificación:</p>
-                        <p className="MediumTextFont">{props.calificación}</p>
+                        <div className="row">
+                            
+                            <div className="col-1 col-md-1 col-sm-1">
+                                <p className="MediumTextFont">{props.calificación}</p>
+                            </div>
+                            <div className="col-6 col-md-6 col-sm-6">
+                                <fieldset className="val-fieldset" ><legend></legend><span className={props.estrellas}></span></fieldset>
+                            </div>
+                        </div>
                     </div>
                     <div className="col-12 col-md-6">
 
