@@ -38,7 +38,6 @@ class GuarderiaPage extends Component {
         try {
             let localidadesController = new LocalidadesController();
             const localidades = await localidadesController.readLocalidadesyBarrios();
-            console.log(localidades);
             this.setState({ localidades: localidades })
         } catch (error) {
             console.log("ha ocurrido un error")
@@ -103,6 +102,7 @@ class GuarderiaPage extends Component {
             descripcion: "",
             horario: "",
             localidad: "",
+            precio: ""
         })
 
     }
@@ -171,7 +171,7 @@ class GuarderiaPage extends Component {
 
         if (this.state.mensaje) {
             mensaje =
-                <div class="alert alert-success" role="alert">
+                <div className="alert alert-success" role="alert">
                     {this.state.mensaje}
                 </div>
         }

@@ -91,12 +91,12 @@ class Landingpage extends Component {
                             <p>Con el servicio de VETERIANRIA de Doky puedes lograr que millones de usuarios encuentren tu veterinaria en siempre.</p>
                         </div>
                         <div className="col-12 col-sm-6 col-md-2 textcenter">
-                            <img align="middle" alt="Guardería" src={saltos} className="img-fluid mb-3" />
+                            <img align="middle" alt="Guardería" src={guarderia} className="img-fluid mb-3" />
                             <h1 className="mb-3">Guardería</h1>
                             <p>Con el servicio de GUARDERÍA de Doky puedes lograr que millones de usuarios encuentren tu guardería en todo momento.</p>
                         </div>
                         <div className="col-12 col-sm-6 col-md-2 textcenter">
-                            <img align="middle" alt="Saltos" src={guarderia} className="img-fluid mb-3" />
+                            <img align="middle" alt="Saltos" src={saltos} className="img-fluid mb-3" />
                             <h1 className="mb-3">Saltos</h1>
                             <p>Con el servicio de SALTOS de Doky ahora puede publicar la venta de la genética de tu animal mas valioso a todo el público.</p>
                         </div>
