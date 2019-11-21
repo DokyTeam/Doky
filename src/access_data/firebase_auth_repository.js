@@ -49,4 +49,8 @@ export class FirebaseAuthRepository {
         return this.firebaseInstance.auth().signOut();
     }
 
+    getUserId() {
+        return fire.auth().currentUser.uid;
+    }
+
 }

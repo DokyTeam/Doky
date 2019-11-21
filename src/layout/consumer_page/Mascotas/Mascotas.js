@@ -15,10 +15,10 @@ class Mascotas extends Component {
         this.state = {
             idpage: 'menu1',
             mascota: {
-                nombre: '',
-                fechaNacimiento: '',
-                especie: '',
-                raza: '',
+                nombre: null,
+                fechaNacimiento: null,
+                especie: null,
+                raza: null,
                 condicionesEspeciales: '',
                 enfermedades: '',
                 descipcion: '',
@@ -131,14 +131,18 @@ class Menu1 extends Component {
                     <h2 className="fs-title">Crea tu mascota</h2>
                     <h3 className="fs-subtitle">Este es el paso 1</h3>
 
-                    <input type="text" name="nombre" placeholder="Nombre" value={this.state.nombre} onChange={this.handleChange} />
-                    <input type="text" name="fechaNacimiento" placeholder="Fecha de nacimiento" value={this.state.fechaNacimiento} onChange={this.handleChange} />
-                    <input type="text" name="especie" placeholder="Especie" value={this.state.especie} onChange={this.handleChange} />
-                    <input type="text" name="raza" placeholder="Raza" value={this.state.raza} onChange={this.handleChange} />
+                    <input type="text" name="nombre" placeholder="Nombre" value={this.state.nombre} onChange={this.handleChange} required />
+                    <input type="date" name="fechaNacimiento" placeholder="Fecha de nacimiento" value={this.state.fechaNacimiento} onChange={this.handleChange} required />
+                    <input type="text" name="especie" placeholder="Especie" value={this.state.especie} onChange={this.handleChange} required />
+                    <input type="text" name="raza" placeholder="Raza" value={this.state.raza} onChange={this.handleChange} required />
                     <button type="button" name="next" className="next action-button" value="Next" onClick={
                         () => {
-                            this.props.Menucontenthandler(this.state.nombre, this.state.fechaNacimiento, this.state.especie, this.state.raza, this.props.mascota.condicionesEspeciales, this.props.mascota.enfermedades, this.props.mascota.descipcion)
-                            this.props.Mascotascontenthandler('menu2')
+                            if( this.state.especie != null &  this.state.fechaNacimiento != null & 
+                                this.state.raza != null &  this.state.especie != null
+                             ){
+                                this.props.Menucontenthandler(this.state.nombre, this.state.fechaNacimiento, this.state.especie, this.state.raza, this.props.mascota.condicionesEspeciales, this.props.mascota.enfermedades, this.props.mascota.descipcion)
+                                this.props.Mascotascontenthandler('menu2')
+                            }
                         }}>
                         Siguiente</button>
                 </fieldset>
