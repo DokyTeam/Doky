@@ -5,7 +5,6 @@ import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
 import './cartaServicio.css';
 import { Link } from 'react-router-dom';
-import { useStore } from '../../../../../utilities/Store'
 
 class CartaServicio extends Component {
 
@@ -43,6 +42,7 @@ class CartaServicio extends Component {
         if (5 === this.props.calificacion) {
             return "valoracion val-50"
         }
+        return "valoracion val-0"
     }
 
     render() {
