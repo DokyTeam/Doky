@@ -194,7 +194,7 @@ class GuarderiaPage extends Component {
                                 {mensaje}
                                 {uploadbar}
                             </div>
-                            <h2 className="TextUltraDarkColor text-center">
+                            <h2 className="TextWhiteColor text-center">
                                 Completa el síguete formulario para que tu guardería siempre este llena de animales.
                             </h2>
                         </div>
