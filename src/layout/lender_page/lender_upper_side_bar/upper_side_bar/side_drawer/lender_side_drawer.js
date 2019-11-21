@@ -7,7 +7,6 @@ import './lender_side_drawer.css';
 import icon from "./images/navbaricon.jpg";
 import {LoginController} from '../../../../../controllers/login_controller'
 import { Link } from 'react-router-dom';
-import { useStore } from '../../../../../utilities/Store'
 
 
 class SideDrawer extends Component {
@@ -27,8 +26,6 @@ class SideDrawer extends Component {
     
     render() {
         
-        const[store] = useStore();
-        const id = store();
         let drawerClasses = 'side-drawer-lender';
         if(this.props.show){
             drawerClasses = 'side-drawer-lender open';
@@ -42,7 +39,7 @@ class SideDrawer extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                        <Link to={`/Perfil/${id}`}><button className="thebuttlend WhiteColor" >Perfil </button></Link>
+                        <Link to={`/Perfil`}><button className="thebuttlend WhiteColor" >Perfil </button></Link>
                             <hr/>
                         </div>
                         <div className="col-12 www">

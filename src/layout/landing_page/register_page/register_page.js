@@ -5,7 +5,7 @@ import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
 import './register_page.css';
 
-import background from "./images/background.jpg";
+import background from "./images/background.webp";
 
 import { Menu1 } from './components/menu1';
 import { Menu2 } from './components/menu2';

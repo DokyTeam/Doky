@@ -32,7 +32,7 @@ class ConsumerContainer extends Component {
                         <Route path="/Paseos/:id" exact component={PaseosVisualizar} />
                         <Route path="/Veterinaria" exact component={VeterinariaPage} />
                         <Route path="/Saltos" exact component={SaltosPage} />
-                        <Route path="/Perfil/:id" exact component={Perfil} />
+                        <Route path="/Perfil" exact component={Perfil} />
                         <Route path="/Mascotas" exact component={Mascotas} />
                         <Route path="/" component={Homepage} />
                     </Switch>
