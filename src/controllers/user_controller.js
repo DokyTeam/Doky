@@ -49,6 +49,7 @@ export class UserController {
     //-una funcion que se ejecuta al cargar la imagen
     //-una fucnion que se ejecuta al ocurrir un error
     //-una funcion que se ejecuta al cargar la imagen
+    
     addImagen(img, loadImg, error, fullyLoaded) {
         const task = this.firebaseStorageRespository.storageData(`/FotosPerfil/${this.getUserId()}`, img);
 

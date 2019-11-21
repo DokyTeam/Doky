@@ -26,6 +26,12 @@ const addImagen = (img, loadImg, error, fullyLoaded,getUserId,getaIdServicio,nom
     )
 }
 
+const updateServicio = async (email, tipoServicio,idServicio, atributes) => {
+    const update = new FirebaseUpdateRepository();
+    let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + email + "/" + tipoServicio + "susuario/";
+    return update.updateAttributesDocument(direccion,idServicio,atributes)
+}
+
 export class ServiciosDispController {
 
     constructor() {
@@ -33,6 +39,7 @@ export class ServiciosDispController {
         this.firebaseCreateRepository = new FirebaseCreateRepository();
         this.firebaseUpdateRepository = new FirebaseUpdateRepository();
         this.firebaseAuthRepository = new FirebaseAuthRepository();
+        this.firebaseUpdateRepository = new FirebaseUpdateRepository();
     }
 
     promedio = (suma, cantidad) => {
@@ -216,14 +223,15 @@ export class ServiciosDispController {
     }
 
     // crea el servicio en la base de datos
-    // recibe el email del prestador y el objeto guarderia que incluye:
+    // recibe el idUser del prestador y el objeto guarderia que incluye:
     // el nombre de la guarderia y los demas atributos.
-    writeServicio(email, tipoServicio, servicio) {
+    writeServicio(idUser, tipoServicio, servicio) {
         servicio.sumapuntuacion = 0;
         servicio.cantidadpuntuacion = 0;
-        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + email + "/" + tipoServicio + "susuario/";
-        return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, servicio.nombre, servicio);
+        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idUser + "/" + tipoServicio + "susuario/";
+        return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, servicio.nombre, servicio,{merge:true});
     }
+
 
     //Para TODAS las fuciones
     //-img: Imagen que se va a enviar tipo file
@@ -235,7 +243,12 @@ export class ServiciosDispController {
         try{
             const idUser = this.firebaseAuthRepository.getUserId();
             await this.writeServicio(idUser, nombreServicio, servicio);
-            addImagen(img, loadImg, error, fullyLoaded,idUser,servicio.nombre)
+            addImagen(img, loadImg, error, 
+                async (url) =>{
+                    await updateServicio(idUser,nombreServicio,servicio.nombre,{img:url})
+                    fullyLoaded(url)
+                }
+                ,idUser,servicio.nombre)
         }catch(errorCatch){
             console.log(errorCatch)
         }

@@ -10,10 +10,5 @@ export class FirebaseUpdateRepository {
     updateAttributesDocument(nameCollection, idDoc, attributes){
         return this.firebaseInstance.firestore().collection(nameCollection).doc(idDoc).update(attributes);
     }
-
-
     
-    
-
-
 }
