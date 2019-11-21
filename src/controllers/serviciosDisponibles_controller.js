@@ -2,6 +2,29 @@ import { FirebaseReadRepository } from '../access_data/firebase_read_repository'
 import { FirebaseCreateRepository } from '../access_data/firebase_create_repository';
 import { FirebaseUpdateRepository } from '../access_data/firebase_update_repository';
 import { FirebaseAuthRepository } from '../access_data/firebase_auth_repository';
+import { FirebaseStorageRespository } from '../access_data/firebase_storage_repository';
+
+//Servicios disp controller
+const addImagen = (img, loadImg, error, fullyLoaded,getUserId,getaIdServicio,nombreServicio) => {
+    const firebaseStorageRespository = new FirebaseStorageRespository();
+    const task = firebaseStorageRespository.storageData(`/Servicios/${nombreServicio}/${getUserId}/${getaIdServicio}`, img);
+
+    task.on('state_changed',
+        snapshot => {
+            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            loadImg(percentage)
+        },
+        error,
+        async () => {
+            try {
+                let url = await task.snapshot.ref.getDownloadURL();
+                fullyLoaded(url)
+            } catch (errorCatch) {
+                error(errorCatch)
+            }
+        }
+    )
+}
 
 export class ServiciosDispController {
 
@@ -202,20 +225,36 @@ export class ServiciosDispController {
         return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, servicio.nombre, servicio);
     }
 
-    writeServicioGuarderia(email, guarderia) {
-        return this.writeServicio(email, "guarderia", guarderia);
+    //Para TODAS las fuciones
+    //-img: Imagen que se va a enviar tipo file
+    //-loadImg: Una funcion que se ejecuta al cargar la imagen
+    //-error: Una fucnion que se ejecuta al ocurrir un error
+    //-fullyLoaded: Una funcion que se ejecuta al cargar la imagen
+
+    async fullServicio(servicio,img, loadImg, error, fullyLoaded,addImagen,nombreServicio){
+        try{
+            const idUser = this.firebaseAuthRepository.getUserId();
+            await this.writeServicio(idUser, nombreServicio, servicio);
+            addImagen(img, loadImg, error, fullyLoaded,idUser,servicio.nombre)
+        }catch(errorCatch){
+            console.log(errorCatch)
+        }
     }
 
-    writeServicioPaseo(email, paseo) {
-        return this.writeServicio(email, "paseo", paseo);
+    writeServicioGuarderia(guarderia,img, loadImg, error, fullyLoaded) {
+        this.fullServicio(guarderia,img, loadImg, error, fullyLoaded,this.addImagenGuarderia,"guarderia")
     }
 
-    writeServicioVeterinaria(email, veterinaria) {
-        return this.writeServicio(email, "veterinaria", veterinaria);
+    writeServicioPaseo(paseo,img, loadImg, error, fullyLoaded) {
+        this.fullServicio(paseo,img, loadImg, error, fullyLoaded,this.addImagenPaseo,"paseo")
     }
 
-    writeServicioSalto(email, salto) {
-        return this.writeServicio(email, "salto", salto);
+    writeServicioVeterinaria(veterinaria,img, loadImg, error, fullyLoaded) {
+        this.fullServicio(veterinaria,img, loadImg, error, fullyLoaded,this.addImagenVeterinaria,"veterinaria")
+    }
+
+    writeServicioSalto(salto,img, loadImg, error, fullyLoaded) {
+        this.fullServicio(salto,img, loadImg, error, fullyLoaded,this.addImagenSalto,"salto")
     }
 
     // recibe el email del prestador que se va a calificar, el tipo de servicio (guarderia, veterinaria, salto, paseo) y el valor de la nueva puntuacion
@@ -273,6 +312,32 @@ export class ServiciosDispController {
 
     readGuarderiaFullInfo(userId, idGuarderia) {
         return this.serviciosFullInfo('guarderia', userId, idGuarderia);
+    }
+
+
+    //Add imagen a los servicios
+    
+    //Para TODAS las fuciones
+    //Reciben 4 parametros:
+    //-imagen que se va a enviar tipo file
+    //-una funcion que se ejecuta al cargar la imagen
+    //-una fucnion que se ejecuta al ocurrir un error
+    //-una funcion que se ejecuta al cargar la imagen
+
+    addImagenPaseo(img, loadImg, error, fullyLoaded,idUser,idPaseo){
+        return addImagen(img, loadImg, error, fullyLoaded,idUser,idPaseo,"Paseos")
+    }
+
+    addImagenGuarderia(img, loadImg, error, fullyLoaded,idUser,idGuarderia){
+        return addImagen(img, loadImg, error, fullyLoaded,idUser,idGuarderia,"Guarderias")
+    }
+
+    addImagenSalto(img, loadImg, error, fullyLoaded,idUser,idSalto){
+        return addImagen(img, loadImg, error, fullyLoaded,idUser,idSalto,"Saltos")
+    }
+
+    addImagenVeterinaria(img, loadImg, error, fullyLoaded,idUser,idVeterinaria){
+        return addImagen(img, loadImg, error, fullyLoaded,idUser,idVeterinaria,"Veterinarias")
     }
 
 }
