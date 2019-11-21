@@ -30,19 +30,50 @@ class Menu2 extends Component {
                     <p className="MediumTextFont BigTextFont TextDarkMainColor">Contacto</p>
                     <form>
                         <div className="input-group mb-2 loginandregisterinput">
-                            <input type="text" name="ciudad" value={this.state.ciudad} onChange={this.handleChange} className="form-control" placeholder="Ciudad" aria-label="Ciudad" aria-describedby="basic-addon1"/>
+                            <input 
+                                type="text" 
+                                name="ciudad" 
+                                value={this.state.ciudad} 
+                                onChange={this.handleChange} 
+                                className="form-control" 
+                                placeholder="Ciudad" aria-label="Ciudad" 
+                                aria-describedby="basic-addon1"/>
                         </div>
                         <br/>
                         <div className="input-group mb-2 loginandregisterinput">
-                            <input type="text" name="barrio" value={this.state.barrio} onChange={this.handleChange} className="form-control" placeholder="Barrio" aria-label="Barrio" aria-describedby="basic-addon1"/>
+                            <input 
+                                type="text" 
+                                name="barrio" 
+                                value={this.state.barrio} 
+                                onChange={this.handleChange} 
+                                className="form-control" 
+                                placeholder="Barrio" 
+                                aria-label="Barrio" 
+                                aria-describedby="basic-addon1"/>
                         </div>
                         <br/>
                         <div className="input-group mb-2 loginandregisterinput">
-                            <input type="text" name="celular" value={this.state.celular} onChange={this.handleChange} className="form-control" placeholder="Celular" aria-label="Celular" aria-describedby="basic-addon1"/>
+                            <input 
+                                type="number" 
+                                name="celular" 
+                                value={this.state.celular} 
+                                onChange={this.handleChange} 
+                                className="form-control" 
+                                placeholder="Celular" 
+                                aria-label="Celular" 
+                                aria-describedby="basic-addon1"/>
                         </div>
                         <br/>
                         <div className="input-group mb-2 loginandregisterinput">
-                            <input type="text" name="telefono" value={this.state.telefono} onChange={this.handleChange} className="form-control" placeholder="Telefono" aria-label="Telefono" aria-describedby="basic-addon1"/>
+                            <input 
+                                type="number" 
+                                name="telefono" 
+                                value={this.state.telefono} 
+                                onChange={this.handleChange} 
+                                className="form-control" 
+                                placeholder="Telefono" 
+                                aria-label="Telefono" 
+                                aria-describedby="basic-addon1"/>
                         </div>
                         <br/>
                     </form>

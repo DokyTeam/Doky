@@ -62,6 +62,9 @@ div.show-image:hover h1.place-text{
         width: 250px;
         height: 125px;
     }
+    .hover-img{
+        top: 62%;
+    }
 }
 
 @media only screen and (max-width:1024px){
@@ -76,6 +79,9 @@ div.show-image:hover h1.place-text{
     div.show-image{
         width: 200px;
         height: 200px;
+    }
+    .hover-img{
+        top: 74%;
     }
 }
 
