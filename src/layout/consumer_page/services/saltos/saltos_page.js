@@ -35,7 +35,8 @@ class SaltosPage extends Component {
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                                 Saltos
                             </h1>
-                            <ServiciosContenedor json={this.state.animales}></ServiciosContenedor>
+                            
+                            <ServiciosContenedor json={this.state.animales} type="Saltos"></ServiciosContenedor>
 
                         </div>
                     </div>

@@ -95,7 +95,6 @@ class GuarderiaVisualizar extends Component {
                         <div className="col-12">
 
                         </div>
-                        {console.log(this.state.guarderiaInfo)}
                         <InformacionBasica
 
 
