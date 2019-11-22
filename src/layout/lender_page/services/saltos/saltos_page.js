@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
-import background from './images/background.jpg'
+import background from './images/background.webp';
 import defaultimg from './images/defaultimg.webp';
 
 import { NavigationSideBar } from '../navigation_side_bar/navigation_side_bar';
@@ -177,12 +177,12 @@ class SaltosPage extends Component {
                 {uploadimgstate}
                 <img src={background} id="bg" alt="" />
                 <NavigationSideBar
-                    menucolor="#f4d301"
+                    menucolor="#fee74d"
                 />
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-12 col-md-6 textcenter">
-                            <h1 className="text-center mb-4" style={{ color: '#f4d301' }}>
+                            <h1 className="text-center mb-4" style={{ color: '#fee74d' }}>
                                 <strong>Saltos</strong>
                             </h1>
                             <img className="consusmerimg mb-4" src={this.state.imageurl} alt="" />
@@ -195,7 +195,7 @@ class SaltosPage extends Component {
                             </h2>
                         </div>
                         <div className="col-12 col-md-6">
-                            <div className="card textcenter">
+                            <div className="card textcenter mb-5">
                                 <div className="card-body">
                                     <h2 className=" card-title TextDarkMainColor mb-3">Formulario</h2>
                                     <form>

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
-import background from './images/background.jpg'
+import background from './images/background.webp';
 import defaultimg from './images/defaultimg.webp';
 
 import { NavigationSideBar } from '../navigation_side_bar/navigation_side_bar';
@@ -199,7 +199,7 @@ class GuarderiaPage extends Component {
                             </h2>
                         </div>
                         <div className="col-12 col-md-6">
-                            <div className="card textcenter">
+                            <div className="card textcenter mb-5">
                                 <div className="card-body">
                                     <h2 className=" card-title TextDarkMainColor mb-3">Formulario</h2>
                                     <form>
