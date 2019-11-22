@@ -95,12 +95,11 @@ class Perfil extends Component {
         return (
             <div>
                 {uploadimgstate}
-                <div className="container-fluid" style={{ padding: "0" }}>
+                <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-12">
                             <br />
                         </div>
-
                         <InformacionBasica
                             nombre={nombre}
                             appellido={appellido}
@@ -108,11 +107,9 @@ class Perfil extends Component {
                             ciudad={ciudad}
                             barrio={barrio}
                             fotosrc={fotosrc}
-                            onClick={() => { this.uploadPageHandler(true) }}
+                            onClick={() =>{this.uploadPageHandler(true)}}
                         />
-
                     </div>
-
                     <div className="row">
                         <div className="col-12"><hr /></div>
                     </div>
@@ -124,10 +121,9 @@ class Perfil extends Component {
                             <p className="BigTextFont TextDarkMainColor">{interesesname}</p>
                         </div>
                         <div className="col-12 col-md-7 d-none d-sm-block">
-                            <p className="BigTextFont TextDarkMainColor">Contacto</p>
+                            <p className="BigTextFont TextDarkMainColor">Contacto Laboral</p>
                         </div>
                     </div>
-
                     <div className="row align-items-center">
                         <div className="col-12 col-md-5 d-block d-md-none">
                             <div className="textcenter">
@@ -137,7 +133,7 @@ class Perfil extends Component {
                         <div className="col-12 col-md-5 textcenter d-none d-md-block">
                             {cardlist}
                         </div>
-                        <Contacto celular={celular} fijo={fijo} correo1={correo1} />
+                        <Contacto celular={celular} fijo={fijo} correo1={correo1}/>
                     </div>
                 </div>
             </div>
