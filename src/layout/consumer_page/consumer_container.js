@@ -7,7 +7,8 @@ import { PaseosPage } from './services/paseos/paseos_page';
 import { VeterinariaPage } from './services/veterinaria/veterinaria_page';
 import { SaltosPage } from './services/saltos/saltos_page';
 import { Perfil } from './Perfil/perfil_consumidor';
-import { Mascotas } from './Mascotas/Mascotas';
+import { RegistroMascotas } from './Mascotas/registro_mascotas/Mascotas';
+import { Mascotas } from './Mascotas/ver_mascotas/mascotas';
 import { GuarderiaVisualizar } from './services/guarderia/guarderia_visualizar';
 import {VeterinariaVisualizar} from './services/veterinaria/veterinaria_visualizar';
 import {SaltosVisualizar} from './services/saltos/saltos_visualizar';
@@ -33,6 +34,7 @@ class ConsumerContainer extends Component {
                         <Route path="/Veterinaria" exact component={VeterinariaPage} />
                         <Route path="/Saltos" exact component={SaltosPage} />
                         <Route path="/Perfil" exact component={Perfil} />
+                        <Route path="/RegistroMascotas" exact component={RegistroMascotas} />
                         <Route path="/Mascotas" exact component={Mascotas} />
                         <Route path="/" component={Homepage} />
                     </Switch>

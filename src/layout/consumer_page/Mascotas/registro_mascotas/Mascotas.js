@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
-import '../../global_css/textcolors.css';
-import '../../global_css/colors.css';
-import '../../global_css/fonts.css';
+import { Link } from 'react-router-dom';
+
+import '../../../global_css/textcolors.css';
+import '../../../global_css/colors.css';
+import '../../../global_css/fonts.css';
 import './Mascotas.css';
-import foto2 from './foto2.jpg'
-import { UserController } from '../../../controllers/user_controller';
+import foto from './foto.jpg'
+import { UserController } from '../../../../controllers/user_controller';
 
 
-class Mascotas extends Component {
+class RegistroMascotas extends Component {
 
     constructor(props) {
         super(props)
@@ -78,7 +80,7 @@ class Mascotas extends Component {
                     <div className="row align-items-top">
                         <div className="col-md-12 col-lg-6 " >
 
-                            <img className="imga" src={foto2} alt="Foto Mascotas"></img>
+                            <img className="imga" src={foto} alt="Foto Mascotas"></img>
 
                         </div>
                         <div className="col-md-12 col-lg-6 " >
@@ -99,7 +101,7 @@ class Mascotas extends Component {
     }
 }
 
-export { Mascotas };
+export { RegistroMascotas };
 
 class Menu1 extends Component {
 
@@ -277,6 +279,9 @@ class Menu4 extends Component {
                     <h2 className="fs-title">Registro exitoso</h2>
                     <h3 className="fs-subtitle">Su registro se ha realizado satisfactoriamente</h3>
                     <h3 className="fs-subtitle">Desea realizar un nuevo registro</h3>
+                    <Link to={`/Mascotas`}><button type="button" name="previous" className="previous action-button" value="Previous">
+                        Mascotas
+                    </button></Link> 
                     <button type="button" name="previous" className="previous action-button" value="Previous" onClick={() => {
                         this.props.Menucontenthandler(this.props.mascota.nombre,
                             this.props.mascota.fechaNacimiento, this.props.mascota.especie,
@@ -286,7 +291,6 @@ class Menu4 extends Component {
                     }
                     }>
                         Nueva</button>
-
                 </fieldset>
             </div>
         );
