@@ -71,7 +71,7 @@ class Mascotas extends Component {
 
         return (
             <div className="container">
-                <div className="row align-items-center">
+                <div className="row">
                     <div className="col-12 col-md-6">
                         <MascotasCard
                             nombre={nombre}
