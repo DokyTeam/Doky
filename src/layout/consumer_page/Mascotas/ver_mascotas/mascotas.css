@@ -1,0 +1,34 @@
+.scrollmascotas{
+    display: flex;
+    overflow-x: auto;
+}
+
+.scrollmascotas .scrollmascota{
+    min-width: 90%;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.scrollmascota :hover{
+    background: #ccf0cf;
+}
+
+.mascotasprevbutt{
+    background: none;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+}
+
+
+.thecardmascbut {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.huellaimg{
+    width: 40px;
+}
