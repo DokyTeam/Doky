@@ -183,7 +183,7 @@ class PaseosPage extends Component {
                 {uploadimgstate}
                 <img src={background} id="bg" alt="" />
                 <NavigationSideBar
-                    menucolor="##09529a"
+                    menucolor="#09529a"
                 />
                 <div className="container">
                     <div className="row align-items-center">
