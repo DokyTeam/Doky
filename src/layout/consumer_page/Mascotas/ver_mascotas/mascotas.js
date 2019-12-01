@@ -86,14 +86,20 @@ class Mascotas extends Component {
                     <div className="col-12 col-md-6">
                         <div className="card mb-4">
                             <div className="card-body textcenter">
-                                <h2 className=" card-title TextDarkMainColor mb-3">Tus Mascotas</h2>
+                                <h1 className=" card-title TextDarkMainColor mb-4">Registrar Mascota</h1>
                                 <p className="card-subtitle text-muted mb-3">Con Doky puedes tener la información de todas tus mascotas siempre a la mano.</p>
                                 <Link to={`/RegistroMascotas`}><button className="btn btn-outline-success">Añadir Mascota</button></Link>
                             </div>
                         </div>
-                        <hr/>
-                        <div className="scrollmascotas">
-                            {table}
+                        <hr />
+                        <div className="card mb-3">
+                            <div className="card-body textcenter">
+                                <h1 className="card-title TextDarkMainColor">Tus Mascotas</h1>
+                                <br/>
+                                <div className="scrollmascotas border BackgroundColor">
+                                    {table}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

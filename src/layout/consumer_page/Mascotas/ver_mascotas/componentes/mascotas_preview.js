@@ -10,21 +10,19 @@ import '../mascotas.css';
 
 export default function MascotasPrev(props) {
     return (
-        <div className="scrollmascota WhiteColor">
-            <button className='mascotasprevbutt' onClick={() => { props.mascotashandler(props.id) }}>
-                <div className="thecardmascbut">
-                    <div className="textcenter ml-5">
-                        <img className="huellaimg" src={huella} alt =""/>
-                        <h1 className='mt-1 ml-0 TextDarkMainColor'>{props.nombre}</h1>
-                    </div>
-                    <div className='mt-5 mb-5'>
-                        <p className='mb-0 ultraSmallTextoFont TextAltMainColor'>Especie:</p>
-                        <p className='mt-0 MediumTextFont'>{props.especie}</p>
-                        <p className='mb-0 ultraSmallTextoFont TextAltMainColor'>Raza:</p>
-                        <p className='mt-0 MediumTextFont'>{props.raza}</p>
-                    </div>
+        <div className="scrollmascota WhiteColor" onClick={() => { props.mascotashandler(props.id) }}>
+            <div className="thecardmascbut border">
+                <div className="textcenter ml-md-5 mt-3 mt-sm-0">
+                    <img className="huellaimg" src={huella} alt="" />
+                    <h2 className='mt-1 TextDarkMainColor'>{props.nombre}</h2>
                 </div>
-            </button>
+                <div className='mt-2 mt-sm-5'>
+                    <p className='mb-0 ultraSmallTextoFont TextAltMainColor'>Especie:</p>
+                    <p className='mt-0 MediumTextFont'>{props.especie}</p>
+                    <p className='mb-0 ultraSmallTextoFont TextAltMainColor'>Raza:</p>
+                    <p className='mt-0 MediumTextFont'>{props.raza}</p>
+                </div>
+            </div>
         </div>
     );
 }
