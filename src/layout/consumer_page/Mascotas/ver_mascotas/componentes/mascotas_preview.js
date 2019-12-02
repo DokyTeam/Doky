@@ -16,7 +16,7 @@ export default function MascotasPrev(props) {
                     <img className="huellaimg" src={huella} alt="" />
                     <h2 className='mt-1 TextDarkMainColor'>{props.nombre}</h2>
                 </div>
-                <div className='mt-2 mt-sm-5'>
+                <div className='mt-2 mt-sm-3'>
                     <p className='mb-0 ultraSmallTextoFont TextAltMainColor'>Especie:</p>
                     <p className='mt-0 MediumTextFont'>{props.especie}</p>
                     <p className='mb-0 ultraSmallTextoFont TextAltMainColor'>Raza:</p>
