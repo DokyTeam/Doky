@@ -13,10 +13,10 @@ export default function MascotasCard(props) {
     if(props.nombre){
         return (
             <div className="card textcenter mb-4">
-                <div className="textcenter mt-2">
+                <div className="textcenter mt-4">
                     <img className="mascotaiconimg" src={pet_icon} alt="" />
                 </div>
-                <h1 className='TextDarkMainColor mb-2 mt-2'>{props.nombre}</h1>
+                <h1 className='TextDarkMainColor mb-2 mt-3'>{props.nombre}</h1>
                 <p className='ultraSmallTextoFont TextAltMainColor mb-0'>Especie</p>
                 <p className='MediumTextFont'>{props.especie}</p>
                 <p className='ultraSmallTextoFont TextAltMainColor mb-0'>Raza</p>
