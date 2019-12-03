@@ -44,6 +44,22 @@ class Mascotas extends Component {
 
         let nombre, especie, raza, fechaNacimiento, condicionesEspeciales, enfermedades, descripcion;
         let table = [];
+        let scroll;
+
+        if (this.state.mascotas.length !== 0) {
+            scroll = <div>
+                <hr />
+                <div className="card mb-3">
+                    <div className="card-body textcenter">
+                        <h1 className="card-title TextDarkMainColor">Tus Mascotas</h1>
+                        <br />
+                        <div className="scrollmascotas border BackgroundColor">
+                            {table}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
 
         this.state.mascotas.map((data, index) => {
             if (index === this.state.mascotaactual) {
@@ -91,16 +107,7 @@ class Mascotas extends Component {
                                 <Link to={`/RegistroMascotas`}><button className="btn btn-outline-success">Añadir Mascota</button></Link>
                             </div>
                         </div>
-                        <hr />
-                        <div className="card mb-3">
-                            <div className="card-body textcenter">
-                                <h1 className="card-title TextDarkMainColor">Tus Mascotas</h1>
-                                <br/>
-                                <div className="scrollmascotas border BackgroundColor">
-                                    {table}
-                                </div>
-                            </div>
-                        </div>
+                        {scroll}
                     </div>
                 </div>
             </div>
