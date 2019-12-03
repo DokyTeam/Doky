@@ -132,18 +132,26 @@ export class ServiciosDispController {
     }
 
     readServicioGuarderiaFiltroPrecio(precioMin, precioMax) {
+        precioMin = parseFloat(precioMin);
+        precioMax = parseFloat(precioMax);
         return this.readServicioFiltroPrecio(precioMin, precioMax, "guarderia");
     }
 
     readServicioPaseoFiltroPrecio(precioMin, precioMax) {
+        precioMin = parseFloat(precioMin);
+        precioMax = parseFloat(precioMax);
         return this.readServicioFiltroPrecio(precioMin, precioMax, "paseo");
     }
 
     readServicioVeterinariaFiltroPrecio(precioMin, precioMax) {
+        precioMin = parseFloat(precioMin);
+        precioMax = parseFloat(precioMax);
         return this.readServicioFiltroPrecio(precioMin, precioMax, "veterinaria");
     }
 
     readServicioSaltoFiltroPrecio(precioMin, precioMax) {
+        precioMin = parseFloat(precioMin);
+        precioMax = parseFloat(precioMax);
         return this.readServicioFiltroPrecio(precioMin, precioMax, "salto");
     }
 
