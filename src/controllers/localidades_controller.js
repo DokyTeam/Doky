@@ -1,25 +1,24 @@
-import fire from '../config/Fire';
+
+
+import {FirebaseReadRepository} from '../access_data/firebase_read_repository';
+import {FirebaseCreateRepository} from '../access_data/firebase_create_repository';
 
 
 
 export class LocalidadesController {
 
     constructor() {
-        this.firebaseInstance = fire;
+        this.firebaseReadRepository = new FirebaseReadRepository();
+        this.firebaseCreateRepository = new FirebaseCreateRepository();
     }
-
-
-
 
     readLocalidadesyBarrios() {
 
         let localidades = [];
-        return this.firebaseInstance.firestore().collection("localidades").get().then(
+        return this.firebaseReadRepository.readCollection("localidades").get().then(
             function (querySnapshot) {
                 querySnapshot.forEach(
                     function (doc) {
-                        // console.log(doc.id, ' ',doc.data());
-                        //console.log("entra");
                         let res = {
                             "localidad": doc.id,
                             "barrios": doc.data().barrios
@@ -33,4 +32,18 @@ export class LocalidadesController {
 
     }
 
+
+    createLocalidades(nombreLocalidad, barrios){
+        return this.firebaseCreateRepository.writeCollectionIdDefined("localidades",nombreLocalidad,barrios);
+    }
+
+
 }
+
+
+
+
+
+
+
+

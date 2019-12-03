@@ -5,45 +5,73 @@ import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
 import './perfil.css';
 import interesesjson from './json/intereses.json';
-import { GeneralCards } from './card/generalcard';
+import { GeneralCards } from './components_perfil/card/generalcard';
 import { UserController } from '../../../controllers/user_controller';
-import { useStore } from '../../../utilities/Store'
+import user_image from './images/user-icon.webp'
+import { UploadPage } from '../../../components/upload_page/upload_page';
+import InformacionBasica from '../../../components/Perfil/informacion_basica'
+import Contacto from '../../../components/Perfil/contacto'
 
 class Perfil extends Component {
-
     state = {
-        userInfo: []
+        userInfo: [],
+        uploadimgstate: false,
+        percentageImageLoading: 0,
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.loadUserInfo()
+    }
+
+    async loadUserInfo() {
         try {
             let userInfoSend = []
-            const[store] = useStore();
             var userController = new UserController();
-            const userInfo = await userController.getInfomracionUsuario(store());
-            userInfoSend.push(userInfo)
-            this.setState({userInfo:userInfoSend})
+            let idUser = userController.getUserId();
+            const userInfo = await userController.getInfomracionUsuario(idUser);
+            userInfoSend.push(userInfo);
+            this.setState({ userInfo: userInfoSend });
+            this.uploadPageHandler(false);
         } catch (error) {
             console.log(error)
         }
     }
 
+    uploadPageHandler = (value) => {
+        this.setState({
+            uploadimgstate: value,
+            percentageImageLoading: 0
+        });
+    }
+
+    perfilImghandler = async (img) => {
+        const userController = new UserController();
+        userController.addImagen(
+            img,
+            percentage => { this.setState({ percentageImageLoading: percentage }) },
+            error => { console.log(error) },
+            () => {
+                this.setState({ percentageImageLoading: 100 })
+                this.loadUserInfo();
+            }
+        )
+    }
+
     render() {
 
-        let nombre, appellido, celular, fijo, fecha_nacimiento, ciudad, barrio, correo1, correo2, fotosrc;
+        let nombre, appellido, celular, fijo, fecha_nacimiento, ciudad, barrio, correo1, fotosrc;
         let interesesname = interesesjson.nombre, interesarr = interesesjson.intereses;
 
         this.state.userInfo.map((data) => {
-            nombre = data.nombre;
-            appellido = data.apellido;
+            nombre = data.nombres;
+            appellido = data.apellidos;
             celular = data.celular;
-            fijo = data.fijo;
-            fecha_nacimiento = data.fecha_nacimiento;
+            fijo = data.telefono;
+            fecha_nacimiento = data.fecha;
             ciudad = data.ciudad;
             barrio = data.barrio;
-            correo1 = data.correo1;
-            correo2 = data.correo2;
-            fotosrc = data.foto;
+            correo1 = data.correo;
+            fotosrc = data.foto || user_image;
             return null;
         });
 
@@ -52,75 +80,60 @@ class Perfil extends Component {
             return <GeneralCards text={data} key={index} />
         }));
 
+        let uploadimgstate;
+
+        if (this.state.uploadimgstate) {
+            uploadimgstate =
+                <UploadPage
+                    percentageImageLoading={this.state.percentageImageLoading}
+                    onClickCancelar={() => this.uploadPageHandler(false)}
+                    foto={fotosrc}
+                    onClickActualizar={(img) => this.perfilImghandler(img)}
+                />
+        }
+
         return (
-            <div className="container-fluid">
-                <div className="row align-items-center">
-                    <div className="col-12">
-                        <h1 className="MediumTextFont perftext">Perfil</h1>
-                        <hr />
+            <div>
+                {uploadimgstate}
+                <div className="container-fluid">
+                    <div className="row align-items-center">
+                        <div className="col-12">
+                            <br />
+                        </div>
+                        <InformacionBasica
+                            nombre={nombre}
+                            appellido={appellido}
+                            fecha_nacimiento={fecha_nacimiento}
+                            ciudad={ciudad}
+                            barrio={barrio}
+                            fotosrc={fotosrc}
+                            onClick={() =>{this.uploadPageHandler(true)}}
+                        />
                     </div>
-                    <div className="col-12 col-md-5">
-                        <img className="userimg" src={fotosrc} title={nombre} alt={nombre}></img>
+                    <div className="row">
+                        <div className="col-12"><hr /></div>
                     </div>
-                    <div className="col-12 col-md-7">
-                        <p className="MediumTextFont BigTextFont TextDarkMainColor">Información básica</p>
-                        <div className="row">
-                            <div className="col-12 col-md-6">
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Nombre:</p>
-                                <p className="MediumTextFont">{nombre}</p>
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Apellido:</p>
-                                <p className="MediumTextFont">{appellido}</p>
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Fecha de nacimiento:</p>
-                                <p className="MediumTextFont">{fecha_nacimiento}</p>
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Ciudad:</p>
-                                <p className="MediumTextFont">{ciudad}</p>
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Barrio:</p>
-                                <p className="MediumTextFont">{barrio}</p>
-                            </div>
+                    <div className="row">
+                        <div className="col-12 col-md-5 d-block d-sm-none">
+                            <p className="BigTextFont TextDarkMainColor">{interesesname}</p>
+                        </div>
+                        <div className="col-12 col-md-5 textcenter d-none d-sm-block">
+                            <p className="BigTextFont TextDarkMainColor">{interesesname}</p>
+                        </div>
+                        <div className="col-12 col-md-7 d-none d-sm-block">
+                            <p className="BigTextFont TextDarkMainColor">Contacto Laboral</p>
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-12"><hr /></div>
-                </div>
-                <div className="row">
-                    <div className="col-12 col-md-5 d-block d-sm-none">
-                        <p className="BigTextFont TextDarkMainColor">{interesesname}</p>
-                    </div>
-                    <div className="col-12 col-md-5 textcenter d-none d-sm-block">
-                        <p className="BigTextFont TextDarkMainColor">{interesesname}</p>
-                    </div>
-                    <div className="col-12 col-md-7 d-none d-sm-block">
-                        <p className="BigTextFont TextDarkMainColor">Contacto</p>
-                    </div>
-                </div>
-                <div className="row align-items-center">
-                    <div className="col-12 col-md-5 d-block d-md-none">
-                        <div className="textcenter">
+                    <div className="row align-items-center">
+                        <div className="col-12 col-md-5 d-block d-md-none">
+                            <div className="textcenter">
+                                {cardlist}
+                            </div>
+                        </div>
+                        <div className="col-12 col-md-5 textcenter d-none d-md-block">
                             {cardlist}
                         </div>
-                    </div>
-                    <div className="col-12 col-md-5 textcenter d-none d-md-block">
-                        {cardlist}
-                    </div>
-                    <div className="col-12 col-md-7">
-                        <p className="BigTextFont TextDarkMainColor d-block d-sm-none">Contacto</p>
-                        <div className="row">
-                            <div className="col-12 col-md-6">
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Celular:</p>
-                                <p className="SmallTextFont">{celular}</p>
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Teléfono:</p>
-                                <p className="SmallTextFont">{fijo}</p>
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Correo Principal:</p>
-                                <p className="SmallTextFont">{correo1}</p>
-                                <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Correo Secundario:</p>
-                                <p className="SmallTextFont">{correo2}</p>
-                            </div>
-                        </div>
+                        <Contacto celular={celular} fijo={fijo} correo1={correo1}/>
                     </div>
                 </div>
             </div>

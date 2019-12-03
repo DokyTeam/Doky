@@ -1,12 +1,14 @@
 .toggle_button{
-    height: 24px;
-    width: 32px;
     background: transparent;
     border: none;
+    border-radius: 15px;
     cursor: pointer;
+    padding: 5px;
+    height: 48px;
+    width: 90px;
 }
 
 .toggle_button:hover{
-    color: #4d2f16;
+    font-size: 1.9em;
 }
 

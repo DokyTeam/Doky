@@ -14,12 +14,36 @@ class SaltosPage extends Component {
     }
 
     async componentDidMount() {
+        this.readAllSaltos();
+    }
+
+    readAllSaltos = async () => {
         try {
             var serviciosDispController = new ServiciosDispController();
             const animales = await serviciosDispController.readServicioSalto();
-            this.setState({animales:animales});
+            this.setState({ animales: animales });
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    filterByLocalidad = async (localidad) => {
+        if (localidad) {
+            var serviciosDispController = new ServiciosDispController();
+            const animales = await serviciosDispController.readServicioSaltoFiltroLocalidad(localidad);
+            this.setState({ animales: animales })
+        } else {
+            this.readAllSaltos();
+        }
+    }
+
+    filtrarPorPrecio = async (min = 0, max = 0) => {
+        if (min && max) {
+            var serviciosDispController = new ServiciosDispController();
+            const animales = await serviciosDispController.readServicioSaltoFiltroPrecio(min, max);
+            this.setState({ animales: animales });
+        } else {
+            this.readAllSaltos();
         }
     }
 
@@ -29,13 +53,14 @@ class SaltosPage extends Component {
                 <div className="container-fluid">
                     <div className="row align-items-top">
                         <div className="col-md-12 col-lg-3 " >
-                            <Barra consumercontenthandler={this.props.consumercontenthandler}/>
+                            <Barra filterByLocalidad={this.filterByLocalidad} filtrarPorPrecio={this.filtrarPorPrecio} />
                         </div>
                         <div className="col-md-12 col-lg-9 "  >
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                                 Saltos
                             </h1>
-                            <ServiciosContenedor json={this.state.animales}></ServiciosContenedor>
+
+                            <ServiciosContenedor json={this.state.animales} type="Saltos"></ServiciosContenedor>
 
                         </div>
                     </div>

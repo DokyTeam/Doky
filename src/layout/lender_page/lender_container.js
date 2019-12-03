@@ -4,49 +4,31 @@ import { NavBarWithSideBar } from './lender_upper_side_bar/lender_navigation_sid
 import { LenderHomePage } from './lender_home_page/lenderhomepage';
 import { GuarderiaPage } from './services/guarderia/guarderia_page';
 import { PaseosPage } from './services/paseos/paseos_page';
-import {VeterinariaPage} from './services/veterinaria/veterinaria_page';
+import { VeterinariaPage } from './services/veterinaria/veterinaria_page';
 import { SaltosPage } from './services/saltos/saltos_page';
-import {PerfilPrestador} from './perfil/perfil_prestador';
+import { PerfilPrestador } from './perfil/perfil_prestador';
+
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import '../global_css/textcolors.css';
 
 class LenderContainer extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { idpage: 'lender_home_page' }
-    }
-
-    lendercontenthandler = (param) => {
-        this.setState({
-            idpage: param
-        });
-    }
-
-    renderSwitch(param) {
-        switch (param) {
-            case 'lender_home_page':
-                return <LenderHomePage lendercontenthandler={this.lendercontenthandler} />;
-            case 'Paseos':
-                return <PaseosPage lendercontenthandler={this.lendercontenthandler}/>;
-            case 'Guardería':
-                return <GuarderiaPage lendercontenthandler={this.lendercontenthandler}/>;
-            case 'Veterinaria':
-                return <VeterinariaPage lendercontenthandler={this.lendercontenthandler}/>;
-            case 'Saltos':
-                return <SaltosPage lendercontenthandler={this.lendercontenthandler}/>;
-            case 'Perfil':
-                    return <PerfilPrestador lendercontenthandler={this.lendercontenthandler}/>;
-            default:
-                return 'foo';
-        }
-    }
 
     render() {
         return (
-            <div>
-                <NavBarWithSideBar lendercontenthandler={this.lendercontenthandler} />
-                {this.renderSwitch(this.state.idpage)}
-            </div>
+                <Router>
+                    <NavBarWithSideBar/>
+                    <div style={{ marginTop: '66px' }}></div>
+                    <Switch>
+                        <Route path="/Paseos" exact component={PaseosPage} />
+                        <Route path="/Guardería" exact component={GuarderiaPage} />
+                        <Route path="/Veterinaria" exact component={VeterinariaPage} />
+                        <Route path="/Saltos" exact component={SaltosPage} />
+                        <Route path="/Perfil" exact component={PerfilPrestador} />
+                        <Route path="/" component={LenderHomePage} />
+                    </Switch>
+                </Router>
         );
     }
 }

@@ -4,8 +4,9 @@ import '../../../../global_css/textcolors.css';
 import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
 import './consumer_side_drawer.css';
-import dog from "./images/perro_doki.ico";
-import { LoginController } from '../../../../../controllers/login_controller'
+import icon from "./images/navbaricon.jpg";
+import { LoginController } from '../../../../../controllers/login_controller';
+import { Link } from 'react-router-dom';
 
 
 class SideDrawer extends Component {
@@ -24,7 +25,6 @@ class SideDrawer extends Component {
     }
 
     render() {
-
         let drawerClasses = 'side-drawer-cons';
         if (this.props.show) {
             drawerClasses = 'side-drawer-cons open';
@@ -33,24 +33,24 @@ class SideDrawer extends Component {
             <nav className={drawerClasses}>
                 <br />
                 <h1 className="textcenter BigTextFont">Funciones Consumidor</h1>
-                <img align="middle" alt="imagen de un gato" title="El GATO" src={dog} className="conssideimg"></img>
+                <br />
+                <img align="middle" alt="" src={icon} className="conssideimg"></img>
+                <br />
                 <hr />
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                            <button className="thebuttcons WhiteColor" onClick={() => this.props.consumercontenthandler('perfil')} >Perfil </button>
+                            <Link to={`/Perfil`}><button className="thebuttcons WhiteColor">Perfil </button></Link>
                             <hr />
                         </div>
                         <div className="col-12 www">
-                            <button className="thebuttcons WhiteColor" onClick={() => this.props.consumercontenthandler('mis_mascotas')} >Mis mascotas</button>
+                            <Link to="/Mascotas"><button className="thebuttcons WhiteColor">Mis mascotas</button></Link>
                             <hr />
                         </div>
                         <div className="col-12 www">
-                            <button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button>
+                            <Link to="/"><button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button></Link>
                             <hr />
                         </div>
-
-
                     </div>
                 </div>
             </nav>

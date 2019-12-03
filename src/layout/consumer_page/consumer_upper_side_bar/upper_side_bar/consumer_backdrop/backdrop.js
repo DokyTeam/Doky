@@ -6,7 +6,7 @@ class Backdrop extends Component {
 
     render() {
         return (
-            <div className="backdrop-lender" onClick={this.props.backdropClickhandler}>
+            <div className="backdrop-consumer" onClick={this.props.backdropClickhandler}>
 
             </div>
         );

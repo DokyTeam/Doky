@@ -9,7 +9,11 @@ class DrawerToggleButton extends Component {
 
     render() {
         return (
-            <button className="toggle_button TextMainColor MediumTextFont" onClick={this.props.drawerToggleClickhandler}>
+            <button 
+                onClick={this.props.drawerToggleClickhandler}
+                style={{color: this.props.menucolor}}
+                className="toggle_button MediumTextFont mt-2" 
+            >
                 Menú
             </button>
         );

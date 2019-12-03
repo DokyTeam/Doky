@@ -13,7 +13,11 @@ class PaseosPage extends Component {
         paseos: []
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.readAllPaseos();
+    }
+
+    readAllPaseos = async() =>{
         try {
             var serviciosDispController = new ServiciosDispController();
             const paseos = await serviciosDispController.readServicioPaseo();
@@ -23,19 +27,39 @@ class PaseosPage extends Component {
         }
     }
 
+    filterByLocalidad = async(localidad) =>{
+        if(localidad){
+            var serviciosDispController = new ServiciosDispController();
+            const paseos =  await serviciosDispController.readServicioPaseoFiltroLocalidad(localidad);
+            this.setState({paseos:paseos})
+        }else{
+            this.readAllPaseos();
+        }
+    }
+
+    filtrarPorPrecio = async(min=0,max=0) =>{
+        if(min && max){
+            var serviciosDispController = new ServiciosDispController();
+            const paseos = await serviciosDispController.readServicioPaseoFiltroPrecio(min,max);
+            this.setState({paseos:paseos});
+        }else{
+            this.readAllPaseos();
+        }
+    }
+
     render() {   
         return (
             <div >
             <div className="container-fluid">
                 <div className="row align-items-top">
                     <div className="col-md-12 col-lg-3 " >
-                        <Barra consumercontenthandler={this.props.consumercontenthandler} />
+                        <Barra filterByLocalidad={this.filterByLocalidad} filtrarPorPrecio={this.filtrarPorPrecio}/>
                     </div>
                     <div className="col-md-12 col-lg-9 "  >
                         <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                             Paseos
                         </h1>
-                        <ServiciosContenedor json={this.state.paseos}></ServiciosContenedor>
+                        <ServiciosContenedor json={this.state.paseos} type="Paseos" ></ServiciosContenedor>
 
                     </div>
                 </div>

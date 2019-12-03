@@ -4,8 +4,9 @@ import '../../../../global_css/textcolors.css';
 import '../../../../global_css/colors.css';
 import '../../../../global_css/fonts.css';
 import './lender_side_drawer.css';
-import dog from "./images/perro_doki.ico";
+import icon from "./images/navbaricon.jpg";
 import {LoginController} from '../../../../../controllers/login_controller'
+import { Link } from 'react-router-dom';
 
 
 class SideDrawer extends Component {
@@ -24,7 +25,7 @@ class SideDrawer extends Component {
     }
     
     render() {
-
+        
         let drawerClasses = 'side-drawer-lender';
         if(this.props.show){
             drawerClasses = 'side-drawer-lender open';
@@ -33,12 +34,12 @@ class SideDrawer extends Component {
             <nav className={drawerClasses}>
                 <br/>
                 <h1 className="textcenter BigTextFont">Funciones Prestador</h1>
-                <img align="middle" alt="imagen de un gato" title="El GATO" src={dog} className="lendersideimg"></img>
+                <img align="middle" alt="" src={icon} className="lendersideimg"></img>
                 <hr/>
                 <div className="container">
                     <div className="row">
                         <div className="col-12 www">
-                            <button className="thebuttlend WhiteColor" onClick={()=>{this.props.lendercontenthandler('Perfil')}}>Perfil </button>
+                        <Link to={`/Perfil`}><button className="thebuttlend WhiteColor" >Perfil </button></Link>
                             <hr/>
                         </div>
                         <div className="col-12 www">
@@ -46,7 +47,7 @@ class SideDrawer extends Component {
                             <hr/>
                         </div>
                         <div className="col-12 www">
-                            <button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button>
+                             <Link to="/"><button onClick={this.logout} className="thebuttlend WhiteColor">Cerrar sesión</button></Link>
                             <hr/>
                         </div>
 

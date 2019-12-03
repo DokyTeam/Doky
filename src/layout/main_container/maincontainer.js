@@ -5,7 +5,6 @@ import { LandingContainer } from '../landing_page/landing_container';
 import { ConsumerContainer } from '../consumer_page/consumer_container';
 import { LenderContainer } from '../lender_page/lender_container';
 import { UserController } from '../../controllers/user_controller'
-import { useStore } from '../../utilities/Store'
 
 class MainContainer extends Component {
 
@@ -33,11 +32,10 @@ class MainContainer extends Component {
     async authListener() {
         fire.auth().onAuthStateChanged(
             async (user) => {
-                if (user) {
-                    const[store,setStore] = useStore();
-                    setStore(user.email)
+                if (user) {            
+                    window.history.pushState('home', 'home', '/');
                     let userController = new UserController();
-                    const data = await userController.getTipoUsuario(user.email);
+                    const data = await userController.getTipoUsuario(user.uid);
                     switch (data.tipo) {
                         case 'Consumidor':
                             this.setState({ user: user, isEdit: true });

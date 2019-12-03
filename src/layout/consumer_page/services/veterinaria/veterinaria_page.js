@@ -14,6 +14,10 @@ class VeterinariaPage extends Component {
     }
 
     async componentDidMount() {
+        this.readAllVeterinarias();
+    }
+
+    readAllVeterinarias = async () => {
         try {
             var serviciosDispController = new ServiciosDispController();
             const veterinarias = await serviciosDispController.readServicioVeterinaria();
@@ -23,19 +27,40 @@ class VeterinariaPage extends Component {
         }
     }
 
+    filterByLocalidad = async (localidad) => {
+        if (localidad) {
+            var serviciosDispController = new ServiciosDispController();
+            const veterinarias = await serviciosDispController.readServicioVeterinarioFiltroLocalidad(localidad);
+            this.setState({ veterinarias: veterinarias })
+        } else {
+            this.readAllVeterinarias();
+        }
+    }
+
+    filtrarPorPrecio = async (min = 0, max = 0) => {
+        if (min && max) {
+            var serviciosDispController = new ServiciosDispController();
+            const veterinarias = await serviciosDispController.readServicioVeterinariaFiltroPrecio(min, max);
+            this.setState({ veterinarias: veterinarias });
+        } else {
+            this.readAllVeterinarias();
+        }
+    }
+
     render() {
         return (
             <div >
                 <div className="container-fluid">
                     <div className="row align-items-top">
                         <div className="col-md-12 col-lg-3 " >
-                            <Barra consumercontenthandler={this.props.consumercontenthandler} />
+                            <Barra filterByLocalidad={this.filterByLocalidad} filtrarPorPrecio={this.filtrarPorPrecio} isvet={"is"}/>
                         </div>
-                        <div className="col-md-12 col-lg-9 "  >
+                        <div className="col-md-12 col-lg-9"  >
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                                 Veterinaria
                             </h1>
-                            <ServiciosContenedor json={this.state.veterinarias}></ServiciosContenedor>
+                            
+                            <ServiciosContenedor json={this.state.veterinarias} type="Veterinaria"></ServiciosContenedor>
 
                         </div>
                     </div>
