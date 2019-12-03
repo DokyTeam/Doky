@@ -11,7 +11,7 @@ class Barra extends Component {
         localidades: [],
         precioMinimo: '',
         precioMaximo: '',
-        value:''
+        value: ''
     }
 
     //Se ejecuta cuando ya se ha cargado el componente, es async por que trabaja de manera asincrona
@@ -37,13 +37,39 @@ class Barra extends Component {
         return table
     }
 
-    handleChange(event){
+    handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
 
     render() {
+
+        let filt;
+
+        if (!this.props.isvet) {
+            filt = <li className="nav-item">
+                <h5 className="nav-link " >Precio</h5>
+                <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text">$</span>
+                        <span className="input-group-text">Desde</span>
+                    </div>
+                    <input type="number" className="form-control" aria-label="Dollar amount (with dot and two decimal places)" name='precioMinimo' value={this.state.precioMinimo} onChange={event => { this.handleChange(event) }} />
+                </div>
+                <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text">$</span>
+                        <span className="input-group-text">Hasta</span>
+                    </div>
+                    <input type="number" className="form-control" aria-label="Dollar amount (with dot and two decimal places)" name='precioMaximo' value={this.state.precioMaximo} onChange={event => { this.handleChange(event) }} />
+                </div>
+                <div className="input-group-append float-right">
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => { this.props.filtrarPorPrecio(this.state.precioMinimo, this.state.precioMaximo) }}>Filtrar</button>
+                </div>
+            </li>
+        }
+
         return (
             <div className="leftcontainer">
                 <nav className="navbar navbar-expand-lg  flex-column">
@@ -74,8 +100,8 @@ class Barra extends Component {
                             <li className="nav-item">
                                 <h5 className="nav-link " >Ubicación</h5>
                                 <div className="input-group">
-                                    <select className="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon" onChange={(event)=>{this.props.filterByLocalidad(event.target.value)}
-                                        }>
+                                    <select className="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon" onChange={(event) => { this.props.filterByLocalidad(event.target.value) }
+                                    }>
                                         <option defaultValue value="">Seleccione...</option>
                                         {this.createoption(this.state.localidades)}
                                     </select>
@@ -85,26 +111,7 @@ class Barra extends Component {
                                 </div>
                                 <div className="dropdown-divider"></div>
                             </li>
-                            <li className="nav-item">
-                                <h5 className="nav-link " >Precio</h5>
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">$</span>
-                                        <span className="input-group-text">Desde</span>
-                                    </div>
-                                    <input type="number" className="form-control" aria-label="Dollar amount (with dot and two decimal places)" name='precioMinimo' value={this.state.precioMinimo} onChange={event =>{this.handleChange(event)}}/>
-                                </div>
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">$</span>
-                                        <span className="input-group-text">Hasta</span>
-                                    </div>
-                                    <input type="number" className="form-control" aria-label="Dollar amount (with dot and two decimal places)" name='precioMaximo' value={this.state.precioMaximo} onChange={event =>{this.handleChange(event)}}/>
-                                </div>
-                                <div className="input-group-append float-right">
-                                    <button className="btn btn-outline-secondary" type="button" onClick={()=>{this.props.filtrarPorPrecio(this.state.precioMinimo,this.state.precioMaximo)}}>Filtrar</button>
-                                </div>
-                            </li>
+                            {filt}
                         </ul>
                     </div>
                 </nav>

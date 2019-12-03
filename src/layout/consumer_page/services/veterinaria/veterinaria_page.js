@@ -53,9 +53,9 @@ class VeterinariaPage extends Component {
                 <div className="container-fluid">
                     <div className="row align-items-top">
                         <div className="col-md-12 col-lg-3 " >
-                            <Barra filterByLocalidad={this.filterByLocalidad} filtrarPorPrecio={this.filtrarPorPrecio} />
+                            <Barra filterByLocalidad={this.filterByLocalidad} filtrarPorPrecio={this.filtrarPorPrecio} isvet={"is"}/>
                         </div>
-                        <div className="col-md-12 col-lg-9 "  >
+                        <div className="col-md-12 col-lg-9"  >
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
                                 Veterinaria
                             </h1>
