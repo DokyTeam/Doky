@@ -14,6 +14,10 @@ class GuarderiaPage extends Component {
     }
 
     async componentDidMount() {
+        this.readAllGuarderias();
+    }
+
+    readAllGuarderias = async () => {
         try {
             var serviciosDispController = new ServiciosDispController();
             const guarderias = await serviciosDispController.readServicioGuarderia();
@@ -23,6 +27,25 @@ class GuarderiaPage extends Component {
         }
     }
 
+    filterByLocalidad = async (localidad) => {
+        if (localidad) {
+            var serviciosDispController = new ServiciosDispController();
+            const guarderias = await serviciosDispController.readServicioGuarderiaFiltroLocalidad(localidad);
+            this.setState({ guarderias: guarderias })
+        } else {
+            this.readAllGuarderias();
+        }
+    }
+
+    filtrarPorPrecio = async (min = 0, max = 0) => {
+        if (min && max) {
+            var serviciosDispController = new ServiciosDispController();
+            const guarderias = await serviciosDispController.readServicioGuarderiaFiltroPrecio(min, max);
+            this.setState({ guarderias: guarderias });
+        } else {
+            this.readAllGuarderias();
+        }
+    }
 
     render() {
         return (
@@ -31,7 +54,7 @@ class GuarderiaPage extends Component {
                 <div className="container-fluid">
                     <div className="row align-items-top">
                         <div className="col-md-12 col-lg-3 " >
-                            <Barra consumercontenthandler={this.props.consumercontenthandler} />
+                            <Barra filterByLocalidad={this.filterByLocalidad} filtrarPorPrecio={this.filtrarPorPrecio} />
                         </div>
                         <div className="col-md-12 col-lg-9 "  >
                             <h1 className="CurvyTextFontBig" style={{ margin: "5%", textAlign: "center" }}>
