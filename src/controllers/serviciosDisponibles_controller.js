@@ -32,6 +32,22 @@ const updateServicio = async (email, tipoServicio,idServicio, atributes) => {
     return update.updateAttributesDocument(direccion,idServicio,atributes)
 }
 
+const infoServicio = (doc) => {
+    if (doc.exists) {
+        const data = doc.data();
+        let id = { "id": doc.id }
+        let parent = { "usuario": doc.ref.parent.parent.id }
+        let cantidad = { puntuacion: promedio(data.sumapuntuacion, data.cantidadpuntuacion) }
+        return { ...data, ...id, ...parent, ...cantidad }
+    } else {
+        console.log("No such document!");
+    }
+}
+
+const promedio = (suma, cantidad) => {
+    return suma / cantidad
+}
+
 export class ServiciosDispController {
 
     constructor() {
@@ -42,27 +58,9 @@ export class ServiciosDispController {
         this.firebaseUpdateRepository = new FirebaseUpdateRepository();
     }
 
-    promedio = (suma, cantidad) => {
-        return suma / cantidad
-    }
-
-    infoServicio = (doc) => {
-        if (doc.exists) {
-            const data = doc.data();
-            let id = { "id": doc.id }
-            let parent = { "usuario": doc.ref.parent.parent.id }
-            let cantidad = { puntuacion: this.promedio(data.sumapuntuacion, data.cantidadpuntuacion) }
-            return { ...data, ...id, ...parent, ...cantidad }
-        } else {
-            console.log("No such document!");
-        }
-
-    }
-
     //CONSULTAS SIN FILTROS ##################################################################################################################
 
     async readServicio(tipoServicio) {
-        const infoServicio = this.infoServicio
         let servicio = [];
         return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").get().then(
             function (querySnapshot) {
@@ -121,15 +119,11 @@ export class ServiciosDispController {
 
     //Devuelve un arreglo de guarderias ordenadas de menor a mayor dentro de un rango de precio
     async readServicioFiltroPrecio(precioMin, precioMax, tipoServicio) {
-        let promedio = this.promedio
         let servicio = [];
         return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where('precio', '>=', precioMin).where('precio', '<=', precioMax).orderBy('precio').get().then(
             function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
-                    let id = { "id": doc.id }
-                    let values = { ...doc.data(), ...id }
-                    let cantidad = { puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion) }
-                    values = { ...values, ...cantidad }
+                    let values = infoServicio(doc);
                     servicio.push(values);
                 });
                 return servicio;
@@ -155,19 +149,14 @@ export class ServiciosDispController {
 
     //Devuelve un arreglo de guarderias cuyo atributo 'localidad' == localidad
     async readServicioFiltroLocalidad(localidad, tipoServicio) {
-        let promedio = this.promedio
         let servicio = [];
         return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where('localidad', '==', localidad).get().then(
             function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
-                    let id = { "id": doc.id }
-                    let values = { ...doc.data(), ...id }
-                    let cantidad = { puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion) }
-                    values = { ...values, ...cantidad }
+                    let values = infoServicio(doc);
                     servicio.push(values);
                 });
                 return servicio;
-
             });
     }
 
@@ -190,7 +179,6 @@ export class ServiciosDispController {
 
     //Devuelve un arreglo de guarderias cuyo atributo 'barrio' == barrio
     readServicioFiltroBarrio(barrio, tipoServicio) {
-        let promedio = this.promedio
         let servicio = [];
         return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where('barrio', '==', barrio).get().then(
             function (querySnapshot) {
@@ -306,7 +294,7 @@ export class ServiciosDispController {
         const search = 'servicios/' + servicio + '/' + servicio + 's/' +userId+'/'+ servicio + 'susuario/' + servicioId;
         return this.firebaseReadRepository.readDocument(search).get().then(
             querySnapshot => {
-                return this.infoServicio(querySnapshot)
+                return infoServicio(querySnapshot)
             }
         )
     }

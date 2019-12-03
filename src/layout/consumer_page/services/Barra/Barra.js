@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
@@ -9,7 +8,10 @@ import { Link } from 'react-router-dom';
 
 class Barra extends Component {
     state = {
-        localidades: []
+        localidades: [],
+        precioMinimo: '',
+        precioMaximo: '',
+        value:''
     }
 
     //Se ejecuta cuando ya se ha cargado el componente, es async por que trabaja de manera asincrona
@@ -33,6 +35,12 @@ class Barra extends Component {
             )
         )
         return table
+    }
+
+    handleChange(event){
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
     render() {
@@ -66,8 +74,9 @@ class Barra extends Component {
                             <li className="nav-item">
                                 <h5 className="nav-link " >Ubicación</h5>
                                 <div className="input-group">
-                                    <select className="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                        <option defaultValue>Seleccione...</option>
+                                    <select className="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon" onChange={(event)=>{this.props.filterByLocalidad(event.target.value)}
+                                        }>
+                                        <option defaultValue value="">Seleccione...</option>
                                         {this.createoption(this.state.localidades)}
                                     </select>
                                     <div className="input-group-append">
@@ -83,17 +92,17 @@ class Barra extends Component {
                                         <span className="input-group-text">$</span>
                                         <span className="input-group-text">Desde</span>
                                     </div>
-                                    <input type="text" className="form-control" aria-label="Dollar amount (with dot and two decimal places)" />
+                                    <input type="number" className="form-control" aria-label="Dollar amount (with dot and two decimal places)" name='precioMinimo' value={this.state.precioMinimo} onChange={event =>{this.handleChange(event)}}/>
                                 </div>
                                 <div className="input-group mb-3">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">$</span>
                                         <span className="input-group-text">Hasta</span>
                                     </div>
-                                    <input type="text" className="form-control" aria-label="Dollar amount (with dot and two decimal places)" />
+                                    <input type="number" className="form-control" aria-label="Dollar amount (with dot and two decimal places)" name='precioMaximo' value={this.state.precioMaximo} onChange={event =>{this.handleChange(event)}}/>
                                 </div>
                                 <div className="input-group-append float-right">
-                                    <button className="btn btn-outline-secondary" type="button">Filtrar</button>
+                                    <button className="btn btn-outline-secondary" type="button" onClick={()=>{this.props.filtrarPorPrecio(this.state.precioMinimo,this.state.precioMaximo)}}>Filtrar</button>
                                 </div>
                             </li>
                         </ul>
@@ -102,9 +111,6 @@ class Barra extends Component {
             </div>
         );
     }
-
-
-
 }
 
 export { Barra };
