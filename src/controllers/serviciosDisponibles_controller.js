@@ -237,6 +237,10 @@ export class ServiciosDispController {
 
     async fullServicio(servicio,img, loadImg, error, fullyLoaded,addImagen,nombreServicio){
         try{
+            if(nombreServicio === "guarderia" || nombreServicio === "paseo" || nombreServicio === "salto"){
+                let precio = parseInt(servicio.precio,10);
+                servicio.precio = precio;
+            }
             const idUser = this.firebaseAuthRepository.getUserId();
             await this.writeServicio(idUser, nombreServicio, servicio);
             addImagen(img, loadImg, error, 
