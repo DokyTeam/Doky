@@ -28,6 +28,11 @@
     font-size: 2em;
 }
 
+.HugeTextFont{
+    font: sans-serif;
+    font-size: 4em;
+}
+
 
 .CurvyTextFont{
     font-family: Georgia, serif;

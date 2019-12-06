@@ -4,80 +4,58 @@ import '../../global_css/colors.css';
 import '../../global_css/fonts.css';
 import '../../global_css/textcolors.css';
 import pug from "./images/pug.webp";
-import foto1 from "./images/foto1.webp";
-import foto2 from "./images/foto2.webp";
-import foto3 from "./images/foto3.webp";
-import foto1small from "./images/foto1small.webp";
-import foto2small from "./images/foto2small.webp";
-import foto3small from "./images/foto3small.webp";
+import phone from "./images/phone.webp";
+import header from "./images/header.webp";
+import mascotas from "./images/mascotas.webp"
 import guarderia from './images/guarderia.webp';
 import paseos from './images/paseos.webp';
 import veterinaria from './images/veterinaria.webp';
 import saltos from './images/saltos.webp';
+
+import Footer from '../../../components/Footer/footer';
 
 class Landingpage extends Component {
 
     render() {
         return (
             <div>
-                <div style={{height: '100vh', width: '100%'}}>
-                    <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-                        <ol className="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        </ol>
-                        <div className="carousel-inner text-align text-font">
-                            <div className="carousel-item active" data-interval="1000">
-                                <img src={foto1} className="d-none d-sm-block w-100" alt="logo"></img>
-                                <img src={foto1small} className="d-block d-sm-none w-100" alt="logo"></img>
-                                <div className="carousel-caption">
-                                    <h5 className="text-uppercase">Un mundo de posibilidades</h5>
-                                    <p>Para el cuidado de tu mascota.</p>
-                                </div>
+                <div className="landingheadcont" style={{ height: '100vh', width: '100%' }}>
+                    <img src={header} alt="" style={{ height: '100vh', width: '100%' }} className="landingheadimg" />
+                    <div className="container landingheadinfo">
+                        <div className="row text-center align-items-center justify-content-center">
+                            <div className="col-12 col-md-6 TextWhiteColor">
+                                <h1 className="mb-5 HugeTextFont d-none d-sm-block"><strong>Todo</strong> Lo que tu mascota <strong>necesita</strong> </h1>
+                                <p className="MediumTextFont d-none d-sm-block"><strong>DOKY</strong> es la nueva plataforma web que te permitirá poder como persona natural acceder a múltiples servicios relacionados con las macotas, podrás acceder desde servicios de paseadores de perros, hasta a las mejores guarderías y veterinarias del país. Así mismo si tu deseas que tu negocio prospere como única lo ha hecho, nuestra sección de prestadores es lo que estabas buscando.</p>
+                                <h1 className="mb-5 MediumTextFont d-block d-sm-none"><strong>Todo</strong> Lo que tu mascota <strong>necesita</strong> </h1>
+                                <p className="ultraSmallTextoFont d-block d-sm-none"><strong>DOKY</strong> es la nueva plataforma web que te permitirá poder como persona natural acceder a múltiples servicios relacionados con las macotas, podrás acceder desde servicios de paseadores de perros, hasta a las mejores guarderías y veterinarias del país. Así mismo si tu deseas que tu negocio prospere como única lo ha hecho, nuestra sección de prestadores es lo que estabas buscando.</p>
                             </div>
-                            <div className="carousel-item" >
-                                <img src={foto2} className="d-none d-sm-block w-100" alt="logo"></img>
-                                <img src={foto2small} className="d-block d-sm-none w-100" alt="logo"></img>
-                                <div className="carousel-caption">
-                                    <h5 className="text-uppercase">La única aplicación que te ofrece</h5>
-                                    <p>El servicio de saltos.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-item" >
-                                <img src={foto3} className="d-none d-sm-block w-100" alt="logo"></img>
-                                <img src={foto3small} className="d-block d-sm-none w-100" alt="logo"></img>
-                                <div className="carousel-caption">
-                                    <h5 className="text-uppercase">Lo que quieres para tu mascota </h5>
-                                    <p>En un solo lugar.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span className="sr-only">Previous</span>
-                        </a>
-                        <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span className="sr-only">Next</span>
-                        </a>
-                    </div>
-                    <br />
-                    <div className="container">
-                        <div className="row align-items-center AltBackgroundColor">
-                            <div className="col-sm-12 col-lg-2 textcenter">
-                                <img align="middle" alt="El PUG" title="El PUG" src={pug} width="80px"></img>
-                            </div>
-                            <div className="col-sm-12 col-lg-10">
-                                <div>
-                                    <h3 style={{ fontSize: 25, textAlign: "center" }}>¿Qué es Doky? </h3>
-                                    <h4 style={{ fontSize: 20, textAlign: "center" }}>Doky es la nueva plataforma que te permitirá poder tener a la mano todo lo que tu mascota necesita</h4>
-                                </div>
+                            <div className="col-12 col-md-6 TextWhiteColor textcenter">
+                                <img className="d-inline d-md-none" alt="Mascotas" title="Mascotas" src={mascotas} width="200px"></img>
+                                <img className="d-none d-md-inline d-lg-none" alt="Mascotas" title="Mascotas" src={mascotas} width="300px"></img>
+                                <img className="d-none d-lg-inline d-xl-none" alt="Mascotas" title="Mascotas" src={mascotas} width="400px"></img>
+                                <img className="d-none d-xl-inline" alt="Mascotas" title="Mascotas" src={mascotas} width="500px"></img>
                             </div>
                         </div>
                     </div>
                 </div>
-                <hr className="mt-0"/>
+                <div className="container mt-5 mb-5">
+                    <div className="row WhiteColor border align-items-center p-3">
+                        <div className="col-sm-12 col-lg-2 textcenter">
+                            <img alt="El PUG" title="El PUG" src={pug} width="80px"></img>
+                        </div>
+                        <div className="col-sm-12 col-lg-10">
+                            <h4 style={{ fontSize: 20, textAlign: "center" }}><strong>DOKY</strong> está separada en dos, ya que manejamos cuentas independientes para los usuarios prestadores y consumidores, con el fin de que la aplicación siempre tenga el mejor rendimiento.</h4>
+                        </div>
+                    </div>
+                    <div className="row WhiteColor border p-3 mt-5 align-items-center">
+                        <div className="col-sm-12 col-lg-2 textcenter">
+                            <img alt="El PUG" title="telefono" src={phone} width="80px"></img>
+                        </div>
+                        <div className="col-sm-12 col-lg-10">
+                            <h4 style={{ fontSize: 20, textAlign: "center" }}><strong>DOKY</strong> esta diseñada para que la puedas utilizar desde cualquier equipo de escritorio, y desde cualquier dispositivo móvil.</h4>
+                        </div>
+                    </div>
+                </div>
                 <div className="container">
                     <div className="row justify-content-between">
                         <div className="col-12 col-sm-6 col-md-2 textcenter">
@@ -102,12 +80,7 @@ class Landingpage extends Component {
                         </div>
                     </div>
                 </div>
-                <hr />
-                <div className="lowerbar TextMainColor TitleTextFont">
-                    <p><a className="TextMainColor TitleTextFont" href="https://jestupinanb.wixsite.com/doky" target="_blank" rel="noopener noreferrer"> NOSOTROS </a></p>
-                    <p> CONTACTO</p>
-                    <p> AUXILIAR </p>
-                </div>
+                <Footer/>
             </div>
         );
     }

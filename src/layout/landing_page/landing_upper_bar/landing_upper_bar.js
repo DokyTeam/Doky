@@ -8,7 +8,7 @@ class LandingUpperBar extends Component {
     render() {
         return (
             <div className="Navegation LandingBar">
-                <div className="bd-highlight MainColor">
+                <div className="bd-highlight MainGradient">
                     <div className="container-fluid ">
                         <div className="row align-items-center">
                             <div className="col-1">
