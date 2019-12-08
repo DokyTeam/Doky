@@ -380,4 +380,50 @@ export class ServiciosDispController {
         return addImagen(img, loadImg, error, fullyLoaded,idUser,idVeterinaria,"Veterinarias")
     }
 
+
+    //Devuelve todos los servicios del mismo tipo que tenga publicados el usuario
+    servicioUsuario(tipoServicio){
+        
+        const userId = this.firebaseAuthRepository.getUserId();
+        console.log(userId);
+        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + userId + "/" + tipoServicio + "susuario/";
+        return this.firebaseReadRepository.readCollection(direccion).get().then(
+            function(querySnapshot){ 
+                let servicio = [];               
+                querySnapshot.forEach(function (doc) {
+                    let id = { "id": doc.id }
+                    let values = { ...doc.data(), ...id }
+                    let cantidad = { puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion) }
+                    values = { ...values, ...cantidad }
+                    servicio.push(values);
+                });
+                console.log(servicio);
+                return servicio;
+            }
+        );
+    }
+
+
+    servicioGuarderiaUsuario(){
+        return this.servicioUsuario("guarderia");
+    }
+
+    servicioPaseoUsuario(){
+        return this.servicioUsuario("paseo");
+    }
+
+    servicioVeterinariaUsuario(){
+        return this.servicioUsuario("veterinaria");
+    }
+
+    servicioSaltoUsuario(){
+        return this.servicioUsuario("salto");
+    }
+
+
+
+
+
+
+
 }
