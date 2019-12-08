@@ -218,14 +218,41 @@ export class ServiciosDispController {
         return this.readServicioFiltroBarrio(barrio, "salto");
     }
 
+
+
+
+    // realiza una consulta para verificar si el nombre de servicio que se esta ingresando
+    // ya esta asignado.
+    async verifyService(tipoServicio,nombreServicio){
+        let ac = true;
+        return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where("nombre","==",nombreServicio).get().then(
+            function(querySnapshot){ 
+                let result = [];               
+                querySnapshot.forEach(function (doc) {
+                    ac = false;
+                });
+                return ac;
+            }
+        );
+     }
+
+
     // crea el servicio en la base de datos
     // recibe el idUser del prestador y el objeto guarderia que incluye:
     // el nombre de la guarderia y los demas atributos.
-    writeServicio(idUser, tipoServicio, servicio) {
+    // en caso de que el nombre este repetido, devuelvo un objeto de tipo error
+    async writeServicio(idUser, tipoServicio, servicio) {
         servicio.sumapuntuacion = 0;
-        servicio.cantidadpuntuacion = 0;
-        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idUser + "/" + tipoServicio + "susuario/";
-        return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, servicio.nombre, servicio);
+        servicio.cantidadpuntuacion = 0;        
+        let verify = await this.verifyService(tipoServicio,servicio.nombre);
+        console.log(verify);
+        if(verify){
+            let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idUser + "/" + tipoServicio + "susuario/";
+            return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, servicio.nombre, servicio);
+        }else{
+            throw new Error( "El nombre del servicio ya esta en uso" );
+        }
+        
     }
 
 
