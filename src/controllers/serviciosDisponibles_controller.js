@@ -245,7 +245,6 @@ export class ServiciosDispController {
         servicio.sumapuntuacion = 0;
         servicio.cantidadpuntuacion = 0;        
         let verify = await this.verifyService(tipoServicio,servicio.nombre);
-        console.log(verify);
         if(verify){
             let id = servicio.nombre.toLowerCase();
             let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idUser + "/" + tipoServicio + "susuario/";
