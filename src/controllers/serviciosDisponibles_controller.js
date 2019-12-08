@@ -247,8 +247,9 @@ export class ServiciosDispController {
         let verify = await this.verifyService(tipoServicio,servicio.nombre);
         console.log(verify);
         if(verify){
+            let id = servicio.nombre.toLowerCase();
             let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idUser + "/" + tipoServicio + "susuario/";
-            return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, servicio.nombre, servicio);
+            return this.firebaseCreateRepository.writeCollectionIdDefined(direccion, id, servicio);
         }else{
             throw new Error( "El nombre del servicio ya esta en uso" );
         }
