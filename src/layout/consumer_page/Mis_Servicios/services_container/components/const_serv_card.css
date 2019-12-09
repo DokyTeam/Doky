@@ -20,9 +20,10 @@
     width: 150px;
 }
 
-.estrellitascenter{
-    margin-left: 50%;
-    transform: translate(-50%, -50%);
+@media only screen and (max-width:1700px){
+    .image-serv-card-cons{
+        max-height: 300px;
+    }
 }
 
 @media only screen and (max-width:1280px){
