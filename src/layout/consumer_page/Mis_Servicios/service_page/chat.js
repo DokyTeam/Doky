@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import '../../global_css/textcolors.css';
-import '../../global_css/colors.css';
-import '../../global_css/fonts.css';
+import '../../../global_css/textcolors.css';
+import '../../../global_css/colors.css';
+import '../../../global_css/fonts.css';
 
 class Chat extends Component {
 

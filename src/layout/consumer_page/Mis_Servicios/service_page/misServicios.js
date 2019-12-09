@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import '../../global_css/textcolors.css';
-import '../../global_css/colors.css';
-import '../../global_css/fonts.css';
+import '../../../global_css/textcolors.css';
+import '../../../global_css/colors.css';
+import '../../../global_css/fonts.css';
 
 import { Chat } from './chat';
 import { Start } from './start';
@@ -76,7 +76,7 @@ class MisServicios extends Component {
                             <InformacionBasicaServicio
 
                                 fotosrc={this.props.img}
-                                nombre={this.props.nombre}
+                                nombre={this.props.location.state.nombre}
                                 calificación={this.props.puntuacion}
                                 precio={this.props.precio}
                                 horario={this.props.horario}
