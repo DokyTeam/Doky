@@ -95,7 +95,7 @@ class ServicesContainer extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="menu-collapse-cons col-12 d-inline d-lg-none textcenter">
-                        <h2 className="barra-logo-cons mt-3">Gestor de Servicios</h2>
+                        <h2 className="barra-logo-cons mt-3">Tus Servicios</h2>
                         <h4 className="barra-logo-cons mt-3">Filtro Actual:</h4>
                         <h5 className="TextAltMainColor mt-3">{this.state.filtro}</h5>
                         <button className="btn btn-info mb-3" data-toggle="collapse" data-target="#bloque2">
@@ -112,7 +112,7 @@ class ServicesContainer extends Component {
                         </div>
                     </div>
                     <div className="barra-lateral-cons col-1 col-lg-2 d-none d-lg-inline textcenter">
-                        <h2 className="barra-logo-cons mt-3">Gestor de Servicios</h2>
+                        <h2 className="barra-logo-cons mt-3">Tus Servicios</h2>
                         <h4 className="barra-logo-cons mt-3">Filtro Actual:</h4>
                         <h5 className="TextAltMainColor mt-3">{this.state.filtro}</h5>
                         <nav className="d-flex flex-column">
