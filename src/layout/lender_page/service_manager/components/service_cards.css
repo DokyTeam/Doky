@@ -1,5 +1,5 @@
 .image-serv-card{
-    max-height: 550px;
+    max-height: 450px;
 }
 
 .serv-img-container{
@@ -21,4 +21,10 @@
 .estrellitascenter{
     margin-left: 50%;
     transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width:1700px){
+    .image-serv-card-cons{
+        max-height: 350px;
+    }
 }

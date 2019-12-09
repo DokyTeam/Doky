@@ -122,7 +122,7 @@ class ServiceManager extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="menu-collapse-gestor col-12 d-inline d-md-none textcenter">
+                    <div className="menu-collapse-gestor col-12 d-inline d-lg-none textcenter">
                         <h2 className="barra-logo-gest mt-3">Gestor de Servicios</h2>
                         <h4 className="barra-logo-gest mt-3">Filtro Actual:</h4>
                         <h5 className="TextAltMainColor mt-3">{this.state.filtro}</h5>
@@ -140,7 +140,7 @@ class ServiceManager extends Component {
                             </nav>
                         </div>
                     </div>
-                    <div className="barra-lateral-gestor col-3 col-lg-2 d-none d-md-inline textcenter">
+                    <div className="barra-lateral-gestor col-1 col-lg-2 d-none d-lg-inline textcenter">
                         <h2 className="barra-logo-gest mt-3">Gestor de Servicios</h2>
                         <h4 className="barra-logo-gest mt-3">Filtro Actual:</h4>
                         <h5 className="TextAltMainColor mt-3">{this.state.filtro}</h5>

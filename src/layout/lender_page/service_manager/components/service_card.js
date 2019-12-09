@@ -62,18 +62,18 @@ export default function ServiceCard(props) {
                     </div>
                     <div className="card-body textcenter">
                         <h2 className=" card-title TextDarkMainColor mb-0">{props.horario}</h2>
-                        <div className="mt-2 mb-2">
+                        <div className="mt-3 mb-2">
                             <fieldset className="val-fieldset" ><legend></legend><span className={estrellas(props.puntuacion)}></span></fieldset>
                         </div>
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Duración:</p>
                         <h3 >{props.duracionMax}</h3>
                         <div className="container">
                             <div className="row">
-                                <div className="col-6 col-md-12 col-lg-6">
+                                <div className="col-6 col-sm-12 col-lg-6">
                                     <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Localidad:</p>
                                     <p className="MediumTextFont">{props.localidad}</p>
                                 </div>
-                                <div className="col-6 col-md-12 col-lg-6">
+                                <div className="col-6 col-sm-12 col-lg-6">
                                     <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Barrio:</p>
                                     <p className="MediumTextFont">{props.barrio}</p>
                                 </div>
@@ -94,19 +94,19 @@ export default function ServiceCard(props) {
                         <h1 className="serv-img-title">{props.nombre}</h1>
                     </div>
                     <div className="card-body textcenter">
-                        <h2 className=" card-title TextDarkMainColor mb-0">{props.descripcion}</h2>
-                        <div className="mt-2 mb-2">
+                        <h4 className=" card-title TextDarkMainColor mb-0">{props.descripcion}</h4>
+                        <div className="mt-3 mb-2">
                             <fieldset className="val-fieldset" ><legend></legend><span className={estrellas(props.puntuacion)}></span></fieldset>
                         </div>
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Horario:</p>
                         <h3 >{props.horario}</h3>
                         <div className="container">
                             <div className="row">
-                                <div className="col-6 col-md-12 col-lg-6">
+                                <div className="col-6 col-sm-12 col-lg-6">
                                     <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Localidad:</p>
                                     <p className="MediumTextFont">{props.localidad}</p>
                                 </div>
-                                <div className="col-6 col-md-12 col-lg-6">
+                                <div className="col-6 col-sm-12 col-lg-6">
                                     <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Barrio:</p>
                                     <p className="MediumTextFont">{props.barrio}</p>
                                 </div>
@@ -127,19 +127,19 @@ export default function ServiceCard(props) {
                         <h1 className="serv-img-title">{props.nombre}</h1>
                     </div>
                     <div className="card-body textcenter">
-                        <h2 className=" card-title TextDarkMainColor mb-0">{props.descripcion}</h2>
-                        <div className="mt-2 mb-2">
+                        <h4 className=" card-title TextDarkMainColor mb-0">{props.descripcion}</h4>
+                        <div className="mt-3 mb-2">
                             <fieldset className="val-fieldset" ><legend></legend><span className={estrellas(props.puntuacion)}></span></fieldset>
                         </div>
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Precio:</p>
                         <h3 >{props.precio}</h3>
                         <div className="container">
                             <div className="row">
-                                <div className="col-6 col-md-12 col-lg-6">
+                                <div className="col-6 col-sm-12 col-lg-6">
                                     <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Localidad:</p>
                                     <p className="MediumTextFont">{props.localidad}</p>
                                 </div>
-                                <div className="col-6 col-md-12 col-lg-6">
+                                <div className="col-6 col-sm-12 col-lg-6">
                                     <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Barrio:</p>
                                     <p className="MediumTextFont">{props.barrio}</p>
                                 </div>
@@ -160,19 +160,19 @@ export default function ServiceCard(props) {
                         <h1 className="serv-img-title">{props.nombre}</h1>
                     </div>
                     <div className="card-body textcenter">
-                        <h2 className=" card-title TextDarkMainColor mb-0">{props.descripcion}</h2>
-                        <div className="mt-2 mb-2">
+                        <h4 className=" card-title TextDarkMainColor mb-0">{props.descripcion}</h4>
+                        <div className="mt-3 mb-2">
                             <fieldset className="val-fieldset" ><legend></legend><span className={estrellas(props.puntuacion)}></span></fieldset>
                         </div>
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Precio:</p>
                         <h3 >{props.precio}</h3>
                         <div className="container">
                             <div className="row">
-                                <div className="col-6 col-md-12 col-lg-6">
+                                <div className="col-6 col-sm-12 col-lg-6">
                                     <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Localidad:</p>
                                     <p className="MediumTextFont">{props.localidad}</p>
                                 </div>
-                                <div className="col-6 col-md-12 col-lg-6">
+                                <div className="col-6 col-sm-12 col-lg-6">
                                     <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Barrio:</p>
                                     <p className="MediumTextFont">{props.barrio}</p>
                                 </div>
