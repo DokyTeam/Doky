@@ -114,7 +114,7 @@ export default function ServiceCard(props) {
                         </div>
                         {but}
                     </div>
-                    <div className="card-footer bg-danger textcenter">
+                    <div className="card-footer bg-success textcenter">
                         <h3 className="mt-0 mb-1 TextWhiteColor">Veterianria</h3>
                     </div>
                 </div>
@@ -147,7 +147,7 @@ export default function ServiceCard(props) {
                         </div>
                         {but}
                     </div>
-                    <div className="card-footer bg-success textcenter">
+                    <div className="card-footer bg-danger textcenter">
                         <h3 className="mt-0 mb-1 TextWhiteColor">Guardería</h3>
                     </div>
                 </div>
