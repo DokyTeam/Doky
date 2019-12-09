@@ -1,13 +1,10 @@
-.image-serv-card{
-    max-height: 550px;
+.image-serv-card-cons{
+    max-height: 400px;
+    filter: brightness(40%);
 }
 
 .serv-img-container{
     position: relative;
-}
-
-.image-serv-card{
-    filter: brightness(40%);
 }
 
 .serv-img-title{
@@ -18,7 +15,26 @@
     color: white;
 }
 
+.ser-img-pers-cons{
+    height: 150px;
+    width: 150px;
+}
+
 .estrellitascenter{
     margin-left: 50%;
     transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width:1280px){
+    .ser-img-pers-cons{
+        height: 80px;
+        width: 80px;
+    }
+}
+
+@media only screen and (max-width:424px){
+    .ser-img-pers-cons{
+        height: 90px;
+        width: 90px;
+    }
 }

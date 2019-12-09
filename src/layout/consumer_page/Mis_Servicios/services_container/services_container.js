@@ -23,7 +23,7 @@ class ServicesContainer extends Component {
     readAllPaseos = async () => {
         try {
             var serviciosDispController = new ServiciosDispController();
-            const paseos = await serviciosDispController.readServicioSalto();
+            const paseos = await serviciosDispController.readServicioGuarderia();
             console.log(paseos)
             this.setState({ servicios: paseos });
         } catch (error) {
@@ -46,6 +46,8 @@ class ServicesContainer extends Component {
             if (this.state.filtro === "Ninguno") {
                 table.push(
                     <ServiceCard
+                        key={index}
+                        //informacion servicio
                         nombre={data.nombre}
                         img={data.img}
                         puntuacion={data.puntuacion}
@@ -55,11 +57,12 @@ class ServicesContainer extends Component {
                         duracionMax={data.duracionMax}
                         precio={data.precio}
                         descripcion={data.descripcion}
-
-                        type={"Salto"}
-
-                        key={index}
-                        id={index}
+                        type={"Veterinaria"}
+                        //informacion persona
+                        imgp={'http://lorempixel.com/500/300/'}
+                        nombrep={'Juan Pablo'}
+                        apellidosp={'Betancourt Maldonado'}
+                        telefonop={'3214567890'}
                     />
                 )
             } else {
@@ -76,7 +79,7 @@ class ServicesContainer extends Component {
                             precio={data.precio}
                             descripcion={data.descripcion}
 
-                            type={"Salto"}
+                            type={"Guarderia"}
 
                             key={index}
                             id={index}
@@ -91,7 +94,7 @@ class ServicesContainer extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="menu-collapse-cons col-12 d-inline d-md-none textcenter">
+                    <div className="menu-collapse-cons col-12 d-inline d-lg-none textcenter">
                         <h2 className="barra-logo-cons mt-3">Gestor de Servicios</h2>
                         <h4 className="barra-logo-cons mt-3">Filtro Actual:</h4>
                         <h5 className="TextAltMainColor mt-3">{this.state.filtro}</h5>
@@ -104,11 +107,11 @@ class ServicesContainer extends Component {
                                 <button type="button" className="btn btn-success mt-3" onClick={() => { this.changefilter("Veterinarias") }}>Veterinarias</button>
                                 <button type="button" className="btn btn-danger mt-3" onClick={() => { this.changefilter("Guarderías") }}>Guarderías</button>
                                 <button type="button" className="btn btn-warning mt-3" onClick={() => { this.changefilter("Saltos") }}>Saltos</button>
-                                <button type="button" className="btn btn-light mt-3" onClick={() => { this.changefilter("Ninguno") }}>Sin Filtro</button>
+                                <button type="button" className="btn btn-light mt-3 mb-3" onClick={() => { this.changefilter("Ninguno") }}>Sin Filtro</button>
                             </nav>
                         </div>
                     </div>
-                    <div className="barra-lateral-cons col-3 col-lg-2 d-none d-md-inline textcenter">
+                    <div className="barra-lateral-cons col-1 col-lg-2 d-none d-lg-inline textcenter">
                         <h2 className="barra-logo-cons mt-3">Gestor de Servicios</h2>
                         <h4 className="barra-logo-cons mt-3">Filtro Actual:</h4>
                         <h5 className="TextAltMainColor mt-3">{this.state.filtro}</h5>

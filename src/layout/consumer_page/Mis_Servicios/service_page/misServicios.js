@@ -85,6 +85,7 @@ class MisServicios extends Component {
                                 descripcion={this.props.descripcion}
                                 duracion={this.props.duracion}
                                 estrellas={this.estrellas(this.props.puntuacion)}
+                                img = {this.props.location.state.img}
 
                             />
                             <br></br>
@@ -108,7 +109,7 @@ class MisServicios extends Component {
                                 celular={this.props.celular}
                                 fijo={this.props.fijo}
                                 correo1={this.props.correo1}
-
+                                img = {this.props.location.state.imgp}
                             />
                             <Chat></Chat>
                             <br></br>
@@ -142,7 +143,7 @@ function InformacionBasicaServicio(props) {
                             <div className="col-6 col-md-12 text-center">
                                 <div className="show-image">
                                     <img className="consusmerimg"
-                                        src="https://concepto.de/wp-content/uploads/2018/08/persona-e1533759204552.jpg"
+                                        src={props.img}
                                         title={props.nombre}
                                         alt={props.nombre}
                                     >
@@ -225,7 +226,7 @@ function InformacionBasicaPerfil(props) {
                             <div className="col-12 col-md-6 text-center">
                                 <div className="show-image">
                                     <img className="consusmerimg"
-                                        src="https://ichef.bbci.co.uk/news/660/cpsprodpb/A020/production/_103529904_primera.jpg"
+                                        src={props.img}
                                         title={props.nombre}
                                         alt={props.nombre}
                                     >
