@@ -5,7 +5,7 @@ import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
 import '../../../global_css/starts.css';
-
+import { Link } from 'react-router-dom';
 
 class GuarderiaVisualizar extends Component {
 
@@ -34,42 +34,42 @@ class GuarderiaVisualizar extends Component {
     }
 
     estrellas = (calificacion) => {
-        
+
         if (0 < calificacion && calificacion < 0.5) {
             return "valoracion val-0"
         }
         if (0.5 <= calificacion && calificacion < 1) {
-           return "valoracion val-5"
+            return "valoracion val-5"
         }
         if (1 <= calificacion && calificacion < 1.5) {
-           return  "valoracion val-10"
+            return "valoracion val-10"
         }
         if (1.5 <= calificacion && calificacion < 2) {
-           return  "valoracion val-15"
+            return "valoracion val-15"
         }
         if (2 <= calificacion && calificacion < 2.5) {
-           return  "valoracion val-20"
+            return "valoracion val-20"
         }
         if (2.5 <= calificacion & calificacion < 3) {
-           return  "valoracion val-25"
+            return "valoracion val-25"
         }
         if (3 <= calificacion & calificacion < 3.5) {
-           return  "valoracion val-30"
+            return "valoracion val-30"
         }
         if (3.5 <= calificacion & calificacion < 4) {
-           return  "valoracion val-35"
+            return "valoracion val-35"
         }
         if (4 <= calificacion & calificacion < 4.5) {
-           return  "valoracion val-40"
+            return "valoracion val-40"
         }
         if (4.5 <= calificacion & calificacion < 5) {
-           return  "valoracion val-45"
+            return "valoracion val-45"
         }
         if (5 === calificacion) {
-           return  "valoracion val-50"
+            return "valoracion val-50"
         }
         return "valoracion val-0"
-       }
+    }
 
     render() {
 
@@ -84,9 +84,8 @@ class GuarderiaVisualizar extends Component {
             img = data.img;
             localidad = data.localidad;
             precio = data.precio;
-            if(data.puntuacion) 
-            {puntuacion= parseFloat(data.puntuacion.toFixed(1) ) }
-            else{puntuacion = 0}
+            if (data.puntuacion) { puntuacion = parseFloat(data.puntuacion.toFixed(1)) }
+            else { puntuacion = 0 }
 
             return null;
         });
@@ -120,9 +119,14 @@ class GuarderiaVisualizar extends Component {
 
                     <div className="row">
                         <div className="col-12" style={{ textAlign: "right" }}>
-                            <button type="button" className="btn btn-success"
-                                style={{ marginRight: 10 }}>
-                                Tomar servicio</button>
+                            <Link className="btn btn-success"
+                                style={{ marginRight: 10 }}
+                                to={{
+                                    pathname: "/mis-servicios/guarderia/" + `${this.props.location.state.id_user}`,
+                                    state: this.props.location.state
+                                }}>
+                                Tomar servicio
+                            </Link>
                             <hr />
                         </div>
                     </div>
@@ -171,7 +175,7 @@ function InformacionBasica(props) {
                     <div className="col-6 col-md-6">
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Calificación:</p>
                         <div className="row">
-                            
+
                             <div className="col-1 col-md-1 col-sm-1">
                                 <p className="MediumTextFont">{props.calificación}</p>
                             </div>
