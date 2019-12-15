@@ -10,31 +10,43 @@ import { Link } from 'react-router-dom';
 
 export default function ServiceCard(props) {
 
-    let footer
+    let footer;
+    let header;
 
     switch (props.type) {
-        case "Paseo":
+        case "paseo":
             footer = <div className="card-footer bg-primary textcenter">
                 <h3 className="mt-0 mb-1 TextWhiteColor">Paseo</h3>
             </div>
             break;
-        case "Veterinaria":
+        case "veterinaria":
             footer = <div className="card-footer bg-success textcenter">
                 <h3 className="mt-0 mb-1 TextWhiteColor">Veterinaria</h3>
             </div>
             break;
-        case "Guarderia":
+        case "guarderia":
             footer = <div className="card-footer bg-danger textcenter">
                 <h3 className="mt-0 mb-1 TextWhiteColor">Guardería</h3>
             </div>
             break;
-        case "Salto":
+        case "salto":
             footer = <div className="card-footer bg-warning textcenter">
                 <h3 className="mt-0 mb-1">Salto</h3>
             </div>
             break;
         default:
             break;
+    }
+
+    if (props.img === "" || props.img === null) {
+        header = <div class="card-header textcenter">
+            <h1 className="TextAltMainColor">{props.nombre}</h1>
+        </div>;
+    } else {
+        header = <div className="serv-img-container textcenter">
+            <img className="card-img-top img-fluid image-serv-card-cons" src={props.img} alt={props.nombre} />
+            <h1 className="serv-img-title">{props.nombre}</h1>
+        </div>;
     }
 
     return (
@@ -47,15 +59,12 @@ export default function ServiceCard(props) {
             }
         }}>
             <div className="card">
-                <div className="serv-img-container textcenter">
-                    <img className="card-img-top img-fluid image-serv-card-cons" src={props.img} alt={props.nombre} />
-                    <h1 className="serv-img-title">{props.nombre}</h1>
-                </div>
+                {header}
                 <div className="card-body textcenter">
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-12">
-                                <h4 className="TextDarkMainColor">Info Cliente</h4>
+                                <h4 className="TextDarkMainColor">Info Prestador</h4>
                             </div>
                             <div className="col-5 col-sm-12 col-lg-5 textcenter">
                                 <img className="card-img-top rounded-circle ser-img-pers-cons" src={props.imgp} alt={props.nombrep} />
