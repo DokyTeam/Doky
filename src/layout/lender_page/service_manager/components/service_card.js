@@ -61,7 +61,7 @@ export default function ServiceCard(props) {
     }
 
     if (props.img === "" || props.img === null) {
-        header = <div class="card-header">
+        header = <div class="card-header textcenter">
             <h1 className="TextAltMainColor">{props.nombre}</h1>
         </div>;
     } else {

@@ -51,7 +51,7 @@ class CartaServicio extends Component {
         const link = "/" + this.props.type +`/${id}`;
 
         return (
-            <div className="WhiteColor card h-100 " style={{ borderRadius: 10 }}>
+            <div className="WhiteColor card" style={{ borderRadius: 10}}>
                
                 <Link to={{
                     pathname : link,
@@ -63,12 +63,12 @@ class CartaServicio extends Component {
                 <button className="button_card text-justify" >
                     <div className="container-fluid" >
                         <div className="row align-items-top" >
-                            <div className="col-md-3 col-lg-4 " >
+                            <div className="col-4 col-sm-3 col-md-3 col-lg-4 " >
                                 
                                 <img className="img_card" src={this.props.foto} title={this.props.servicename} alt={this.props.servicename}style ={{maxHeight :400}}></img>
                             </div>
-                            <div className="col-md-9 col-lg-8 "  >
-                                <h1 className="TextFont MediumTextFont ">{this.props.servicename}</h1>
+                            <div className="col-8 col-md-9 col-lg-8 "  >
+                                <h1 className="TextFont MediumTextFont overflow-hidden" style ={{height:60}}>{this.props.servicename}</h1>
                                 <fieldset className="val-fieldset" ><legend></legend><span className={this.estrellas()}></span></fieldset>
                                  <p className="SmallTextFont card-text overflow-hidden" style ={{height:70}}>{this.props.descripcion}</p>
                             </div>
