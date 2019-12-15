@@ -122,7 +122,7 @@ class PaseosVisualizar extends Component {
                             <Link className="btn btn-success"
                                 style={{ marginRight: 10 }}
                                 to={{
-                                    pathname: "/mis-servicios/salto/" + `${this.props.location.state.id_user}`,
+                                    pathname: "/mis-servicios/paseo/" + `${this.props.location.state.id_user}`,
                                     state: this.props.location.state
                                 }}>
                                 Tomar servicio
