@@ -4,16 +4,18 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 
+import './misServicios.css'
+
 import { Chat } from './chat';
 import { Start } from './start';
 
 class MisServicios extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            background : "container-fluid",
-            show_start : false
+        this.state = {
+            background: "container-fluid",
+            show_start: false
         }
     }
 
@@ -55,67 +57,77 @@ class MisServicios extends Component {
         return "valoracion val-0"
     }
 
-    handle = (someB, someS) =>{
+    handle = (someB, someS) => {
         this.setState({
-            background : someB,
-            show_start : someS
+            background: someB,
+            show_start: someS
         })
     }
 
     render() {
 
-       
+
 
         return (
             <div>
 
                 <div className={this.state.background}>
-                    <div className="row align-items-top">
-                        <div className="col-md-12 col-lg-6">
-                            <br></br>
-                            <InformacionBasicaServicio
+                    <div className="row align-items-center">
+                        <div className="col-md-12 col-lg-5" >
+                            <div className="WhiteColor card ContainerInfo">
+                                <br></br>
+                                <InformacionBasicaServicio
 
-                                fotosrc={this.props.img}
-                                nombre={this.props.location.state.nombre}
-                                calificación={this.props.puntuacion}
-                                precio={this.props.precio}
-                                horario={this.props.horario}
-                                localidad={this.props.localidad}
-                                barrio={this.props.barrio}
-                                descripcion={this.props.descripcion}
-                                duracion={this.props.duracion}
-                                estrellas={this.estrellas(this.props.puntuacion)}
-                                img = {this.props.location.state.img}
+                                    fotosrc={this.props.img}
+                                    nombre={this.props.nombre}
+                                    calificación={this.props.puntuacion}
+                                    precio={this.props.precio}
+                                    horario={this.props.horario}
+                                    localidad={this.props.localidad}
+                                    barrio={this.props.barrio}
+                                    descripcion={this.props.descripcion}
+                                    duracion={this.props.duracion}
+                                    estrellas={this.estrellas(this.props.puntuacion)}
 
-                            />
-                            <br></br>
-                            <Start show={this.state.show_start} volver ={this.handle}></Start>
-                            <button type="button" className="btn btn-outline-danger" onClick={()=>{
-                                this.handle("container-fluid backdrop-consumer",true)
+                                />
+                                <br></br>
+                                <Start show={this.state.show_start} volver={this.handle}></Start>
+                                <button type="button" className="btn btn-outline-danger" onClick={() => {
+                                    this.handle("container-fluid backdrop-consumer", true)
 
-                            }}
-                            >Finalizar servicio </button>
+                                }}
+                                    style={{
+                                        margin: "20%",
+                                        marginBottom: "5%",
+                                        marginTop: "5%"
+                                    }}
+                                >Finalizar servicio </button>
+                            </div>
                         </div>
 
                         <div className="col-md-12 col-lg-6"  >
-                            <br></br>
-                            <InformacionBasicaPerfil
-                                nombre={this.props.nombre}
-                                appellido={this.props.appellido}
-                                fecha_nacimiento={this.props.fecha_nacimiento}
-                                ciudad={this.props.ciudad}
-                                barrio={this.props.barrio}
-                                fotosrc={this.props.fotosrc}
-                                celular={this.props.celular}
-                                fijo={this.props.fijo}
-                                correo1={this.props.correo1}
-                                img = {this.props.location.state.imgp}
-                            />
-                            <Chat></Chat>
-                            <br></br>
-                            
+                            <div className="WhiteColor card ContainerInfo">
+                                <br></br>
+                                <InformacionBasicaPerfil
+                                    nombre={this.props.nombre}
+                                    appellido={this.props.appellido}
+                                    fecha_nacimiento={this.props.fecha_nacimiento}
+                                    ciudad={this.props.ciudad}
+                                    barrio={this.props.barrio}
+                                    fotosrc={this.props.fotosrc}
+                                    celular={this.props.celular}
+                                    fijo={this.props.fijo}
+                                    correo1={this.props.correo1}
+
+                                />
+                            </div>
+                            <div className="WhiteColor card ContainerInfo">
+                                <Chat></Chat>
+                                <br></br>
+                            </div>
 
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -143,7 +155,7 @@ function InformacionBasicaServicio(props) {
                             <div className="col-6 col-md-12 text-center">
                                 <div className="show-image">
                                     <img className="consusmerimg"
-                                        src={props.img}
+                                        src="https://concepto.de/wp-content/uploads/2018/08/persona-e1533759204552.jpg"
                                         title={props.nombre}
                                         alt={props.nombre}
                                     >
@@ -226,7 +238,7 @@ function InformacionBasicaPerfil(props) {
                             <div className="col-12 col-md-6 text-center">
                                 <div className="show-image">
                                     <img className="consusmerimg"
-                                        src={props.img}
+                                        src="https://ichef.bbci.co.uk/news/660/cpsprodpb/A020/production/_103529904_primera.jpg"
                                         title={props.nombre}
                                         alt={props.nombre}
                                     >
@@ -246,7 +258,7 @@ function InformacionBasicaPerfil(props) {
                                         <p className="MediumTextFont">{props.appellido}</p>
                                     </div>
 
-                                    <p className="BigTextFont TextDarkMainColor d-block d-sm-none">Contacto</p>
+                                    
 
                                     <div className="col-12 col-md-6">
                                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Celular:</p>
