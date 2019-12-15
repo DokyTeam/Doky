@@ -4,6 +4,8 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 
+import  { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
+
 import './service_cards.css'
 
 let estrellas = (calificacion) => {
@@ -44,12 +46,17 @@ let estrellas = (calificacion) => {
     return "valoracion val-0 estrellitascenter"
 }
 
+let deleteserv = (tipo, nombre) => {
+    var serviciosDispController = new ServiciosDispController();
+    serviciosDispController.deleteServicio(nombre, tipo);
+}
+
 export default function ServiceCard(props) {
 
     let but;
 
     if (props.elimbut !== null) {
-        but = <button type="button" className="btn btn-danger mt-3" onClick={() => { props.delete(props.id) }}>Eliminar</button>
+        but = <button type="button" className="btn btn-danger mt-3" onClick={() => { props.delete(props.id); deleteserv(props.type, props.idn)}}>Eliminar</button>
     }
 
     switch (props.type) {

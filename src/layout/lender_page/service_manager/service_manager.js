@@ -86,6 +86,7 @@ class ServiceManager extends Component {
                         duracionMax={data.duracionMax}
                         precio={data.precio}
                         descripcion={data.descripcion}
+                        idn={data.id}
 
                         type={data.tipo}
 
@@ -109,6 +110,7 @@ class ServiceManager extends Component {
                             duracionMax={data.duracionMax}
                             precio={data.precio}
                             descripcion={data.descripcion}
+                            idn={data.id}
 
                             type={data.tipo}
 

@@ -228,8 +228,7 @@ export class ServiciosDispController {
     async verifyService(tipoServicio,nombreServicio){
         let ac = true;
         return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where("nombre","==",nombreServicio).get().then(
-            function(querySnapshot){ 
-                let result = [];               
+            function(querySnapshot){             
                 querySnapshot.forEach(function (doc) {
                     ac = false;
                 });
@@ -445,27 +444,5 @@ export class ServiciosDispController {
         let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + userId + "/" + tipoServicio + "susuario/"
         return this.firebaseDeleteRepository.deleteDocument(direccion,nombreServicio);
     }
-
-    deleteServicioGuarderia(nombreServicio){
-        return this.deleteServicio(nombreServicio,"guarderia");
-    }
-
-    deleteServicioPaseo(nombreServicio){
-        return this.deleteServicio(nombreServicio,"paseo");
-    }
-
-    deleteServicioVeterinaria(nombreServicio){
-        return this.deleteServicio(nombreServicio,"veterinaria");
-    }
-
-    deleteServicioSalto(nombreServicio){
-        return this.deleteServicio(nombreServicio,"salto");
-    }
-
-
-
-
-
-
 
 }
