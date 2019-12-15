@@ -3,6 +3,7 @@ import { FirebaseCreateRepository } from '../access_data/firebase_create_reposit
 import { FirebaseUpdateRepository } from '../access_data/firebase_update_repository';
 import { FirebaseAuthRepository } from '../access_data/firebase_auth_repository';
 import { FirebaseStorageRespository } from '../access_data/firebase_storage_repository';
+import { FirebaseDeleteRepository } from '../access_data/firebase_delete_repository';
 
 //Servicios disp controller
 const addImagen = (img, loadImg, error, fullyLoaded,getUserId,getaIdServicio,nombreServicio) => {
@@ -56,6 +57,7 @@ export class ServiciosDispController {
         this.firebaseUpdateRepository = new FirebaseUpdateRepository();
         this.firebaseAuthRepository = new FirebaseAuthRepository();
         this.firebaseUpdateRepository = new FirebaseUpdateRepository();
+        this.firebaseDeleteRepository = new FirebaseDeleteRepository();
     }
 
     //CONSULTAS SIN FILTROS ##################################################################################################################
@@ -435,6 +437,35 @@ export class ServiciosDispController {
         let all = veterinarias.concat(paseos,guarderias,saltos);
         return all;
     }
+
+
+
+    deleteServicio(nombreServicio, tipoServicio){
+        const userId = this.firebaseAuthRepository.getUserId();
+        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + userId + "/" + tipoServicio + "susuario/"
+        return this.firebaseDeleteRepository.deleteDocument(direccion,nombreServicio);
+    }
+
+    deleteServicioGuarderia(nombreServicio){
+        return this.deleteServicio(nombreServicio,"guarderia");
+    }
+
+    deleteServicioPaseo(nombreServicio){
+        return this.deleteServicio(nombreServicio,"paseo");
+    }
+
+    deleteServicioVeterinaria(nombreServicio){
+        return this.deleteServicio(nombreServicio,"veterinaria");
+    }
+
+    deleteServicioSalto(nombreServicio){
+        return this.deleteServicio(nombreServicio,"salto");
+    }
+
+
+
+
+
 
 
 }
