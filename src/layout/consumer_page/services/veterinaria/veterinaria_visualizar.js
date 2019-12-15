@@ -4,8 +4,7 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
-
-
+import { Link } from 'react-router-dom';
 
 class VeterinariaVisualizar extends Component {
 
@@ -21,7 +20,7 @@ class VeterinariaVisualizar extends Component {
         try {
             let InfoSend = [];
             let id_veterinaria = this.props.location.state.id;
-            
+
             const id = this.props.location.state.id_user;
             var getController = new ServiciosDispController();
             const Info = await getController.readVeterinariaFullInfo(id, id_veterinaria);
@@ -32,48 +31,50 @@ class VeterinariaVisualizar extends Component {
             console.log(error)
         }
     }
-   
+
     estrellas = (calificacion) => {
-        
+
         if (0 < calificacion && calificacion < 0.5) {
             return "valoracion val-0"
         }
         if (0.5 <= calificacion && calificacion < 1) {
-           return "valoracion val-5"
+            return "valoracion val-5"
         }
         if (1 <= calificacion && calificacion < 1.5) {
-           return  "valoracion val-10"
+            return "valoracion val-10"
         }
         if (1.5 <= calificacion && calificacion < 2) {
-           return  "valoracion val-15"
+            return "valoracion val-15"
         }
         if (2 <= calificacion && calificacion < 2.5) {
-           return  "valoracion val-20"
+            return "valoracion val-20"
         }
         if (2.5 <= calificacion & calificacion < 3) {
-           return  "valoracion val-25"
+            return "valoracion val-25"
         }
         if (3 <= calificacion & calificacion < 3.5) {
-           return  "valoracion val-30"
+            return "valoracion val-30"
         }
         if (3.5 <= calificacion & calificacion < 4) {
-           return  "valoracion val-35"
+            return "valoracion val-35"
         }
         if (4 <= calificacion & calificacion < 4.5) {
-           return  "valoracion val-40"
+            return "valoracion val-40"
         }
         if (4.5 <= calificacion & calificacion < 5) {
-           return  "valoracion val-45"
+            return "valoracion val-45"
         }
         if (5 === calificacion) {
-           return  "valoracion val-50"
+            return "valoracion val-50"
         }
         return "valoracion val-0"
-       }
+    }
+
+
 
     render() {
 
-        let barrio, descripcion, horario, id, img, localidad,  puntuacion;
+        let barrio, descripcion, horario, id, img, localidad, puntuacion;
 
         this.state.veterinariaInfo.map((data) => {
             barrio = data.barrio;
@@ -82,26 +83,22 @@ class VeterinariaVisualizar extends Component {
             id = data.id;
             img = data.img;
             localidad = data.localidad;
-            if(data.puntuacion) 
-            {puntuacion= parseFloat(data.puntuacion.toFixed(1) ) }
-            else{puntuacion = 0}
+            if (data.puntuacion) { puntuacion = parseFloat(data.puntuacion.toFixed(1)) }
+            else { puntuacion = 0 }
 
             return null;
         });
 
-        
-
         return (
             <div>
-
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-12">
 
                         </div>
-                        
+
                         <InformacionBasica
-                        
+
 
                             fotosrc={img}
                             nombre={id}
@@ -119,13 +116,17 @@ class VeterinariaVisualizar extends Component {
 
                     <div className="row">
                         <div className="col-12" style={{ textAlign: "right" }}>
-                            <button type="button" className="btn btn-success"
-                                style={{ marginRight: 10 }}>
-                                Tomar servicio</button>
+                            <Link className="btn btn-success"
+                                style={{ marginRight: 10 }}
+                                to={{
+                                    pathname: "/mis-servicios/veterinaria/" + `${this.props.location.state.id_user}`,
+                                    state: this.props.location.state
+                                }}>
+                                Tomar servicio
+                            </Link>
                             <hr />
                         </div>
                     </div>
-
                 </div>
             </div>
         );
@@ -137,7 +138,7 @@ export { VeterinariaVisualizar };
 function InformacionBasica(props) {
     return (
         <>
-            
+
             <div className="col-12 col-md-5 ">
 
                 <img className="img_card"
@@ -168,7 +169,7 @@ function InformacionBasica(props) {
                     <div className="col-6 col-md-6">
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Calificación:</p>
                         <div className="row">
-                            
+
                             <div className="col-1 col-md-1 col-sm-1">
                                 <p className="MediumTextFont">{props.calificación}</p>
                             </div>
@@ -177,10 +178,10 @@ function InformacionBasica(props) {
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
                 <div className="row">
-                    
+
                     <div className="col-12 col-md-6">
 
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Horario:</p>
