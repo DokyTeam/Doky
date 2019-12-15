@@ -1,43 +1,16 @@
-div.rightcontainer{
-    text-align: center;
+.landingheadcont{
+    position: relative;
 }
 
-.button {
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 30px
-
+.landingheadimg{
+    filter: brightness(40%);
 }
 
-.button2 {
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 30px
-}
-
-.lowerbar{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    font-size: 25px;
-    justify-items: center;
-    grid-auto-rows: minmax(10px,auto);
-}
-
-.lowerbar p a:hover {
-    color: #4d2f16;
-    text-decoration: none;
+.landingheadinfo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .theselect{

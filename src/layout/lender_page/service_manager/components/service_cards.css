@@ -1,0 +1,30 @@
+.image-serv-card{
+    max-height: 450px;
+}
+
+.serv-img-container{
+    position: relative;
+}
+
+.image-serv-card{
+    filter: brightness(40%);
+}
+
+.serv-img-title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.estrellitascenter{
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width:1700px){
+    .image-serv-card-cons{
+        max-height: 350px;
+    }
+}

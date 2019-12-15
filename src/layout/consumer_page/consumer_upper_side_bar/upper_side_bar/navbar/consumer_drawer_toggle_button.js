@@ -9,7 +9,7 @@ class DrawerToggleButton extends Component {
 
     render() {
         return (
-            <button className="TextMainColor MediumTextFont thelogbutt" onClick={this.props.drawerToggleClickhandler}>
+            <button className="MediumTextFont thelogbutton" onClick={this.props.drawerToggleClickhandler}>
                 <img src={shop} className="justify-content-end logo-size" alt="logo" ></img>
             </button>
         );
