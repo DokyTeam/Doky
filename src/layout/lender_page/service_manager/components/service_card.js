@@ -53,7 +53,7 @@ export default function ServiceCard(props) {
     }
 
     switch (props.type) {
-        case "Paseo":
+        case "paseo":
             return (
                 <div className="card">
                     <div className="serv-img-container textcenter">
@@ -86,7 +86,7 @@ export default function ServiceCard(props) {
                     </div>
                 </div>
             );
-        case "Veterinaria":
+        case "veterinaria":
             return (
                 <div className="card">
                     <div className="serv-img-container textcenter">
@@ -115,11 +115,11 @@ export default function ServiceCard(props) {
                         {but}
                     </div>
                     <div className="card-footer bg-success textcenter">
-                        <h3 className="mt-0 mb-1 TextWhiteColor">Veterianria</h3>
+                        <h3 className="mt-0 mb-1 TextWhiteColor">Veterinaria</h3>
                     </div>
                 </div>
             );
-        case "Guarderia":
+        case "guarderia":
             return (
                 <div className="card">
                     <div className="serv-img-container textcenter">
@@ -152,7 +152,7 @@ export default function ServiceCard(props) {
                     </div>
                 </div>
             );
-        case "Salto":
+        case "salto":
             return (
                 <div className="card">
                     <div className="serv-img-container textcenter">
