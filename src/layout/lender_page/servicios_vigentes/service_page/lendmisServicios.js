@@ -4,13 +4,13 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 
-import './misServicios.css'
+import './lendmisServicios.css'
 
 
-import { Chat } from './chat';
-import { Start } from './start';
+import { Chat } from './lendchat';
+import { Start } from './lendstart';
 
-class MisServicios extends Component {
+class LendMisServicios extends Component {
 
     constructor(props) {
         super(props);
@@ -19,8 +19,6 @@ class MisServicios extends Component {
             show_start: false
         }
     }
-
-
 
     estrellas = (calificacion) => {
 
@@ -108,13 +106,6 @@ class MisServicios extends Component {
                                     nombre={this.props.location.state.nombre}
                                     tipo="guarderia"
                                 ></Start>
-                                <button type="button" className="btn btn-danger" onClick={() => {
-                                    this.handle("container-fluid backdrop-consumer", true)
-
-                                }}
-                                >
-                                    Finalizar servicio
-                                </button>
                             </div>
                         </div>
 
@@ -145,7 +136,7 @@ class MisServicios extends Component {
     }
 }
 
-export { MisServicios };
+export { LendMisServicios };
 
 function InformacionBasicaServicio(props) {
 
@@ -236,11 +227,11 @@ function InformacionBasicaPerfil(props) {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12">
-                        <p className="MediumTextFont BigTextFont TextDarkMainColor">Información Prestador</p>
+                        <p className="MediumTextFont BigTextFont TextDarkMainColor">Información Consumidor</p>
                     </div>
                 </div>
                 <div className="row align-items-center">
-                    <div className="col-12 col-md-6 text-center">
+                    <div className="col-12 col-md-5 text-center">
                         <img className="consusmerimgsevpage mb-4"
                             src={props.fotosrc}
                             title={props.nombre}
@@ -248,7 +239,7 @@ function InformacionBasicaPerfil(props) {
                         >
                         </img>
                     </div>
-                    <div className="col-12 col-md-6">
+                    <div className="col-12 col-md-7">
                         <div className="row">
                             <div className="col-12 col-md-12">
                                 <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Nombre:</p>
@@ -269,4 +260,3 @@ function InformacionBasicaPerfil(props) {
         </>
     );
 }
-

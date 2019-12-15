@@ -4,12 +4,12 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 
-import './services_container.css';
+import './lend_services_container.css';
 
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
-import ServiceCard from './components/cons_serv_card';
+import ServiceCard from './components/lend_serv_card';
 
-class ServicesContainer extends Component {
+class LenderServicesContainer extends Component {
 
     state = {
         servicios: [],
@@ -24,7 +24,7 @@ class ServicesContainer extends Component {
     readAllPaseos = async () => {
         try {
             var serviciosDispController = new ServiciosDispController();
-            const paseos = await serviciosDispController.readServicioVeterinaria();
+            const paseos = await serviciosDispController.readServicioGuarderia();
             console.log(paseos)
             this.setState({ servicios: paseos });
         } catch (error) {
@@ -59,7 +59,7 @@ class ServicesContainer extends Component {
                         duracionMax={data.duracionMax}
                         precio={data.precio}
                         descripcion={data.descripcion}
-                        type={"veterinaria"}
+                        type={"guarderia"}
                         //informacion persona
                         imgp={'http://lorempixel.com/500/300/'}
                         nombrep={'Juan Pablo'}
@@ -81,7 +81,7 @@ class ServicesContainer extends Component {
                             precio={data.precio}
                             descripcion={data.descripcion}
 
-                            type={"veterinaria"}
+                            type={"guarderia"}
 
                             key={index}
                             id={index}
@@ -97,7 +97,7 @@ class ServicesContainer extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="menu-collapse-cons col-12 d-inline d-lg-none textcenter">
-                        <h2 className="barra-logo-cons mt-3">Tus Servicios</h2>
+                        <h2 className="barra-logo-cons mt-3">Servicios Vigentes</h2>
                         <h4 className="barra-logo-cons mt-3">Filtro Actual:</h4>
                         <h5 className="TextAltMainColor mt-3">{this.state.filtroname}</h5>
                         <button className="btn btn-info mb-3" data-toggle="collapse" data-target="#bloque2">
@@ -114,7 +114,7 @@ class ServicesContainer extends Component {
                         </div>
                     </div>
                     <div className="barra-lateral-cons col-1 col-lg-2 d-none d-lg-inline textcenter">
-                        <h2 className="barra-logo-cons mt-3">Tus Servicios</h2>
+                        <h2 className="barra-logo-cons mt-3">Servicios Vigentes</h2>
                         <h4 className="barra-logo-cons mt-3">Filtro Actual:</h4>
                         <h5 className="TextAltMainColor mt-3">{this.state.filtroname}</h5>
                         <nav className="d-flex flex-column">
@@ -140,4 +140,4 @@ class ServicesContainer extends Component {
     }
 }
 
-export { ServicesContainer };
+export { LenderServicesContainer };
