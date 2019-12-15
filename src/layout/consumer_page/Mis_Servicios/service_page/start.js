@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
@@ -6,11 +7,48 @@ import '../../../global_css/fonts.css';
 import './start.css';
 
 
+import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
+import { switchCase } from '@babel/types';
+
 class Start extends Component {
 
     state = {
         value: 0,
         experiencia: ""
+    }
+
+    calificarServicio = async (nuevaPuntuacion) => {
+        try {
+            let serviceController = new ServiciosDispController();
+            switch (this.props.tipo) {
+                case "guarderia":
+                    await serviceController.updateStarsGuarderia(this.props.nombre, nuevaPuntuacion);
+                    break;
+                case "veterinaria":
+                    await serviceController.updateStarsVeterinaria(this.props.nombre, nuevaPuntuacion);
+                    break;
+                case "paseo":
+                    await serviceController.updateStarsPaseo(this.props.nombre, nuevaPuntuacion);
+                    break;
+                case "salto":
+                    await serviceController.updateStarsSalto(this.props.nombre, nuevaPuntuacion);
+                    break;
+
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    eliminarServicio = async () => {
+        try {
+            let serviceController = new ServiciosDispController();
+            await serviceController.deleteServicio(this.props.nombre, this.props.tipo);
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render() {
@@ -74,14 +112,20 @@ class Start extends Component {
 
 
                             </p>
+                            <Link to={{
+                                pathname: `/MisServicios/`,
+
+                            }}>
+                                <button type="button" name="next" className="next action-button" value="Next" onClick={
+                                    () => {
+                                        this.calificarServicio(this.state.value);
+                                        //this.eliminarServicio();
+                                    }}>
+                                    Finalizar</button>
+                            </Link>
                             <button type="button" name="next" className="next action-button" value="Next" onClick={
                                 () => {
-                                    console.log(this.state.value)
-                                }}>
-                                Finalizar</button>
-                            <button type="button" name="next" className="next action-button" value="Next" onClick={
-                                () => {
-                                    this.props.volver("container-fluid",false)
+                                    this.props.volver("container-fluid", false)
                                 }}>
                                 Volver</button>
                         </fieldset>

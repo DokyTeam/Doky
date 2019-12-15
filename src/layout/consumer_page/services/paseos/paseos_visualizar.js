@@ -72,7 +72,7 @@ class PaseosVisualizar extends Component {
 
     render() {
 
-        let barrio, descripcion, horario, id, img, localidad, precio, puntuacion, duracion;
+        let barrio, descripcion, horario, id, img, localidad, precio, puntuacion, duracion,nombre;
 
         this.state.PaseoInfo.map((data) => {
             barrio = data.barrio;
@@ -80,6 +80,7 @@ class PaseosVisualizar extends Component {
             horario = data.horario;
             id = data.id;
             img = data.img;
+            nombre = data.nombre;
             localidad = data.localidad;
             precio = data.precio;
             if (data.puntuacion) { puntuacion = parseFloat(data.puntuacion.toFixed(1)) }
@@ -102,7 +103,7 @@ class PaseosVisualizar extends Component {
 
 
                             fotosrc={img}
-                            nombre={id}
+                            nombre={nombre}
                             calificación={puntuacion}
                             precio={precio}
                             horario={horario}

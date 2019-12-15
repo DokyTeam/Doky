@@ -74,11 +74,12 @@ class VeterinariaVisualizar extends Component {
 
     render() {
 
-        let barrio, descripcion, horario, id, img, localidad, puntuacion;
+        let barrio, descripcion, horario, id, img, localidad, puntuacion,nombre;
 
         this.state.veterinariaInfo.map((data) => {
             barrio = data.barrio;
             descripcion = data.descripcion;
+            nombre = data.nombre;
             horario = data.horario;
             id = data.id;
             img = data.img;
@@ -101,7 +102,7 @@ class VeterinariaVisualizar extends Component {
 
 
                             fotosrc={img}
-                            nombre={id}
+                            nombre={nombre}
                             calificación={puntuacion}
                             horario={horario}
                             localidad={localidad}

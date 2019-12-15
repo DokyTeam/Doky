@@ -73,12 +73,13 @@ class SaltosVisualizar extends Component {
 
     render() {
 
-        let barrio, descripcion, id, img, localidad, precio, puntuacion;
+        let barrio, descripcion, id, img, localidad, precio, puntuacion,nombre;
 
         this.state.SaltosInfo.map((data) => {
             barrio = data.barrio;
             descripcion = data.descripcion;
             id = data.id;
+            nombre = data.nombre;
             img = data.img;
             localidad = data.localidad;
             precio = data.precio;
@@ -101,7 +102,7 @@ class SaltosVisualizar extends Component {
 
 
                             fotosrc={img}
-                            nombre={id}
+                            nombre={nombre}
                             calificación={puntuacion}
                             precio={precio}
                             localidad={localidad}

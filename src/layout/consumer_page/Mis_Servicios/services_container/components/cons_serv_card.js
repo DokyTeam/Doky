@@ -53,8 +53,19 @@ export default function ServiceCard(props) {
         <Link to={{
             pathname: `/MisServicios/${props.nombre}`,
             state: {
+                tipo: props.type,
                 nombre: props.nombre,
+                puntuacion: props.puntuacion,
+                precio: props.precio,
+                horario: props.horario,
+                localidad:props.localidad,
+                barrio: props.barrio,
+                descripcion: props.descripcion,
+                duracion: props.duracionMax,
                 img: props.img,
+                nombrep: props.nombrep,
+                apellidosp: props.apellidosp,
+                telefonop: props.telefonop,
                 imgp: props.imgp
             }
         }}>

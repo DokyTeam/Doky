@@ -73,7 +73,7 @@ class GuarderiaVisualizar extends Component {
 
     render() {
 
-        let barrio, cantidadpuntuacion, descripcion, horario, id, img, localidad, precio, puntuacion;
+        let barrio, cantidadpuntuacion, descripcion, horario, id, img, localidad, precio, puntuacion,nombre;
 
         this.state.guarderiaInfo.map((data) => {
             barrio = data.barrio;
@@ -81,6 +81,7 @@ class GuarderiaVisualizar extends Component {
             descripcion = data.descripcion;
             horario = data.horario;
             id = data.id;
+            nombre = data.nombre;
             img = data.img;
             localidad = data.localidad;
             precio = data.precio;
@@ -102,7 +103,7 @@ class GuarderiaVisualizar extends Component {
 
 
                             fotosrc={img}
-                            nombre={id}
+                            nombre={nombre}
                             calificación={puntuacion}
                             cantidad_calificaciones={cantidadpuntuacion}
                             precio={precio}
