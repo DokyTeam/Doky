@@ -9,7 +9,7 @@ class LenderUpperbar extends Component {
     render() {
         return (
             <div className="Navegation LandingBar">
-                <div className="d-flex bd-highlight MainColor align-items-center">
+                <div className="d-flex bd-highlight MainGradient align-items-center">
                      <Link to="/">
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <h3 className="text-light  text-font font-italic text-uppercase ">
