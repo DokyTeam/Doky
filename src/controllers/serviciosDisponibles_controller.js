@@ -297,35 +297,40 @@ export class ServiciosDispController {
         this.fullServicio(salto,img, loadImg, error, fullyLoaded,this.addImagenSalto,"salto")
     }
 
-    // recibe el email del prestador que se va a calificar, el tipo de servicio (guarderia, veterinaria, salto, paseo) y el valor de la nueva puntuacion
-    async updateStars(email, tipoServicio, nombre, nuevaPuntuacion) {
-        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + email + "/" + tipoServicio + "susuario/";
-        return this.firebaseReadRepository.readCollection(direccion).doc(nombre).get().then(
-            querySnapshot => {
-                let sp = querySnapshot.data().sumapuntuacion + nuevaPuntuacion;
-                let cp = querySnapshot.data().cantidadpuntuacion + 1;
+    // recibe el nombre del servicio,  el tipo de servicio (guarderia, veterinaria, salto, paseo) y el valor de la nueva puntuacion
+    async updateStars(nombreServicio, tipoServicio, nuevaPuntuacion) {
+        
+        return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where("nombre","==",nombreServicio).get().then(
+            function (querySnapshot) {
+                const update = new FirebaseUpdateRepository();
+                querySnapshot.forEach(function (doc) {
+                let sp = doc.data().sumapuntuacion + nuevaPuntuacion;
+                let cp = doc.data().cantidadpuntuacion + 1;
+                let direccion  = doc.ref.path.toString();
                 let m = {
                     sumapuntuacion: sp,
                     cantidadpuntuacion: cp
                 }
-                return this.firebaseUpdateRepository.updateAttributesDocument(direccion, nombre, m);
-            })
+                return update.updateAttributesDocumentCompletePath(direccion, m);  
+            })}
+            
+        );
     }
 
-    updateStarsGuarderia(emailPrestador, idDoc, nuevaPuntuacion) {
-        return this.updateStars(emailPrestador, "guarderia", idDoc, nuevaPuntuacion);
+    updateStarsGuarderia(nombreServicio, nuevaPuntuacion) {
+        return this.updateStars(nombreServicio, "guarderia", nuevaPuntuacion);
     }
 
-    updateStarsPaseo(emailPrestador, idDoc, nuevaPuntuacion) {
-        return this.updateStars(emailPrestador, "paseo", idDoc, nuevaPuntuacion);
+    updateStarsPaseo(nombreServicio, nuevaPuntuacion) {
+        return this.updateStars(nombreServicio, "paseo", nuevaPuntuacion);
     }
 
-    updateStarsVeterinaria(emailPrestador, idDoc, nuevaPuntuacion) {
-        return this.updateStars(emailPrestador, "veterinaria", idDoc, nuevaPuntuacion);
+    updateStarsVeterinaria(nombreServicio, nuevaPuntuacion) {
+        return this.updateStars(nombreServicio, "veterinaria",  nuevaPuntuacion);
     }
 
-    updateStarsSalto(emailPrestador, idDoc, nuevaPuntuacion) {
-        return this.updateStars(emailPrestador, "salto", idDoc, nuevaPuntuacion);
+    updateStarsSalto(nombreServicio, nuevaPuntuacion) {
+        return this.updateStars(nombreServicio, "salto", nuevaPuntuacion);
     }
 
     //Get info servicios
@@ -379,5 +384,45 @@ export class ServiciosDispController {
     addImagenVeterinaria(img, loadImg, error, fullyLoaded,idUser,idVeterinaria){
         return addImagen(img, loadImg, error, fullyLoaded,idUser,idVeterinaria,"Veterinarias")
     }
+
+
+    //Devuelve todos los servicios del mismo tipo que tenga publicados el usuario
+    servicioUsuario(tipoServicio){     
+        const userId = this.firebaseAuthRepository.getUserId();
+        console.log(userId);
+        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + userId + "/" + tipoServicio + "susuario/";
+        return this.firebaseReadRepository.readCollection(direccion).get().then(
+            function(querySnapshot){ 
+                let servicio = [];               
+                querySnapshot.forEach(function (doc) {
+                    let id = { "id": doc.id }
+                    let values = { ...doc.data(), ...id }
+                    let cantidad = { puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion) }
+                    values = { ...values, ...cantidad }
+                    servicio.push(values);
+                });
+                console.log(servicio);
+                return servicio;
+            }
+        );
+    }
+
+
+    servicioGuarderiaUsuario(){
+        return this.servicioUsuario("guarderia");
+    }
+
+    servicioPaseoUsuario(){
+        return this.servicioUsuario("paseo");
+    }
+
+    servicioVeterinariaUsuario(){
+        return this.servicioUsuario("veterinaria");
+    }
+
+    servicioSaltoUsuario(){
+        return this.servicioUsuario("salto");
+    }
+
 
 }
