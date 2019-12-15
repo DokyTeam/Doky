@@ -28,41 +28,15 @@
    
 }
 
+
+
 .containerChatTotal{
     padding-left: 3%;
     padding-right: 3%;
 }
-
 .ContainerInfo{
     -webkit-box-shadow: 10px 10px 13px -15px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 13px -15px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 13px -15px rgba(0,0,0,0.75);
     margin: 2%;
-}
-
-.consusmerimgsevpage{
-    width: 250px;
-    height: 250px;
-    border-radius: 530px;
-}
-
-@media only screen and (max-width:1440px){
-    .consusmerimgsevpage{
-        width: 150px;
-        height: 150px;
-    }
-}
-
-@media only screen and (max-width:1024px){
-    .consusmerimgsevpage{
-        width: 100px;
-        height: 100px;
-    }
-}
-
-@media only screen and (max-width:768px){
-    .consusmerimgsevpage{
-        width: 150px;
-        height: 150px;
-    }   
 }
