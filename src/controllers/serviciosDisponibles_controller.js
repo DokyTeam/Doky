@@ -297,7 +297,7 @@ export class ServiciosDispController {
         this.fullServicio(salto,img, loadImg, error, fullyLoaded,this.addImagenSalto,"salto")
     }
 
-    // recibe el email del prestador que se va a calificar, el tipo de servicio (guarderia, veterinaria, salto, paseo) y el valor de la nueva puntuacion
+    // recibe el nombre del servicio,  el tipo de servicio (guarderia, veterinaria, salto, paseo) y el valor de la nueva puntuacion
     async updateStars(nombreServicio, tipoServicio, nuevaPuntuacion) {
         
         return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where("nombre","==",nombreServicio).get().then(
@@ -315,21 +315,6 @@ export class ServiciosDispController {
             })}
             
         );
-
-
-
-/*
-        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + email + "/" + tipoServicio + "susuario/";
-        return this.firebaseReadRepository.readCollection(direccion).doc(nombre).get().then(
-            querySnapshot => {
-                let sp = querySnapshot.data().sumapuntuacion + nuevaPuntuacion;
-                let cp = querySnapshot.data().cantidadpuntuacion + 1;
-                let m = {
-                    sumapuntuacion: sp,
-                    cantidadpuntuacion: cp
-                }
-                return this.firebaseUpdateRepository.updateAttributesDocument(direccion, nombre, m);
-            })*/
     }
 
     updateStarsGuarderia(nombreServicio, nuevaPuntuacion) {
