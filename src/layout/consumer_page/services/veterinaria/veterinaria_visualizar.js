@@ -4,12 +4,13 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 class VeterinariaVisualizar extends Component {
 
     state = {
-        veterinariaInfo: []
+        veterinariaInfo: [],
+        redirect: undefined
     }
 
     componentDidMount() {
@@ -70,7 +71,16 @@ class VeterinariaVisualizar extends Component {
         return "valoracion val-0"
     }
 
-
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return (<Redirect
+                to={{
+                    pathname: "/mis-servicios/guarderia/" + `${this.props.location.state.id_user}`,
+                    state: this.state.redirect
+                }}
+            />)
+        }
+    }
 
     render() {
 
@@ -92,6 +102,7 @@ class VeterinariaVisualizar extends Component {
 
         return (
             <div>
+                {this.renderRedirect()}
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-12">
@@ -111,20 +122,25 @@ class VeterinariaVisualizar extends Component {
                             estrellas={this.estrellas(puntuacion)}
 
                         />
-                        }
+
 
                     </div>
 
                     <div className="row">
                         <div className="col-12" style={{ textAlign: "right" }}>
-                            <Link className="btn btn-success"
+                            <button className="btn btn-success"
                                 style={{ marginRight: 10 }}
-                                to={{
-                                    pathname: "/mis-servicios/veterinaria/" + `${this.props.location.state.id_user}`,
-                                    state: this.props.location.state
-                                }}>
+                                onClick={
+                                    async() => {
+                                        const props = this.props.location.state;
+                                        const serviciosDispController = new ServiciosDispController();
+                                        await serviciosDispController.writeIniciarServicioVeterinaria(props.id_user, props.id);
+                                        this.setState({
+                                            redirect:{id:props.id,idPrestador:props.id_user}
+                                        })
+                                    }}>
                                 Tomar servicio
-                            </Link>
+                            </button>
                             <hr />
                         </div>
                     </div>

@@ -5,7 +5,7 @@ import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
 import { Link } from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom'
 
 
 class SaltosVisualizar extends Component {
@@ -71,6 +71,17 @@ class SaltosVisualizar extends Component {
         return "valoracion val-0"
     }
 
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return (<Redirect
+                to={{
+                    pathname: "/mis-servicios/guarderia/" + `${this.props.location.state.id_user}`,
+                    state: this.state.redirect
+                }}
+            />)
+        }
+    }
+
     render() {
 
         let barrio, descripcion, id, img, localidad, precio, puntuacion,nombre;
@@ -92,7 +103,7 @@ class SaltosVisualizar extends Component {
 
         return (
             <div>
-
+            {this.renderRedirect()}
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-12">
@@ -117,14 +128,19 @@ class SaltosVisualizar extends Component {
 
                     <div className="row">
                         <div className="col-12" style={{ textAlign: "right" }}>
-                            <Link className="btn btn-success"
+                            <button className="btn btn-success"
                                 style={{ marginRight: 10 }}
-                                to={{
-                                    pathname: "/mis-servicios/salto/" + `${this.props.location.state.id_user}`,
-                                    state: this.props.location.state
-                                }}>
+                                onClick={
+                                    async () => {
+                                        const props = this.props.location.state;
+                                        const serviciosDispController = new ServiciosDispController();
+                                        await serviciosDispController.writeIniciarServicioSalto(props.id_user, props.id);
+                                        this.setState({
+                                            redirect: { id: props.id, idPrestador: props.id_user }
+                                        })
+                                    }}>
                                 Tomar servicio
-                            </Link>
+                            </button>
                             <hr />
                         </div>
                     </div>

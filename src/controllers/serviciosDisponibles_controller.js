@@ -416,8 +416,7 @@ export class ServiciosDispController {
     async writeIniciarServicioVeterinaria(idPrestador, idVeterinaria) {
         try {
             const userId = this.firebaseAuthRepository.getUserId();
-            await this.writeIiniciarServicio(userId, "veterinaria", idPrestador, idVeterinaria);
-            return await readBasicInfoInciarServicio(userId, idPrestador, idVeterinaria, this.readVeterinariaFullInfo);
+            return await this.writeIiniciarServicio(userId, "veterinaria", idPrestador, idVeterinaria);
         } catch (error) {
             console.log(error)
             return error;
@@ -427,8 +426,7 @@ export class ServiciosDispController {
     async writeIniciarServicioSalto(idPrestador, idSalto) {
         try {
             const userId = this.firebaseAuthRepository.getUserId();
-            await this.writeIiniciarServicio(userId, "salto", idPrestador, idSalto);
-            return await readBasicInfoInciarServicio(userId, idPrestador, idSalto, this.readSaltosFullInfo);
+            return await this.writeIiniciarServicio(userId, "salto", idPrestador, idSalto);
         } catch (error) {
             console.log(error)
             return error;
@@ -438,8 +436,7 @@ export class ServiciosDispController {
     async writeIniciarServicioGuarderia(idPrestador, idGuarderia) {
         try {
             const userId = this.firebaseAuthRepository.getUserId();
-            await this.writeIiniciarServicio(userId, "guarderia", idPrestador, idGuarderia);
-            return await readBasicInfoInciarServicio(userId, idPrestador, idGuarderia, this.readGuarderiaFullInfo);
+            return await this.writeIiniciarServicio(userId, "guarderia", idPrestador, idGuarderia); 
         } catch (error) {
             console.log(error)
             return error;
@@ -450,14 +447,33 @@ export class ServiciosDispController {
     async writeIniciarServicioPaseo(idPrestador, idPaseo) {
         try {
             const userId = this.firebaseAuthRepository.getUserId();
-            await this.writeIiniciarServicio(userId, "paseo", idPrestador, idPaseo);
-            return await readBasicInfoInciarServicio(userId, idPrestador, idPaseo, this.readPasesosFullInfo);
+            return await this.writeIiniciarServicio(userId, "paseo", idPrestador, idPaseo);
         } catch (error) {
             console.log(error)
             return error;
         }
     }
-    
+
+    //Leer los servicios que ha iniciado el usuario
+    async readServicioIniciadoVeterinaria(idPrestador,idVeterinaria){
+        const userId = this.firebaseAuthRepository.getUserId();
+        return await readBasicInfoInciarServicio(userId, idPrestador, idVeterinaria, this.readVeterinariaFullInfo);
+    }
+
+    async readServicioIniciadoSalto(idPrestador,idSalto){
+        const userId = this.firebaseAuthRepository.getUserId();
+        return await readBasicInfoInciarServicio(userId, idPrestador, idSalto, this.readSaltosFullInfo);
+    }
+
+    async readServicioIniciadoGuarderia(idPrestador,idGuarderia){
+        const userId = this.firebaseAuthRepository.getUserId();
+        return await readBasicInfoInciarServicio(userId, idPrestador, idGuarderia, this.readGuarderiaFullInfo);
+    }
+
+    async readServicioIniciadoPaseo(idPrestador,idPaseo){
+        const userId = this.firebaseAuthRepository.getUserId();
+        return await readBasicInfoInciarServicio(userId, idPrestador, idPaseo, this.readPasesosFullInfo);
+    }
 
     //Devuelve todos los servicios del mismo tipo que tenga publicados el usuario
     async servicioPrestador(tipoServicio){
