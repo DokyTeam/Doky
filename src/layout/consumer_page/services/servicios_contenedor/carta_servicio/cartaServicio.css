@@ -23,7 +23,7 @@
 
 .button_card{
     width: 100%;
-    height: 100%;
+    height: 200px;
     padding: 0;
     border-radius: 10px;
     background-color:  #ffffff;
@@ -31,15 +31,16 @@
 }
 
 .button_card:hover {
-    background-color: #c8f5dc;
-    border-radius: 10px;
+    background: #ccf0cf;
+    cursor: pointer;
 }
 
 .button_card .img_card {
-    padding: 5%;
+    margin: 5%;
     border-radius: 20px;
     width: 100%;
-    height: 100%;
+    height: 150px;
+   
 }
 
 .card{
@@ -77,3 +78,4 @@
     .val-40 {background-position: -21px 0;}
     .val-45 {background-position: 0 -21px;}
     .val-50 {background-position: 0 0;}
+
