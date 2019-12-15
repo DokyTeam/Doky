@@ -387,12 +387,7 @@ export class ServiciosDispController {
 
 
     //Devuelve todos los servicios del mismo tipo que tenga publicados el usuario
-<<<<<<< HEAD
-    servicioUsuario(tipoServicio){
-        
-=======
-    servicioUsuario(tipoServicio){     
->>>>>>> Develop
+    async servicioPrestador(tipoServicio){
         const userId = this.firebaseAuthRepository.getUserId();
         console.log(userId);
         let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + userId + "/" + tipoServicio + "susuario/";
@@ -401,41 +396,45 @@ export class ServiciosDispController {
                 let servicio = [];               
                 querySnapshot.forEach(function (doc) {
                     let id = { "id": doc.id }
-                    let values = { ...doc.data(), ...id }
+                    let tipo = { "tipo": tipoServicio};
+                    let values = { ...doc.data(), ...id, ...tipo };
                     let cantidad = { puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion) }
                     values = { ...values, ...cantidad }
                     servicio.push(values);
                 });
-                console.log(servicio);
                 return servicio;
             }
         );
     }
 
 
-    servicioGuarderiaUsuario(){
+    servicioGuarderiaPrestador(){
         return this.servicioUsuario("guarderia");
     }
 
-    servicioPaseoUsuario(){
+    servicioPaseoPrestador(){
         return this.servicioUsuario("paseo");
     }
 
-    servicioVeterinariaUsuario(){
+    servicioVeterinariaPrestador(){
         return this.servicioUsuario("veterinaria");
     }
 
-    servicioSaltoUsuario(){
+    servicioSaltoPrestador(){
         return this.servicioUsuario("salto");
     }
 
 
-<<<<<<< HEAD
+    //Retorna todos los servicios registrados de un prestador
+    async allServiciosPrestador(){
+        let veterinarias = await this.servicioPrestador("veterinaria");
+        let paseos = await this.servicioPrestador("paseo");
+        let guarderias = await this.servicioPrestador("guarderia");
+        let saltos = await this.servicioPrestador("salto");
+
+        let all = veterinarias.concat(paseos,guarderias,saltos);
+        return all;
+    }
 
 
-
-
-
-=======
->>>>>>> Develop
 }
