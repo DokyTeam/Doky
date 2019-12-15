@@ -284,7 +284,8 @@ export class ServiciosDispController {
     //-error: Una fucnion que se ejecuta al ocurrir un error
     //-fullyLoaded: Una funcion que se ejecuta al cargar la imagen
 
-    async fullServicio(servicio, img, loadImg, error, fullyLoaded, addImagen, nombreServicio) {
+    async fullServicio(servicio, img, loadImg, error, fullyLoaded, addImagen, nombreServicio1) {
+        let nombreServicio = nombreServicio1.toLowerCase();
         try {
             if (nombreServicio === "guarderia" || nombreServicio === "paseo" || nombreServicio === "salto") {
                 let precio = parseInt(servicio.precio, 10);
