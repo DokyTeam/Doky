@@ -7,6 +7,29 @@ import { UserController } from './user_controller';
 import { FirebaseDeleteRepository } from '../access_data/firebase_delete_repository';
 
 //Servicios disp controller
+
+const readServiciosIniciadosPrestador = async (idPrestador, tipoServicio) => {
+    const url = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idPrestador + "/" + tipoServicio + "susuario";
+    const firebaseReadRepository = new FirebaseReadRepository();
+    const userController = new UserController();
+    let result = [];
+    const snapshot = await firebaseReadRepository.readCollection(url).get();
+
+    for (let i = 0; i < snapshot.size; i++) {
+        let doc = snapshot.docs[i];
+        const servicio = infoServicio(doc);
+        const url2 = url + "/" + doc.id + "/solicitud";
+        const snapshot2 = await firebaseReadRepository.readCollection(url2).get();
+        for (let j = 0; j < snapshot2.size; j++) {
+            let doc2 = snapshot2.docs[j];
+            const consumidor = await userController.getInfomracionUsuario(doc2.id);
+            const prestador = await userController.getInfomracionUsuario(idPrestador);
+            result.push({ servicio: servicio, consumidor: consumidor, tipo: tipoServicio, prestador: prestador });
+        }
+    }
+    return result;
+}
+
 const addImagen = (img, loadImg, error, fullyLoaded, getUserId, getaIdServicio, nombreServicio) => {
     const firebaseStorageRespository = new FirebaseStorageRespository();
     const task = firebaseStorageRespository.storageData(`/Servicios/${nombreServicio}/${getUserId}/${getaIdServicio}`, img);
@@ -71,28 +94,27 @@ const readBasicInfoInciarServicio = async (userId, idPrestador, idServicio, read
     return { user: user, prestador: prestador, servicio: servicio };
 }
 
-const readServiciosIniciadosPrestador = async (idPrestador,tipoServicio) => {
-    const url = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idPrestador + "/" + tipoServicio + "susuario";
+
+const readServiciosIniciadosConsumidor = async (idUser) => {
+    let result = [];
     const firebaseReadRepository = new FirebaseReadRepository();
     const userController = new UserController();
-    let result = [];
-    const snapshot = await firebaseReadRepository.readCollection(url).get();
-
+    const snapshot = await firebaseReadRepository.readGroupCollection("solicitud").get();
     for (let i = 0; i < snapshot.size; i++) {
         let doc = snapshot.docs[i];
-        const servicio = infoServicio(doc);
-        const url2 = url + "/" + doc.id + "/solicitud";
-        const snapshot2 = await firebaseReadRepository.readCollection(url2).get();
-        for (let j = 0; j < snapshot2.size; j++) {
-            let doc2 = snapshot2.docs[j];
-            const consumidor = await userController.getInfomracionUsuario(doc2.id);
-            const prestador = await userController.getInfomracionUsuario(idPrestador);
-            result.push({ servicio: servicio, consumidor: consumidor, tipo: tipoServicio,prestador:prestador});
+        if (doc.id === idUser) {
+            const servicioRef = await doc.ref.parent.parent.get();
+            if(servicioRef.exists){
+                const consumidor = await userController.getInfomracionUsuario(doc.id);
+                const prestador = await userController.getInfomracionUsuario(doc.ref.parent.parent.parent.parent.id);
+                const servicio = await infoServicio(servicioRef);
+                result.push({ servicio: servicio, consumidor: consumidor, tipo: doc.ref.parent.parent.parent.parent.parent.parent.id, prestador: prestador,paht:doc.ref.parent.parent.path ,doc:await doc.ref.parent.parent.get()});
+            }
         }
     }
-    return result;
+    console.log(result);
+    return(result)
 }
-
 
 export class ServiciosDispController {
 
@@ -504,11 +526,18 @@ export class ServiciosDispController {
     async readServiciosIniciadosPrestador() {
         let servicios = [];
         let userId = this.firebaseAuthRepository.getUserId();
-        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId,"veterinaria"));
-        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId,"guarderia"));
-        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId,"paseo"));
-        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId,"salto"));
+        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId, "veterinaria"));
+        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId, "guarderia"));
+        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId, "paseo"));
+        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId, "salto"));
         return servicios;
+    }
+
+    //Servicios iniciados Consumidor
+    async readServiciosIniciadosConsumidor(){
+        let servicios = [];
+        let userId = this.firebaseAuthRepository.getUserId();
+        return servicios.concat(await readServiciosIniciadosConsumidor(userId,"veterinaria"))
     }
 
     //Devuelve todos los servicios del mismo tipo que tenga publicados el usuario
