@@ -54,6 +54,8 @@ class Chat extends Component {
             let id_prestador = this.props.id_prestador;
             let getController = new ChatController();
             // mensaje, id_consumidor , id_prestador, id:emisor_mensaje
+            // para prestador:
+            //const Info = await getController.writeMesage(mensaje,id_user, id_prestador,id_prestador);
             const Info = await getController.writeMesage(mensaje,id_user, id_prestador,id_user);
             
         } catch (error) {
@@ -67,7 +69,7 @@ class Chat extends Component {
         this.state.message.map((data, index) => {
             data[1].map((data, index) => {
                 let data_esc = data.mensaje;
-                //compara para poner los colores del chat, en presador deberia ser 
+                //compara para poner los colores del chat, en prestador deberia ser 
                 //if (data.userId === this.props.id_consumidor)
                 //para q se vea igual 
                 if (data.userId === this.props.id_prestador) {
