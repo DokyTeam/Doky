@@ -44,7 +44,7 @@ class Start extends Component {
     eliminarServicio = async () => {
         try {
             let serviceController = new ServiciosDispController();
-            await serviceController.deleteServicio(this.props.nombre, this.props.tipo);
+            await serviceController.finalizarServicioIniciado(this.props.nombre.toLowerCase(), this.props.tipo,this.props.idp,this.props.ic,0);
 
         } catch (error) {
             console.log(error)
@@ -119,7 +119,7 @@ class Start extends Component {
                                 <button type="button" name="next" className="next action-button" value="Next" onClick={
                                     () => {
                                         this.calificarServicio(this.state.value);
-                                        //this.eliminarServicio();
+                                        this.eliminarServicio();
                                     }}>
                                     Finalizar</button>
                             </Link>

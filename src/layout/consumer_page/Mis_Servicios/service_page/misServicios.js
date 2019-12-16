@@ -106,7 +106,9 @@ class MisServicios extends Component {
                                     show={this.state.show_start}
                                     volver={this.handle}
                                     nombre={this.props.location.state.nombre}
-                                    tipo="guarderia"
+                                    tipo={this.props.location.state.tipo}
+                                    idc =  {this.props.location.state.idConsumidor}
+                                    idp= {this.props.location.state.idPrestador}
                                 ></Start>
                                 <button type="button" className="btn btn-danger" onClick={() => {
                                     this.handle("container-fluid backdrop-consumer", true)
@@ -131,7 +133,10 @@ class MisServicios extends Component {
                                 />
                             </div>
                             <div className="WhiteColor card ContainerInfo">
-                                <Chat></Chat>
+                                <Chat
+                                    id_user =  {this.props.location.state.idConsumidor}
+                                    id_prestador= {this.props.location.state.idPrestador}
+                                ></Chat>
                                 <br></br>
                             </div>
 
