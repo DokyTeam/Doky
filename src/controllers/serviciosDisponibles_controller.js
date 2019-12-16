@@ -112,7 +112,6 @@ const readServiciosIniciadosConsumidor = async (idUser) => {
             }
         }
     }
-    console.log(result);
     return(result)
 }
 
@@ -595,6 +594,12 @@ export class ServiciosDispController {
         const userId = this.firebaseAuthRepository.getUserId();
         let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + userId + "/" + tipoServicio + "susuario/"
         return this.firebaseDeleteRepository.deleteDocument(direccion, nombreServicio);
+    }
+
+    //Terminar un servicio que se ha iniciado
+    finalizarServicioIniciado(idServicio, tipoServicio,idPrestador, idConsumidor,calificacion){
+        let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idPrestador + "/" + tipoServicio + "susuario/" + idServicio + "/solicitud/";
+        return this.firebaseDeleteRepository.deleteDocument(direccion,idConsumidor);
     }
 
 }
