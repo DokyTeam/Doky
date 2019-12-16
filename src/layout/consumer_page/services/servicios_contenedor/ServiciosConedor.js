@@ -19,6 +19,7 @@ function createcarta (props) {
                         foto={data.img} 
                         descripcion={data.descripcion}
                         calificacion={data.puntuacion} 
+                        id = {data.id}
                         />
                     </div>
                 )
@@ -26,7 +27,7 @@ function createcarta (props) {
         ))
     return table
 }
-
+ 
 function ServiciosContenedor (props) {
         return (
             <div className="row" >
