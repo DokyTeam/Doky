@@ -18,7 +18,9 @@ class ServicesContainer extends Component {
     }
 
     componentDidMount() {
-        this.readAllPaseos();
+        //this.readAllPaseos();
+        const serviciosDispController = new ServiciosDispController();
+        serviciosDispController.readServiciosIniciadosPrestador();
     }
 
     readAllPaseos = async () => {

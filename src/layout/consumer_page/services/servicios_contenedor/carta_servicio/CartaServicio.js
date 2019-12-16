@@ -46,7 +46,7 @@ class CartaServicio extends Component {
     }
 
     render() {
-        const id = this.props.servicename;
+        const id = this.props.id;
         const id_user = this.props.usuario
         const link = "/" + this.props.type +`/${id}`;
 
