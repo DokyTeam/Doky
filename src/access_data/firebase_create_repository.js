@@ -8,7 +8,7 @@ export class FirebaseCreateRepository {
     }
     
     writeDocument(collectionUrl,document,merge=false){
-        return this.firebaseInstance.firestore().doc(collectionUrl).set(document, { merge: merge });
+        return this.firebaseInstance.firestore().collection(collectionUrl).add(document);
     }
 
     writeCollectionIdDefined(collectionName, idDoc, document){
