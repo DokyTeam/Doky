@@ -45,6 +45,7 @@ export class ChatController {
     }
 
     async writeMesage(mensaje, idUsuario, idPrestador, idEmisor){
+
         const forUpdate = new FirebaseUpdateRepository();
         let result = await this.getIdChat(idUsuario, idPrestador);  
 
@@ -73,37 +74,7 @@ export class ChatController {
 
         return forUpdate.updateAttributesDocument("chats",result[0],update);
 
-                        
-            
-
-        /*
-        let m = {
-            "userId" : idEmisor,
-            "mensaje" : mensaje,
-        };
-        
-        let mensajesAnteriores = [];
-        try{
-            mensajesAnteriores = result[1];
-        }catch(error){
-            let newChat = {
-                "idUsuario" : idUsuario,
-                "idPrestador" : idPrestador
-            };
-            newChat.mensajes = [];
-            this.firebaseCreateRepository.writeDocument("chats", newChat);
-        }
-
-        
-        let nuevosMensajes = mensajesAnteriores.push(m);
-        let update = {
-            "mensajes" : nuevosMensajes
-        };
-
-        this.firebaseUpdateRepository.updateAttributesDocument("chats",result[0],update);
-        */
     }
-
 
 
 
