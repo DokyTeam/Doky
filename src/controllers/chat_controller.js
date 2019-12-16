@@ -14,73 +14,67 @@ export class ChatController {
 
 
     async getIdChat(idUsuario, idPrestador){
+        let result = [];  
         return this.firebaseReadRepository.readCollection("chats").where("user1","==",idUsuario).where("user2","==",idPrestador).get().then(
             function (querySnapshot) {  
-                let result = [];   
-                    querySnapshot.forEach(function (doc) {
+                        querySnapshot.forEach(function (doc) {
                         result.push(doc.id);
                         result.push(doc.data().mensajes);
                         console.log(result);
-                        return result;
                 }
+                
             )
+            return result;
         })
     }
 
 
 
-    async getMesages(idUsuario, idPrestador){
-        return this.firebaseReadRepository.readCollection("chats").where("user1","==",idUsuario).where("user2","==",idPrestador).get().then(
+    getMesages(idUsuario, idPrestador){
+        let values = [];
+        return this.firebaseReadRepository.readCollection("chats").where("user1","==",idUsuario).where("user2","==",idPrestador).onSnapshot(
             function (querySnapshot) {  
                     querySnapshot.forEach(function (doc) {
                         let values = doc.data().mensajes;
-                        return values;
+                        console.log(values);
                 }
             )
+            return values;
         })
+        
     }
 
     async writeMesage(mensaje, idUsuario, idPrestador, idEmisor){
         const forUpdate = new FirebaseUpdateRepository();
+        let result = await this.getIdChat(idUsuario, idPrestador);  
+
+        let m = {
+            "userId" : idEmisor,
+            "mensaje" : mensaje,
+        };
         
-        let result = [];   
-        this.firebaseReadRepository.readCollection("chats").where("user1","==",idUsuario).where("user2","==",idPrestador).get().then(
-            function (querySnapshot) {  
-                
-                    querySnapshot.forEach(function (doc) {
-                        console.log("entra");
-                        result = doc.data().mensajes;
-                        console.log(result);
+        if(result.length === 0){
+            let newChat = {
+                "idUsuario" : idUsuario,
+                "idPrestador" : idPrestador
+            };
+            newChat.mensajes = [m];
+            return this.firebaseCreateRepository.writeDocument("chats", newChat);
 
-                        let m = {
-                            "userId" : idEmisor,
-                            "mensaje" : mensaje,
-                        };
-                        
-                        let mensajesAnteriores = result;
-                        if(result === null){
-                            let newChat = {
-                                "idUsuario" : idUsuario,
-                                "idPrestador" : idPrestador
-                            };
-                            newChat.mensajes = [];
-                            this.firebaseCreateRepository.writeDocument("chats", newChat);
-                        }
-                        
-                        
-                        mensajesAnteriores.push(m);
-                        console.log(mensajesAnteriores);
-                        let update = {
-                            "mensajes" : mensajesAnteriores
-                        };
+        }
 
-                        forUpdate.updateAttributesDocument("chats",doc.id,update);
-                    
+        let mensajesAnteriores = result[1];
+        
+        mensajesAnteriores.push(m);
+        console.log(mensajesAnteriores);
+        let update = {
+            "mensajes" : mensajesAnteriores
+        };
+
+        return forUpdate.updateAttributesDocument("chats",result[0],update);
+
                         
-                }
-                
-            )
-        })
+            
 
         /*
         let m = {
