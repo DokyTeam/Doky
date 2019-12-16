@@ -7,6 +7,29 @@ import { UserController } from './user_controller';
 import { FirebaseDeleteRepository } from '../access_data/firebase_delete_repository';
 
 //Servicios disp controller
+
+const readServiciosIniciadosPrestador = async (idPrestador, tipoServicio) => {
+    const url = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idPrestador + "/" + tipoServicio + "susuario";
+    const firebaseReadRepository = new FirebaseReadRepository();
+    const userController = new UserController();
+    let result = [];
+    const snapshot = await firebaseReadRepository.readCollection(url).get();
+
+    for (let i = 0; i < snapshot.size; i++) {
+        let doc = snapshot.docs[i];
+        const servicio = infoServicio(doc);
+        const url2 = url + "/" + doc.id + "/solicitud";
+        const snapshot2 = await firebaseReadRepository.readCollection(url2).get();
+        for (let j = 0; j < snapshot2.size; j++) {
+            let doc2 = snapshot2.docs[j];
+            const consumidor = await userController.getInfomracionUsuario(doc2.id);
+            const prestador = await userController.getInfomracionUsuario(idPrestador);
+            result.push({ servicio: servicio, consumidor: consumidor, tipo: tipoServicio, prestador: prestador });
+        }
+    }
+    return result;
+}
+
 const addImagen = (img, loadImg, error, fullyLoaded, getUserId, getaIdServicio, nombreServicio) => {
     const firebaseStorageRespository = new FirebaseStorageRespository();
     const task = firebaseStorageRespository.storageData(`/Servicios/${nombreServicio}/${getUserId}/${getaIdServicio}`, img);
@@ -41,8 +64,8 @@ const serviciosFullInfo = async (servicio, userId, servicioId) => {
     const firebaseReadRepository = new FirebaseReadRepository();
     return firebaseReadRepository.readDocument(search).get().then(
         querySnapshot => {
-            const tipo = {tipoServicio:servicio};
-            return {...infoServicio(querySnapshot),... tipo}
+            const tipo = { tipoServicio: servicio };
+            return { ...infoServicio(querySnapshot), ...tipo }
         }
     )
 }
@@ -68,7 +91,29 @@ const readBasicInfoInciarServicio = async (userId, idPrestador, idServicio, read
     const user = await userController.getInfomracionUsuario(userId);
     const prestador = await userController.getInfomracionUsuario(idPrestador);
     const servicio = await readServicioFullInfo(idPrestador, idServicio);
-    return {user:user, prestador:prestador, servicio:servicio};
+    return { user: user, prestador: prestador, servicio: servicio };
+}
+
+
+const readServiciosIniciadosConsumidor = async (idUser) => {
+    let result = [];
+    const firebaseReadRepository = new FirebaseReadRepository();
+    const userController = new UserController();
+    const snapshot = await firebaseReadRepository.readGroupCollection("solicitud").get();
+    for (let i = 0; i < snapshot.size; i++) {
+        let doc = snapshot.docs[i];
+        if (doc.id === idUser) {
+            const servicioRef = await doc.ref.parent.parent.get();
+            if(servicioRef.exists){
+                const consumidor = await userController.getInfomracionUsuario(doc.id);
+                const prestador = await userController.getInfomracionUsuario(doc.ref.parent.parent.parent.parent.id);
+                const servicio = await infoServicio(servicioRef);
+                result.push({ servicio: servicio, consumidor: consumidor, tipo: doc.ref.parent.parent.parent.parent.parent.parent.id, prestador: prestador,paht:doc.ref.parent.parent.path ,doc:await doc.ref.parent.parent.get()});
+            }
+        }
+    }
+    console.log(result);
+    return(result)
 }
 
 export class ServiciosDispController {
@@ -249,8 +294,8 @@ export class ServiciosDispController {
     // ya esta asignado.
     async verifyService(tipoServicio, nombreServicio) {
         let ac = true;
-        return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where("nombre","==",nombreServicio).get().then(
-            function(querySnapshot){             
+        return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where("nombre", "==", nombreServicio).get().then(
+            function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                     ac = false;
                 });
@@ -322,21 +367,22 @@ export class ServiciosDispController {
 
     // recibe el nombre del servicio,  el tipo de servicio (guarderia, veterinaria, salto, paseo) y el valor de la nueva puntuacion
     async updateStars(nombreServicio, tipoServicio, nuevaPuntuacion) {
-        
-        return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where("nombre","==",nombreServicio).get().then(
+
+        return this.firebaseReadRepository.readGroupCollection(tipoServicio + "susuario").where("nombre", "==", nombreServicio).get().then(
             function (querySnapshot) {
                 const update = new FirebaseUpdateRepository();
                 querySnapshot.forEach(function (doc) {
-                let sp = doc.data().sumapuntuacion + nuevaPuntuacion;
-                let cp = doc.data().cantidadpuntuacion + 1;
-                let direccion  = doc.ref.path.toString();
-                let m = {
-                    sumapuntuacion: sp,
-                    cantidadpuntuacion: cp
-                }
-                return update.updateAttributesDocumentCompletePath(direccion, m);  
-            })}
-            
+                    let sp = doc.data().sumapuntuacion + nuevaPuntuacion;
+                    let cp = doc.data().cantidadpuntuacion + 1;
+                    let direccion = doc.ref.path.toString();
+                    let m = {
+                        sumapuntuacion: sp,
+                        cantidadpuntuacion: cp
+                    }
+                    return update.updateAttributesDocumentCompletePath(direccion, m);
+                })
+            }
+
         );
     }
 
@@ -349,7 +395,7 @@ export class ServiciosDispController {
     }
 
     updateStarsVeterinaria(nombreServicio, nuevaPuntuacion) {
-        return this.updateStars(nombreServicio, "veterinaria",  nuevaPuntuacion);
+        return this.updateStars(nombreServicio, "veterinaria", nuevaPuntuacion);
     }
 
     updateStarsSalto(nombreServicio, nuevaPuntuacion) {
@@ -404,6 +450,7 @@ export class ServiciosDispController {
 
     async writeIiniciarServicio(idUser, tipoServicio, idPrestador, idServicio) {
         //Verficiacion de que el servicio no ha sido tomado
+        idServicio = idServicio.toLowerCase();
         const verify = true;
         if (verify) {
             let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + idPrestador + "/" + tipoServicio + "susuario/" + idServicio + "/solicitud/" + idUser;
@@ -416,8 +463,7 @@ export class ServiciosDispController {
     async writeIniciarServicioVeterinaria(idPrestador, idVeterinaria) {
         try {
             const userId = this.firebaseAuthRepository.getUserId();
-            await this.writeIiniciarServicio(userId, "veterinaria", idPrestador, idVeterinaria);
-            return await readBasicInfoInciarServicio(userId, idPrestador, idVeterinaria, this.readVeterinariaFullInfo);
+            return await this.writeIiniciarServicio(userId, "veterinaria", idPrestador, idVeterinaria);
         } catch (error) {
             console.log(error)
             return error;
@@ -427,8 +473,7 @@ export class ServiciosDispController {
     async writeIniciarServicioSalto(idPrestador, idSalto) {
         try {
             const userId = this.firebaseAuthRepository.getUserId();
-            await this.writeIiniciarServicio(userId, "salto", idPrestador, idSalto);
-            return await readBasicInfoInciarServicio(userId, idPrestador, idSalto, this.readSaltosFullInfo);
+            return await this.writeIiniciarServicio(userId, "salto", idPrestador, idSalto);
         } catch (error) {
             console.log(error)
             return error;
@@ -438,38 +483,73 @@ export class ServiciosDispController {
     async writeIniciarServicioGuarderia(idPrestador, idGuarderia) {
         try {
             const userId = this.firebaseAuthRepository.getUserId();
-            await this.writeIiniciarServicio(userId, "guarderia", idPrestador, idGuarderia);
-            return await readBasicInfoInciarServicio(userId, idPrestador, idGuarderia, this.readGuarderiaFullInfo);
+            return await this.writeIiniciarServicio(userId, "guarderia", idPrestador, idGuarderia);
         } catch (error) {
             console.log(error)
             return error;
         }
     }
 
-    
+
     async writeIniciarServicioPaseo(idPrestador, idPaseo) {
         try {
             const userId = this.firebaseAuthRepository.getUserId();
-            await this.writeIiniciarServicio(userId, "paseo", idPrestador, idPaseo);
-            return await readBasicInfoInciarServicio(userId, idPrestador, idPaseo, this.readPasesosFullInfo);
+            return await this.writeIiniciarServicio(userId, "paseo", idPrestador, idPaseo);
         } catch (error) {
             console.log(error)
             return error;
         }
     }
-    
+
+    //Leer los servicios que ha iniciado el usuario
+    async readServicioIniciadoVeterinaria(idPrestador, idVeterinaria) {
+        const userId = this.firebaseAuthRepository.getUserId();
+        return await readBasicInfoInciarServicio(userId, idPrestador, idVeterinaria, this.readVeterinariaFullInfo);
+    }
+
+    async readServicioIniciadoSalto(idPrestador, idSalto) {
+        const userId = this.firebaseAuthRepository.getUserId();
+        return await readBasicInfoInciarServicio(userId, idPrestador, idSalto, this.readSaltosFullInfo);
+    }
+
+    async readServicioIniciadoGuarderia(idPrestador, idGuarderia) {
+        const userId = this.firebaseAuthRepository.getUserId();
+        return await readBasicInfoInciarServicio(userId, idPrestador, idGuarderia, this.readGuarderiaFullInfo);
+    }
+
+    async readServicioIniciadoPaseo(idPrestador, idPaseo) {
+        const userId = this.firebaseAuthRepository.getUserId();
+        return await readBasicInfoInciarServicio(userId, idPrestador, idPaseo, this.readPasesosFullInfo);
+    }
+
+    //Servicios iniciados prestador
+    async readServiciosIniciadosPrestador() {
+        let servicios = [];
+        let userId = this.firebaseAuthRepository.getUserId();
+        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId, "veterinaria"));
+        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId, "guarderia"));
+        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId, "paseo"));
+        servicios = servicios.concat(await readServiciosIniciadosPrestador(userId, "salto"));
+        return servicios;
+    }
+
+    //Servicios iniciados Consumidor
+    async readServiciosIniciadosConsumidor(){
+        let servicios = [];
+        let userId = this.firebaseAuthRepository.getUserId();
+        return servicios.concat(await readServiciosIniciadosConsumidor(userId,"veterinaria"))
+    }
 
     //Devuelve todos los servicios del mismo tipo que tenga publicados el usuario
-    async servicioPrestador(tipoServicio){
+    async servicioPrestador(tipoServicio) {
         const userId = this.firebaseAuthRepository.getUserId();
-        console.log(userId);
         let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + userId + "/" + tipoServicio + "susuario/";
         return this.firebaseReadRepository.readCollection(direccion).get().then(
-            function(querySnapshot){ 
-                let servicio = [];               
+            function (querySnapshot) {
+                let servicio = [];
                 querySnapshot.forEach(function (doc) {
                     let id = { "id": doc.id }
-                    let tipo = { "tipo": tipoServicio};
+                    let tipo = { "tipo": tipoServicio };
                     let values = { ...doc.data(), ...id, ...tipo };
                     let cantidad = { puntuacion: promedio(values.sumapuntuacion, values.cantidadpuntuacion) }
                     values = { ...values, ...cantidad }
@@ -481,40 +561,40 @@ export class ServiciosDispController {
     }
 
 
-    servicioGuarderiaPrestador(){
+    servicioGuarderiaPrestador() {
         return this.servicioUsuario("guarderia");
     }
 
-    servicioPaseoPrestador(){
+    servicioPaseoPrestador() {
         return this.servicioUsuario("paseo");
     }
 
-    servicioVeterinariaPrestador(){
+    servicioVeterinariaPrestador() {
         return this.servicioUsuario("veterinaria");
     }
 
-    servicioSaltoPrestador(){
+    servicioSaltoPrestador() {
         return this.servicioUsuario("salto");
     }
 
 
     //Retorna todos los servicios registrados de un prestador
-    async allServiciosPrestador(){
+    async allServiciosPrestador() {
         let veterinarias = await this.servicioPrestador("veterinaria");
         let paseos = await this.servicioPrestador("paseo");
         let guarderias = await this.servicioPrestador("guarderia");
         let saltos = await this.servicioPrestador("salto");
 
-        let all = veterinarias.concat(paseos,guarderias,saltos);
+        let all = veterinarias.concat(paseos, guarderias, saltos);
         return all;
     }
 
 
 
-    deleteServicio(nombreServicio, tipoServicio){
+    deleteServicio(nombreServicio, tipoServicio) {
         const userId = this.firebaseAuthRepository.getUserId();
         let direccion = "servicios/" + tipoServicio + "/" + tipoServicio + "s/" + userId + "/" + tipoServicio + "susuario/"
-        return this.firebaseDeleteRepository.deleteDocument(direccion,nombreServicio);
+        return this.firebaseDeleteRepository.deleteDocument(direccion, nombreServicio);
     }
 
 }

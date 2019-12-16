@@ -66,7 +66,9 @@ export default function ServiceCard(props) {
                 nombrep: props.nombrep,
                 apellidosp: props.apellidosp,
                 telefonop: props.telefonop,
-                imgp: props.imgp
+                imgp: props.imgp,
+                idPrestador: props.idPrestador,
+                idConsumidor: props.idConsumidor
             }
         }}>
             <div className="card">

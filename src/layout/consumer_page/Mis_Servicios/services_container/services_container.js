@@ -10,26 +10,16 @@ import { ServiciosDispController } from '../../../../controllers/serviciosDispon
 import ServiceCard from './components/cons_serv_card';
 
 class ServicesContainer extends Component {
-
     state = {
         servicios: [],
         filtro: "ninguno",
         filtroname: "Ninguno",
     }
 
-    componentDidMount() {
-        this.readAllPaseos();
-    }
-
-    readAllPaseos = async () => {
-        try {
-            var serviciosDispController = new ServiciosDispController();
-            const paseos = await serviciosDispController.readServicioVeterinaria();
-            console.log(paseos)
-            this.setState({ servicios: paseos });
-        } catch (error) {
-            console.log(error)
-        }
+    async componentDidMount() {
+        const serviciosDispController = new ServiciosDispController();
+        const servicios = await serviciosDispController.readServiciosIniciadosConsumidor();
+        this.setState({ servicios: servicios })
     }
 
     changefilter = (param, param2) => {
@@ -43,55 +33,61 @@ class ServicesContainer extends Component {
 
         let table = [];
 
-        this.state.servicios.map((data, index) => {
-
-            if (this.state.filtro === "ninguno") {
-                table.push(
-                    <ServiceCard
-                        key={index}
-                        //informacion servicio
-                        nombre={data.nombre}
-                        img={data.img}
-                        puntuacion={data.puntuacion}
-                        horario={data.horario}
-                        localidad={data.localidad}
-                        barrio={data.barrio}
-                        duracionMax={data.duracionMax}
-                        precio={data.precio}
-                        descripcion={data.descripcion}
-                        type={"veterinaria"}
-                        //informacion persona
-                        imgp={'http://lorempixel.com/500/300/'}
-                        nombrep={'Juan Pablo'}
-                        apellidosp={'Betancourt Maldonado'}
-                        telefonop={'3214567890'}
-                    />
-                )
-            } else {
-                if (data.type === this.state.filtro) {
+        this.state.servicios.map(
+            (data, index) => {
+                if (this.state.filtro === "ninguno") {
                     table.push(
                         <ServiceCard
-                            nombre={data.nombre}
-                            img={data.img}
-                            puntuacion={data.puntuacion}
-                            horario={data.horario}
-                            localidad={data.localidad}
-                            barrio={data.barrio}
-                            duracionMax={data.duracionMax}
-                            precio={data.precio}
-                            descripcion={data.descripcion}
-
-                            type={"veterinaria"}
-
                             key={index}
-                            id={index}
-                            delete={this.removefromlist}
+                            //informacion servicio
+                            nombre={data.servicio.nombre}
+                            img={data.servicio.img}
+                            puntuacion={data.servicio.puntuacion}
+                            horario={data.servicio.horario}
+                            localidad={data.servicio.localidad}
+                            barrio={data.servicio.barrio}
+                            duracionMax={data.servicio.duracionMax}
+                            precio={data.servicio.precio}
+                            descripcion={data.servicio.descripcion}
+                            type={data.tipo}
+                            //informacion persona
+                            imgp={data.prestador.foto}
+                            nombrep={data.prestador.nombres}
+                            apellidosp={data.prestador.apellidos}
+                            telefonop={data.prestador.telefono}
+                            idConsumidor={data.consumidor.id}
+                            idPrestador={data.prestador.id}
+                        />)
+                } else {
+                    if (data.tipo === this.state.filtro) {
+                        table.push(
+                            <ServiceCard
+                            key={index}
+                            //informacion servicio
+                            nombre={data.servicio.nombre}
+                            img={data.servicio.img}
+                            puntuacion={data.servicio.puntuacion}
+                            horario={data.servicio.horario}
+                            localidad={data.servicio.localidad}
+                            barrio={data.servicio.barrio}
+                            duracionMax={data.servicio.duracionMax}
+                            precio={data.servicio.precio}
+                            descripcion={data.servicio.descripcion}
+                            type={data.tipo}
+                            //informacion persona
+                            imgp={data.consumidor.foto}
+                            nombrep={data.consumidor.nombres}
+                            apellidosp={data.consumidor.apellidos}
+                            telefonop={data.consumidor.telefono}
+                            idConsumidor={data.consumidor.id}
+                            idPrestador={data.prestador.id}
                         />
-                    )
+                        )
+                    }
                 }
+
             }
-            return null;
-        });
+        );
 
         return (
             <div className="container-fluid">
