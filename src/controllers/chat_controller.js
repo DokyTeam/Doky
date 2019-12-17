@@ -1,3 +1,4 @@
+
 import { FirebaseReadRepository } from '../access_data/firebase_read_repository';
 import { FirebaseUpdateRepository } from '../access_data/firebase_update_repository';
 import { FirebaseAuthRepository } from '../access_data/firebase_auth_repository';
@@ -56,11 +57,11 @@ export class ChatController {
         
         if(result.length === 0){
             let newChat = {
-                "idUsuario" : idUsuario,
-                "idPrestador" : idPrestador
+                "user1" : idUsuario,
+                "user2" : idPrestador
             };
             newChat.mensajes = [m];
-            return this.firebaseCreateRepository.writeDocument("chats", newChat);
+            return this.firebaseCreateRepository.writeDocumentChat("chats", newChat);
 
         }
 
