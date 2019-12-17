@@ -32,7 +32,8 @@ class Start extends Component {
                 case "salto":
                     await serviceController.updateStarsSalto(this.props.nombre, nuevaPuntuacion);
                     break;
-
+                default:
+                    break;
             }
 
         } catch (error) {

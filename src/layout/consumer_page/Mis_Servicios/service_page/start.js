@@ -6,9 +6,7 @@ import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import './start.css';
 
-
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
-import { switchCase } from '@babel/types';
 
 class Start extends Component {
 
@@ -33,7 +31,8 @@ class Start extends Component {
                 case "salto":
                     await serviceController.updateStarsSalto(this.props.nombre, nuevaPuntuacion);
                     break;
-
+                    default:
+                        break;
             }
 
         } catch (error) {

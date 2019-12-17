@@ -122,7 +122,10 @@ class LendMisServicios extends Component {
                                 />
                             </div>
                             <div className="WhiteColor card ContainerInfo">
-                                <Chat></Chat>
+                                <Chat
+                                    id_user={this.props.location.state.idConsumidor}
+                                    id_prestador={this.props.location.state.idPrestador}
+                                ></Chat>
                                 <br></br>
                             </div>
 

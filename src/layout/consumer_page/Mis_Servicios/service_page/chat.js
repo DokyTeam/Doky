@@ -49,7 +49,6 @@ class Chat extends Component {
     }
     enviar = async (mensaje) => {
         try {
-
             let id_user = this.props.id_user;
             let id_prestador = this.props.id_prestador;
             console.log(id_user,"   ", id_prestador, "   ", mensaje)
@@ -76,8 +75,6 @@ class Chat extends Component {
                     //para q se vea igual 
                     if (data.userId === this.props.id_prestador) {
                         table.push(
-
-
                             <div key={index} >
 
                                 <p className="AltBackgroundColor leftMessage" >
@@ -88,7 +85,6 @@ class Chat extends Component {
                     } else {
                         table.push(
                             <div key={index}>
-
                                 <p className="BackgroundColor rightMessage"  >
                                     {data_esc}
                                 </p>
@@ -104,12 +100,8 @@ class Chat extends Component {
 
 
     render() {
-
-        let Mensaje;
         return (
             <>
-
-
                 <div className="containerChatTotal">
                     <p className="MediumTextFont BigTextFont TextDarkMainColor" >Chat</p>
                     <div className="ContainerChat" >
