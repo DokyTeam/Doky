@@ -44,7 +44,8 @@ class Start extends Component {
     eliminarServicio = async () => {
         try {
             let serviceController = new ServiciosDispController();
-            await serviceController.finalizarServicioIniciado(this.props.nombre.toLowerCase(), this.props.tipo,this.props.idp,this.props.ic,0);
+            
+            await serviceController.finalizarServicioIniciado(this.props.nombre.toLowerCase(), this.props.tipo,this.props.idp,this.props.idc,0);
 
         } catch (error) {
             console.log(error)

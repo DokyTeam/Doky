@@ -18,21 +18,21 @@ class Chat extends Component {
         this.state = {
             message: []
         }
-        this.mensaje="";
+        this.mensaje = "";
     }
 
     componentDidMount() {
-         this.timerID = setInterval(
-         () => 
-            this.loadChat(),
+        this.timerID = setInterval(
+            () =>
+                this.loadChat(),
             500
         );
     }
-    
-      componentWillUnmount() {
+
+    componentWillUnmount() {
         clearInterval(this.timerID);
-      }
-    
+    }
+
 
     loadChat = async () => {
         try {
@@ -47,17 +47,18 @@ class Chat extends Component {
             console.log(error)
         }
     }
-    enviar = async (mensaje) =>{
+    enviar = async (mensaje) => {
         try {
-           
+
             let id_user = this.props.id_user;
             let id_prestador = this.props.id_prestador;
+            console.log(id_user,"   ", id_prestador, "   ", mensaje)
             let getController = new ChatController();
             // mensaje, id_consumidor , id_prestador, id:emisor_mensaje
             // para prestador:
             //const Info = await getController.writeMesage(mensaje,id_user, id_prestador,id_prestador);
-            const Info = await getController.writeMesage(mensaje,id_user, id_prestador,id_user);
-            
+            const Info = await getController.writeMesage(mensaje, id_user, id_prestador, id_user);
+
         } catch (error) {
             console.log(error)
         }
@@ -67,37 +68,39 @@ class Chat extends Component {
     chat = () => {
         let table = []
         this.state.message.map((data, index) => {
-            data[1].map((data, index) => {
-                let data_esc = data.mensaje;
-                //compara para poner los colores del chat, en prestador deberia ser 
-                //if (data.userId === this.props.id_consumidor)
-                //para q se vea igual 
-                if (data.userId === this.props.id_prestador) {
-                    table.push(
+            if (data[1] != null) {
+                data[1].map((data, index) => {
+                    let data_esc = data.mensaje;
+                    //compara para poner los colores del chat, en prestador deberia ser 
+                    //if (data.userId === this.props.id_consumidor)
+                    //para q se vea igual 
+                    if (data.userId === this.props.id_prestador) {
+                        table.push(
 
 
-                        <div key={index} >
+                            <div key={index} >
 
-                            <p className="AltBackgroundColor leftMessage" >
-                                {data_esc}
-                            </p>
-                        </div>
-                    );
-                } else {
-                    table.push(
-                        <div key={index}>
+                                <p className="AltBackgroundColor leftMessage" >
+                                    {data_esc}
+                                </p>
+                            </div>
+                        );
+                    } else {
+                        table.push(
+                            <div key={index}>
 
-                            <p className="BackgroundColor rightMessage"  >
-                                {data_esc}
-                            </p>
-                        </div>
-                    );
-                }
-            })
+                                <p className="BackgroundColor rightMessage"  >
+                                    {data_esc}
+                                </p>
+                            </div>
+                        );
+                    }
+                })
+            }
         })
         return table
     }
-    
+
 
 
     render() {
@@ -117,12 +120,12 @@ class Chat extends Component {
 
                     </div>
                     <div className="input-group mb-3">
-                        <input type="text" className="form-control" placeholder="Mensaje" name="input" aria-label="Mensaje" aria-describedby="button-addon2" ref={(c) => this.mensaje = c }/>
+                        <input type="text" className="form-control" placeholder="Mensaje" name="input" aria-label="Mensaje" aria-describedby="button-addon2" ref={(c) => this.mensaje = c} />
                         <div className="input-group-append">
                             <button className="btn btn-outline-secondary" type="button" id="button-addon2"
                                 onClick={() => {
-                                   this.enviar(this.mensaje.value)
-                                   this.mensaje.value=""
+                                    this.enviar(this.mensaje.value)
+                                    this.mensaje.value = ""
                                 }}>Enviar</button>
                         </div>
                     </div>
