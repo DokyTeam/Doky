@@ -86,7 +86,7 @@ class LenderServicesContainer extends Component {
                         )
                     }
                 }
-
+                return null;
             }
         );
 

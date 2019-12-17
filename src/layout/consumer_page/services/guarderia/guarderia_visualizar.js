@@ -5,7 +5,6 @@ import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
 import '../../../global_css/starts.css';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom'
 
 class GuarderiaVisualizar extends Component {
