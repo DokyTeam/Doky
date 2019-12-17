@@ -21,7 +21,6 @@ export class ChatController {
                         querySnapshot.forEach(function (doc) {
                         result.push(doc.id);
                         result.push(doc.data().mensajes);
-                        console.log(result);
                 }
                 
             )
@@ -31,13 +30,12 @@ export class ChatController {
 
 
 
-    getMesages(idUsuario, idPrestador){
+    async getMesages(idUsuario, idPrestador){
         let values = [];
-        return this.firebaseReadRepository.readCollection("chats").where("user1","==",idUsuario).where("user2","==",idPrestador).onSnapshot(
+        return this.firebaseReadRepository.readCollection("chats").where("user1","==",idUsuario).where("user2","==",idPrestador).get().then(
             function (querySnapshot) {  
                     querySnapshot.forEach(function (doc) {
                         let values = doc.data().mensajes;
-                        console.log(values);
                 }
             )
             return values;
