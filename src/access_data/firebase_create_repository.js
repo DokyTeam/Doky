@@ -7,8 +7,12 @@ export class FirebaseCreateRepository {
         this.firebaseInstance = fire;
     }
     
-    writeDocument(collectionName,document,merge=false){
-        return this.firebaseInstance.firestore().doc(collectionName).set(document, { merge: merge });
+    writeDocument(collectionUrl,document,merge=false){
+        return this.firebaseInstance.firestore().doc(collectionUrl).set(document, { merge: merge });
+    }
+
+    writeDocumentChat(collectionUrl,document,merge=false){
+        return this.firebaseInstance.firestore().collection(collectionUrl).add(document);
     }
 
     writeCollectionIdDefined(collectionName, idDoc, document){

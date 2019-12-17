@@ -12,6 +12,8 @@ import { Mascotas } from './Mascotas/ver_mascotas/mascotas';
 import { GuarderiaVisualizar } from './services/guarderia/guarderia_visualizar';
 import {VeterinariaVisualizar} from './services/veterinaria/veterinaria_visualizar';
 import {SaltosVisualizar} from './services/saltos/saltos_visualizar';
+import {ServicesContainer} from './Mis_Servicios/services_container/services_container';
+import { MisServicios } from './Mis_Servicios/service_page/misServicios';
 import {PaseosVisualizar} from './services/paseos/paseos_visualizar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
@@ -32,6 +34,9 @@ class ConsumerContainer extends Component {
                         <Route path="/Saltos/:id" exact component={SaltosVisualizar} />
                         <Route path="/Paseos/:id" exact component={PaseosVisualizar} />
                         <Route path="/Veterinaria" exact component={VeterinariaPage} />
+                        <Route path ="/MisServicios" exact component={ServicesContainer}/>
+                        <Route path ="/MisServicios" exact component={ServicesContainer}/>
+                        <Route path ="/MisServicios/:id" exact component={MisServicios}/>
                         <Route path="/Saltos" exact component={SaltosPage} />
                         <Route path="/Perfil" exact component={Perfil} />
                         <Route path="/RegistroMascotas" exact component={RegistroMascotas} />
@@ -45,3 +50,4 @@ class ConsumerContainer extends Component {
 }
 
 export { ConsumerContainer };
+

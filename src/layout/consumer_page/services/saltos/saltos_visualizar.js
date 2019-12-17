@@ -4,7 +4,7 @@ import '../../../global_css/textcolors.css';
 import '../../../global_css/colors.css';
 import '../../../global_css/fonts.css';
 import { ServiciosDispController } from '../../../../controllers/serviciosDisponibles_controller';
-
+import { Redirect } from 'react-router-dom'
 
 
 class SaltosVisualizar extends Component {
@@ -20,7 +20,7 @@ class SaltosVisualizar extends Component {
         try {
             let InfoSend = [];
             let id_salto = this.props.location.state.id;
-            
+
             const id = this.props.location.state.id_user;
             var getController = new ServiciosDispController();
             const Info = await getController.readSaltosFullInfo(id, id_salto);
@@ -33,75 +33,87 @@ class SaltosVisualizar extends Component {
     }
 
     estrellas = (calificacion) => {
-        
+
         if (0 < calificacion && calificacion < 0.5) {
             return "valoracion val-0"
         }
         if (0.5 <= calificacion && calificacion < 1) {
-           return "valoracion val-5"
+            return "valoracion val-5"
         }
         if (1 <= calificacion && calificacion < 1.5) {
-           return  "valoracion val-10"
+            return "valoracion val-10"
         }
         if (1.5 <= calificacion && calificacion < 2) {
-           return  "valoracion val-15"
+            return "valoracion val-15"
         }
         if (2 <= calificacion && calificacion < 2.5) {
-           return  "valoracion val-20"
+            return "valoracion val-20"
         }
         if (2.5 <= calificacion & calificacion < 3) {
-           return  "valoracion val-25"
+            return "valoracion val-25"
         }
         if (3 <= calificacion & calificacion < 3.5) {
-           return  "valoracion val-30"
+            return "valoracion val-30"
         }
         if (3.5 <= calificacion & calificacion < 4) {
-           return  "valoracion val-35"
+            return "valoracion val-35"
         }
         if (4 <= calificacion & calificacion < 4.5) {
-           return  "valoracion val-40"
+            return "valoracion val-40"
         }
         if (4.5 <= calificacion & calificacion < 5) {
-           return  "valoracion val-45"
+            return "valoracion val-45"
         }
         if (5 === calificacion) {
-           return  "valoracion val-50"
+            return "valoracion val-50"
         }
         return "valoracion val-0"
-       }
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return (<Redirect
+                to={{
+                    //pathname: "/mis-servicios/guarderia/" + `${this.props.location.state.id_user}`,
+                    pathname: "/MisServicios",
+                    state: this.state.redirect
+                }}
+            />)
+        }
+    }
 
     render() {
 
-        let barrio, descripcion,  id, img, localidad, precio, puntuacion;
+        let barrio, descripcion, id, img, localidad, precio, puntuacion,nombre;
 
         this.state.SaltosInfo.map((data) => {
             barrio = data.barrio;
             descripcion = data.descripcion;
             id = data.id;
+            nombre = data.nombre;
             img = data.img;
             localidad = data.localidad;
             precio = data.precio;
-            if(data.puntuacion) 
-            {puntuacion= parseFloat(data.puntuacion.toFixed(1) ) }
-            else{puntuacion = 0}
-            
+            if (data.puntuacion) { puntuacion = parseFloat(data.puntuacion.toFixed(1)) }
+            else { puntuacion = 0 }
+
 
             return null;
         });
 
         return (
             <div>
-
+            {this.renderRedirect()}
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-12">
 
                         </div>
                         <InformacionBasica
-                        
+
 
                             fotosrc={img}
-                            nombre={id}
+                            nombre={nombre}
                             calificación={puntuacion}
                             precio={precio}
                             localidad={localidad}
@@ -116,9 +128,19 @@ class SaltosVisualizar extends Component {
 
                     <div className="row">
                         <div className="col-12" style={{ textAlign: "right" }}>
-                            <button type="button" className="btn btn-success"
-                                style={{ marginRight: 10 }}>
-                                Tomar servicio</button>
+                            <button className="btn btn-success"
+                                style={{ marginRight: 10 }}
+                                onClick={
+                                    async () => {
+                                        const props = this.props.location.state;
+                                        const serviciosDispController = new ServiciosDispController();
+                                        await serviciosDispController.writeIniciarServicioSalto(props.id_user, props.id);
+                                        this.setState({
+                                            redirect: { id: props.id, idPrestador: props.id_user }
+                                        })
+                                    }}>
+                                Tomar servicio
+                            </button>
                             <hr />
                         </div>
                     </div>
@@ -165,7 +187,7 @@ function InformacionBasica(props) {
                     <div className="col-6 col-md-6">
                         <p className="ultraSmallTextoFont TextAltMainColor userparamtext">Calificación:</p>
                         <div className="row">
-                            
+
                             <div className="col-1 col-md-1 col-sm-1">
                                 <p className="MediumTextFont">{props.calificación}</p>
                             </div>
@@ -174,7 +196,7 @@ function InformacionBasica(props) {
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6">
@@ -183,7 +205,7 @@ function InformacionBasica(props) {
                         <p className="MediumTextFont">{props.precio}</p>
 
                     </div>
-                    
+
                 </div>
                 <div className="row">
                     <div className="col-12 col-md-6">
