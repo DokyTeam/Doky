@@ -1,3 +1,4 @@
+
 import { FirebaseReadRepository } from '../access_data/firebase_read_repository';
 import { FirebaseUpdateRepository } from '../access_data/firebase_update_repository';
 import { FirebaseAuthRepository } from '../access_data/firebase_auth_repository';
@@ -20,7 +21,6 @@ export class ChatController {
                         querySnapshot.forEach(function (doc) {
                         result.push(doc.id);
                         result.push(doc.data().mensajes);
-                        console.log(result);
                 }
                 
             )
@@ -30,13 +30,12 @@ export class ChatController {
 
 
 
-    getMesages(idUsuario, idPrestador){
+    async getMesages(idUsuario, idPrestador){
         let values = [];
-        return this.firebaseReadRepository.readCollection("chats").where("user1","==",idUsuario).where("user2","==",idPrestador).onSnapshot(
+        return this.firebaseReadRepository.readCollection("chats").where("user1","==",idUsuario).where("user2","==",idPrestador).get().then(
             function (querySnapshot) {  
                     querySnapshot.forEach(function (doc) {
                         let values = doc.data().mensajes;
-                        console.log(values);
                 }
             )
             return values;
@@ -56,11 +55,11 @@ export class ChatController {
         
         if(result.length === 0){
             let newChat = {
-                "idUsuario" : idUsuario,
-                "idPrestador" : idPrestador
+                "user1" : idUsuario,
+                "user2" : idPrestador
             };
             newChat.mensajes = [m];
-            return this.firebaseCreateRepository.writeDocument("chats", newChat);
+            return this.firebaseCreateRepository.writeDocumentChat("chats", newChat);
 
         }
 
